@@ -34,15 +34,11 @@ const state = proxy<Store>({
 
 // Reactive state model, using Valtio ...
 const modes = ["translate", "rotate", "scale"];
-//const state = proxy({ current: null, mode: 0 });
 
 const Model: React.FC<{
   name: string;
   props: { position: Vector3; rotation: Euler; scale: number };
 }> = ({ name, props }) => {
-  //   useFrame((framestate) => {
-  //     console.log(framestate);
-  //   });
 
   // Ties this component to the state model
   const snap = useSnapshot(state);
@@ -69,20 +65,11 @@ const Model: React.FC<{
       onPointerOut={(e) => setHovered(false)}
       name={name}
       geometry={nodes[name].geometry}
-      //   material={nodes[name].material}
-
-      //material-color={snap.current === name ? "#ff6080" : "white"}
-      //   position={new Vector3(...position)}
-      //   rotation={new Euler(...rotation)}
-      //   scale={new Vector3(scale)}
-
-      //   scale={0.001}
+      material={nodes[name].material}
+      material-color={snap.current === name ? "#ff6080" : "white"}
       {...props}
-      //position={new Vector3(0, 0, 0)}
       dispose={null}
-    >
-      <meshStandardMaterial color="orange" />
-    </mesh>
+    />
   );
 };
 
@@ -114,73 +101,13 @@ export default function TransformScene() {
       <Suspense fallback={null}>
         <directionalLight />
         <group position={[0, 10, 0]}>
-          {/* <Model
-            name="Curly"
-            position={[1, -11, -20]}
-            rotation={[2, 0, -0]}
-            scale={1}
-          />
-          <Model
-            name="DNA"
-            position={[20, 0, -17]}
-            rotation={[1, 1, -2]}
-            scale={1}
-          />
-          <Model
-            name="Headphones"
-            position={[20, 2, 4]}
-            rotation={[1, 0, -1]}
-            scale={1}
-          />
-          <Model
-            name="Notebook"
-            position={[-21, -15, -13]}
-            rotation={[2, 0, 1]}
-            scale={1}
-          />
-          <Model
-            name="Rocket003"
-            position={[18, 15, -25]}
-            rotation={[1, 1, 0]}
-            scale={1}
-          />
-          <Model
-            name="Roundcube001"
-            position={[-25, -4, 5]}
-            rotation={[1, 0, 0]}
-            scale={0.5}
-          />
-          <Model
-            name="Table"
-            position={[1, -4, -28]}
-            rotation={[1, 0, -1]}
-            scale={0.5}
-          />
-          <Model
-            name="VR_Headset"
-            position={[7, -15, 28]}
-            rotation={[1, 0, -1]}
-            scale={5}
-          /> */}
           <Model
             name="Zeppelin"
             props={{
-              position: new Vector3(0, 1, 0),
+              position: new Vector3(0, 0, 0),
               rotation: new Euler(3, -1, 3),
               scale: 0.001,
             }}
-            // position={[0, 0, 0]}
-            // rotation={[3, -1, 3]}
-            // scale={0.001}
-          />
-          <ContactShadows
-            rotation-x={Math.PI / 2}
-            position={[0, -35, 0]}
-            opacity={0.25}
-            width={200}
-            height={200}
-            blur={1}
-            far={50}
           />
         </group>
       </Suspense>
