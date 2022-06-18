@@ -38,10 +38,8 @@ const modes = ["translate", "rotate", "scale"];
 
 const Model: React.FC<{
   name: string;
-  position: number[];
-  rotation: number[];
-  scale: number;
-}> = ({ name, position, rotation, scale }) => {
+  props: { position: Vector3; rotation: Euler; scale: number };
+}> = ({ name, props }) => {
   //   useFrame((framestate) => {
   //     console.log(framestate);
   //   });
@@ -78,7 +76,8 @@ const Model: React.FC<{
       //   rotation={new Euler(...rotation)}
       //   scale={new Vector3(scale)}
 
-      scale={0.001}
+      //   scale={0.001}
+      {...props}
       //position={new Vector3(0, 0, 0)}
       dispose={null}
     >
@@ -101,10 +100,7 @@ function Controls() {
         />
       )}
       {/* makeDefault makes the controls known to r3f, now transform-controls can auto-disable them when active */}
-      <OrbitControls
-        makeDefault
-        enableDamping={false}
-      />
+      <OrbitControls makeDefault enableDamping={false} />
     </>
   );
 }
@@ -168,9 +164,14 @@ export default function TransformScene() {
           /> */}
           <Model
             name="Zeppelin"
-            position={[0, 0, 0]}
-            rotation={[3, -1, 3]}
-            scale={0.001}
+            props={{
+              position: new Vector3(0, 1, 0),
+              rotation: new Euler(3, -1, 3),
+              scale: 0.001,
+            }}
+            // position={[0, 0, 0]}
+            // rotation={[3, -1, 3]}
+            // scale={0.001}
           />
           <ContactShadows
             rotation-x={Math.PI / 2}
