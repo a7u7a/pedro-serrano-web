@@ -10,6 +10,11 @@ import {
 import { PerspectiveCamera } from "@react-three/drei";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
+/**
+ * This file shows how to use orbit controls and also position the camera on setup
+ * Another example https://codesandbox.io/s/react-three-fiber-orbit-controls-without-drei-7c11y?file=/src/App.js:151-164
+ */
+
 extend({ OrbitControls });
 declare global {
   namespace JSX {
@@ -31,7 +36,7 @@ const CameraControls = () => {
     camera,
     gl: { domElement },
   } = useThree();
-  // Ref to the controls, so that we can update them on every frame using useFrame
+  // Ref to the controls, so that we can update them on every frame with useFrame
   const controls = useRef<OrbitControls>(null);
   useFrame((state) => controls.current!.update());
   return <orbitControls ref={controls} args={[camera, domElement]} enableZoom={false} />;
