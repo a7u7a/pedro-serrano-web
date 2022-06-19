@@ -31,6 +31,7 @@ import MyDirectionalLight from "./dirLight";
 
 import { state, modes } from "../store/store";
 import MyText from "./myText";
+import MyModel from "./myModel";
 
 THREE.DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 
@@ -131,7 +132,14 @@ export default function MainScene() {
       <MyText />
       <Suspense fallback={null}>
         <MyDirectionalLight />
-
+        <MyModel
+          name="bf_store"
+          props={{
+            position: new Vector3(5, 0, 5),
+            rotation: new Euler(3, -1, 3),
+            scale: 0.001,
+          }}
+        />
         <group position={[0, 10, 0]}>
           <Model
             name="Zeppelin"
