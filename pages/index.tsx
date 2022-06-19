@@ -4,27 +4,17 @@ import Image from "next/image";
 import TestBox from "../components/testBox";
 import TestImport from "../components/testImport";
 import TestBoxScroll from "../components/testBoxScroll";
+import MainScene from "../components/mainScene";
 
-const Home: NextPage = () => {
+const TestScene: NextPage = () => {
   return (
     <div>
-      <Head>
-        <title>Create Next App</title>
-        <meta name="description" content="Pedro Serrano, Spatial designer" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className="p-4 min-h-screen flex flex-col justify-center items-center">
-        <h1 className="text-3xl font-bold underline decoration-wavy">
-          Hello World Pedro Serrano Web!
-        </h1>
-
-        <TestBox />
-        <TestImport />
-        <TestBoxScroll />
-      </main>
+        <div className="absolute inset-x-0 top-0 h-16 bg-green-100 z-10" > header </div>
+    <div className="absolute bg-gray-200 h-screen w-screen">
+      <MainScene />
+    </div>
     </div>
   );
 };
 
-export default Home;
+export default TestScene;

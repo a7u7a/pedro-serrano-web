@@ -1,5 +1,5 @@
 import { Suspense, useState, useRef } from "react";
-import { Canvas, useThree, useFrame } from "@react-three/fiber";
+import { Canvas, useThree, useFrame, useLoader } from "@react-three/fiber";
 import {
   OrbitControls,
   TransformControls,
@@ -8,12 +8,31 @@ import {
   PerspectiveCamera,
   useCursor,
   useHelper,
+  Text,
 } from "@react-three/drei";
-import { proxy, useSnapshot } from "valtio";
+import { proxy, useSnapshot, subscribe } from "valtio";
 
-import { Material, Vector3, Euler, Mesh, CameraHelper } from "three";
+import {
+  Material,
+  Vector3,
+  Euler,
+  Mesh,
+  CameraHelper,
+  DirectionalLight,
+  MathUtils,
+} from "three";
 
 import { GLTF as GLTFThree } from "three/examples/jsm/loaders/GLTFLoader";
+
+import * as THREE from "three";
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
+import { DDSLoader } from "three-stdlib";
+import MyDirectionalLight from "./dirLight";
+
+import { state, modes } from "../store/store";
+import MyText from "./myText";
+
+THREE.DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 
 declare module "three-stdlib" {
   export interface GLTF extends GLTFThree {
@@ -22,26 +41,13 @@ declare module "three-stdlib" {
   }
 }
 
-interface Store {
-  current: string | null;
-  mode: number;
-}
-
-const state = proxy<Store>({
-  current: null,
-  mode: 0,
-});
-
-// Reactive state model, using Valtio ...
-const modes = ["translate", "rotate", "scale"];
-
 const Model: React.FC<{
   name: string;
   props: { position: Vector3; rotation: Euler; scale: number };
 }> = ({ name, props }) => {
-
   // Ties this component to the state model
   const snap = useSnapshot(state);
+
   // Fetching the GLTF, nodes is a collection of all the meshes
   // It's cached/memoized, it only gets loaded and parsed once
   const { nodes } = useGLTF("/compressed.glb");
@@ -51,17 +57,31 @@ const Model: React.FC<{
   useCursor(hovered);
   return (
     <mesh
+      receiveShadow
+      castShadow
       // Click sets the mesh as the new target
-      onClick={(e) => (e.stopPropagation(), (state.current = name))}
+      onClick={(e) => {
+        e.stopPropagation();
+        state.current = name;
+      }}
       // If a click happened but this mesh wasn't hit we null out the target,
       // This works because missed pointers fire before the actual hits
-      onPointerMissed={(e) => e.type === "click" && (state.current = null)}
+      onPointerMissed={(e) => {
+        if (e.type === "click") {
+          state.current = null;
+        }
+      }}
       // Right click cycles through the transform modes
-      onContextMenu={(e) =>
-        snap.current === name &&
-        (e.stopPropagation(), (state.mode = (snap.mode + 1) % modes.length))
-      }
-      onPointerOver={(e) => (e.stopPropagation(), setHovered(true))}
+      onContextMenu={(e) => {
+        if (snap.current === name) {
+          e.stopPropagation();
+          state.mode = (snap.mode + 1) % modes.length;
+        }
+      }}
+      onPointerOver={(e) => {
+        e.stopPropagation();
+        setHovered(true);
+      }}
       onPointerOut={(e) => setHovered(false)}
       name={name}
       geometry={nodes[name].geometry}
@@ -72,6 +92,17 @@ const Model: React.FC<{
     />
   );
 };
+
+// const ImportedObj = () => {
+//   //   const materials = useLoader(MTLLoader, "Poimandres.mtl");
+//   const obj = useLoader(OBJLoader, "/geometry/bf_store.obj", (loader) => {
+//     // materials.preload();
+//     // loader.setMaterials(materials);
+//   });
+
+//   console.log(obj);
+//   return <primitive object={obj} scale={0.001} />;
+// };
 
 function Controls() {
   // Get notified on changes to state
@@ -92,14 +123,15 @@ function Controls() {
   );
 }
 
-export default function TransformScene() {
+export default function MainScene() {
   return (
-    <Canvas camera={{ position: [0, -10, 80], fov: 50 }} dpr={[1, 2]}>
+    <Canvas camera={{ position: [40, 10, 40], fov: 50 }} dpr={[1, 2]}>
       <gridHelper args={[30, 30]} />
-      <pointLight position={[100, 100, 100]} intensity={0.8} />
 
+      <MyText />
       <Suspense fallback={null}>
-        <directionalLight />
+        <MyDirectionalLight />
+
         <group position={[0, 10, 0]}>
           <Model
             name="Zeppelin"
