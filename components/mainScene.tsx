@@ -25,7 +25,6 @@ import {
 import { GLTF as GLTFThree } from "three/examples/jsm/loaders/GLTFLoader";
 
 import * as THREE from "three";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { DDSLoader } from "three-stdlib";
 import MyDirectionalLight from "./dirLight";
 
@@ -42,6 +41,7 @@ declare module "three-stdlib" {
   }
 }
 
+// Keeping this for reference
 const Model: React.FC<{
   name: string;
   props: { position: Vector3; rotation: Euler; scale: number };

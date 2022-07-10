@@ -55,47 +55,47 @@ const MyModel: React.FC<{
   // Fetching the GLTF, nodes is a collection of all the meshes
   // It's cached/memoized, it only gets loaded and parsed once
   const { nodes } = useGLTF("/geometry/bf_store.glb");
-  console.log("nodes", nodes);
+  console.log("nodes", nodes.Scene);
   // Feed hover state into useCursor, which sets document.body.style.cursor to pointer|auto
   const [hovered, setHovered] = useState(false);
   useCursor(hovered);
   return (
-    <group />
-
-    // <mesh
-    //   receiveShadow
-    //   castShadow
-    //   // Click sets the mesh as the new target
-    //   onClick={(e) => {
-    //     e.stopPropagation();
-    //     state.current = name;
-    //   }}
-    //   // If a click happened but this mesh wasn't hit we null out the target,
-    //   // This works because missed pointers fire before the actual hits
-    //   onPointerMissed={(e) => {
-    //     if (e.type === "click") {
-    //       state.current = null;
-    //     }
-    //   }}
-    //   // Right click cycles through the transform modes
-    //   onContextMenu={(e) => {
-    //     if (snap.current === name) {
-    //       e.stopPropagation();
-    //       state.mode = (snap.mode + 1) % modes.length;
-    //     }
-    //   }}
-    //   onPointerOver={(e) => {
-    //     e.stopPropagation();
-    //     setHovered(true);
-    //   }}
-    //   onPointerOut={(e) => setHovered(false)}
-    //   name={name}
-    //   geometry={nodes[name].geometry}
-    //   material={nodes[name].material}
-    //   material-color={snap.current === name ? "#ff6080" : "white"}
-    //   {...props}
-    //   dispose={null}
-    // />
+    <group
+      {...props}
+      dispose={null}
+      name={name}
+      onClick={(e) => {
+        e.stopPropagation();
+        state.current = name;
+      }}
+      onPointerMissed={(e) => {
+        if (e.type === "click") {
+          state.current = null;
+        }
+      }}
+      onContextMenu={(e) => {
+        if (snap.current === name) {
+          e.stopPropagation();
+          state.mode = (snap.mode + 1) % modes.length;
+        }
+      }}
+      onPointerOver={(e) => {
+        e.stopPropagation();
+        setHovered(true);
+      }}
+      onPointerOut={(e) => setHovered(false)}
+    >
+      {nodes.Scene.children.map((child, i) => (
+        <mesh
+          receiveShadow
+          castShadow
+          key={i}
+          geometry={child.geometry}
+          material={child.material}
+          material-color={snap.current === name ? "#ff6080" : "white"}
+        />
+      ))}
+    </group>
   );
 };
 
