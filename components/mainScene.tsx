@@ -1,3 +1,4 @@
+
 import { Suspense, useState, useRef } from "react";
 import { Canvas, useThree, useFrame, useLoader } from "@react-three/fiber";
 import {
@@ -42,67 +43,56 @@ declare module "three-stdlib" {
 }
 
 // Keeping this for reference
-const Model: React.FC<{
-  name: string;
-  props: { position: Vector3; rotation: Euler; scale: number };
-}> = ({ name, props }) => {
-  // Ties this component to the state model
-  const snap = useSnapshot(state);
+// const Model: React.FC<{
+//   name: string;
+//   props: { position: Vector3; rotation: Euler; scale: number };
+// }> = ({ name, props }) => {
+//   // Ties this component to the state model
+//   const snap = useSnapshot(state);
 
-  // Fetching the GLTF, nodes is a collection of all the meshes
-  // It's cached/memoized, it only gets loaded and parsed once
-  const { nodes } = useGLTF("/compressed.glb");
+//   // Fetching the GLTF, nodes is a collection of all the meshes
+//   // It's cached/memoized, it only gets loaded and parsed once
+//   const { nodes } = useGLTF("/compressed.glb");
 
-  // Feed hover state into useCursor, which sets document.body.style.cursor to pointer|auto
-  const [hovered, setHovered] = useState(false);
-  useCursor(hovered);
-  return (
-    <mesh
-      receiveShadow
-      castShadow
-      // Click sets the mesh as the new target
-      onClick={(e) => {
-        e.stopPropagation();
-        state.current = name;
-      }}
-      // If a click happened but this mesh wasn't hit we null out the target,
-      // This works because missed pointers fire before the actual hits
-      onPointerMissed={(e) => {
-        if (e.type === "click") {
-          state.current = null;
-        }
-      }}
-      // Right click cycles through the transform modes
-      onContextMenu={(e) => {
-        if (snap.current === name) {
-          e.stopPropagation();
-          state.mode = (snap.mode + 1) % modes.length;
-        }
-      }}
-      onPointerOver={(e) => {
-        e.stopPropagation();
-        setHovered(true);
-      }}
-      onPointerOut={(e) => setHovered(false)}
-      name={name}
-      geometry={nodes[name].geometry}
-      material={nodes[name].material}
-      material-color={snap.current === name ? "#ff6080" : "white"}
-      {...props}
-      dispose={null}
-    />
-  );
-};
-
-// const ImportedObj = () => {
-//   //   const materials = useLoader(MTLLoader, "Poimandres.mtl");
-//   const obj = useLoader(OBJLoader, "/geometry/bf_store.obj", (loader) => {
-//     // materials.preload();
-//     // loader.setMaterials(materials);
-//   });
-
-//   console.log(obj);
-//   return <primitive object={obj} scale={0.001} />;
+//   // Feed hover state into useCursor, which sets document.body.style.cursor to pointer|auto
+//   const [hovered, setHovered] = useState(false);
+//   useCursor(hovered);
+//   return (
+//     <mesh
+//       receiveShadow
+//       castShadow
+//       // Click sets the mesh as the new target
+//       onClick={(e) => {
+//         e.stopPropagation();
+//         state.current = name;
+//       }}
+//       // If a click happened but this mesh wasn't hit we null out the target,
+//       // This works because missed pointers fire before the actual hits
+//       onPointerMissed={(e) => {
+//         if (e.type === "click") {
+//           state.current = null;
+//         }
+//       }}
+//       // Right click cycles through the transform modes
+//       onContextMenu={(e) => {
+//         if (snap.current === name) {
+//           e.stopPropagation();
+//           state.mode = (snap.mode + 1) % modes.length;
+//         }
+//       }}
+//       onPointerOver={(e) => {
+//         e.stopPropagation();
+//         setHovered(true);
+//       }}
+//       onPointerOut={(e) => setHovered(false)}
+//       name={name}
+//       geometry={nodes[name].geometry}
+//       material={nodes[name].material}
+//       material-color={snap.current === name ? "#ff6080" : "white"}
+//       {...props}
+//       dispose={null}
+//     />
+//   );
 // };
 
 function Controls() {
@@ -126,30 +116,44 @@ function Controls() {
 
 export default function MainScene() {
   return (
-    <Canvas camera={{ position: [40, 10, 40], fov: 50 }} dpr={[1, 2]}>
+    <Canvas
+      shadows
+      camera={{ position: [3, 3, 3], fov: 50 }}
+      dpr={[1, 2]}
+    >
       <gridHelper args={[30, 30]} />
 
-      <MyText />
+      {/* <MyText /> */}
       <Suspense fallback={null}>
-        <MyDirectionalLight />
+        <MyDirectionalLight/>
+
         <MyModel
-          name="bf_store"
-          props={{
-            position: new Vector3(5, 0, 5),
-            rotation: new Euler(3, -1, 3),
+          name="house"
+          fileName="/geometry/house.glb"
+          modelProps={{
+            position: new Vector3(0, 0, 4),
+            rotation: new Euler(
+              MathUtils.degToRad(90),
+              MathUtils.degToRad(0),
+              MathUtils.degToRad(0)
+            ),
             scale: 0.001,
           }}
         />
-        <group position={[0, 10, 0]}>
-          <Model
-            name="Zeppelin"
-            props={{
-              position: new Vector3(0, 0, 0),
-              rotation: new Euler(3, -1, 3),
-              scale: 0.001,
-            }}
-          />
-        </group>
+
+        <MyModel
+          name="silla"
+          fileName="/geometry/silla.glb"
+          modelProps={{
+            position: new Vector3(0, 0, 0),
+            rotation: new Euler(
+              MathUtils.degToRad(90),
+              MathUtils.degToRad(0),
+              MathUtils.degToRad(0)
+            ),
+            scale: 0.0005,
+          }}
+        />
       </Suspense>
       <Controls />
     </Canvas>
