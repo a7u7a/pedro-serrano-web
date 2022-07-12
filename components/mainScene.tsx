@@ -1,4 +1,3 @@
-
 import { Suspense, useState, useRef } from "react";
 import { Canvas, useThree, useFrame, useLoader } from "@react-three/fiber";
 import {
@@ -32,6 +31,7 @@ import MyDirectionalLight from "./dirLight";
 import { state, modes } from "../store/store";
 import MyText from "./myText";
 import MyModel from "./myModel";
+
 
 THREE.DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 
@@ -116,46 +116,42 @@ function Controls() {
 
 export default function MainScene() {
   return (
-    <Canvas
-      shadows
-      camera={{ position: [3, 3, 3], fov: 50 }}
-      dpr={[1, 2]}
-    >
-      <gridHelper args={[30, 30]} />
+    <>
+      <Canvas shadows camera={{ position: [3, 3, 3], fov: 50 }} dpr={[1, 2]}>
+        <gridHelper args={[30, 30]} />
 
-      {/* <MyText /> */}
-      <Suspense fallback={null}>
-        <MyDirectionalLight/>
-
-        <MyModel
-          name="house"
-          fileName="/geometry/house.glb"
-          modelProps={{
-            position: new Vector3(0, 0, 4),
-            rotation: new Euler(
-              MathUtils.degToRad(90),
-              MathUtils.degToRad(0),
-              MathUtils.degToRad(0)
-            ),
-            scale: 0.001,
-          }}
-        />
-
-        <MyModel
-          name="silla"
-          fileName="/geometry/silla.glb"
-          modelProps={{
-            position: new Vector3(0, 0, 0),
-            rotation: new Euler(
-              MathUtils.degToRad(90),
-              MathUtils.degToRad(0),
-              MathUtils.degToRad(0)
-            ),
-            scale: 0.0005,
-          }}
-        />
-      </Suspense>
-      <Controls />
-    </Canvas>
+        <MyText />
+        <Suspense fallback={null}>
+          <MyDirectionalLight />
+          <MyModel
+            name="house"
+            fileName="/geometry/house.glb"
+            modelProps={{
+              position: new Vector3(0, 0, 4),
+              rotation: new Euler(
+                MathUtils.degToRad(90),
+                MathUtils.degToRad(0),
+                MathUtils.degToRad(0)
+              ),
+              scale: 0.001,
+            }}
+          />
+          <MyModel
+            name="silla"
+            fileName="/geometry/silla.glb"
+            modelProps={{
+              position: new Vector3(0, 0, 0),
+              rotation: new Euler(
+                MathUtils.degToRad(90),
+                MathUtils.degToRad(0),
+                MathUtils.degToRad(0)
+              ),
+              scale: 0.0005,
+            }}
+          />
+        </Suspense>
+        <Controls />
+      </Canvas>
+    </>
   );
 }

@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useGLTF, useCursor } from "@react-three/drei";
 import { useSnapshot } from "valtio";
-import { Material, Vector3, Euler, Mesh } from "three";
+import { Material, Vector3, Euler, Mesh, Object3D,Group } from "three";
 import { state, modes } from "../store/store";
 
 /**
@@ -15,6 +15,7 @@ interface MyModelProps {
 }
 
 const MyModel = ({ name, fileName, modelProps }: MyModelProps) => {
+  const ref = useRef<Group>(null);
   const snap = useSnapshot(state);
   const { nodes } = useGLTF(fileName);
   console.log("nodes", nodes);
@@ -22,16 +23,22 @@ const MyModel = ({ name, fileName, modelProps }: MyModelProps) => {
   useCursor(hovered);
   return (
     <group
+      ref={ref}
       {...modelProps}
       dispose={null}
       name={name}
+
       onClick={(e) => {
         e.stopPropagation();
         state.current = name;
+        if (ref.current) {
+        state.position = ref.current.position;
+        }
       }}
       onPointerMissed={(e) => {
         if (e.type === "click") {
           state.current = null;
+          state.position = null;
         }
       }}
       onContextMenu={(e) => {

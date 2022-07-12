@@ -20,6 +20,7 @@ import {
   CameraHelper,
   DirectionalLight,
   MathUtils,
+  Object3D
 } from "three";
 
 import { GLTF as GLTFThree } from "three/examples/jsm/loaders/GLTFLoader";
@@ -33,6 +34,7 @@ import { state, modes } from "../store/store";
 
 const MyText = () => {
   const snap = useSnapshot(state);
+  const ref = useRef<Object3D>(null);
   const [hovered, setHovered] = useState(false);
   useCursor(hovered);
   const name = "mainText";
@@ -48,15 +50,19 @@ const MyText = () => {
 
   return (
     <mesh
-      onClick={(e) => {
-        e.stopPropagation();
-        state.current = name;
-      }}
-      onPointerMissed={(e) => {
-        if (e.type === "click") {
-          state.current = null;
-        }
-      }}
+    onClick={(e) => {
+      e.stopPropagation();
+      state.current = name;
+      if (ref.current) {
+      state.position = ref.current.position;
+      }
+    }}
+    onPointerMissed={(e) => {
+      if (e.type === "click") {
+        state.current = null;
+        state.position = null;
+      }
+    }}
       // Right click cycles through the transform modes
       onContextMenu={(e) => {
         if (snap.current === name) {

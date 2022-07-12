@@ -4,6 +4,7 @@ import { useCursor, useHelper } from "@react-three/drei";
 
 import {
   Material,
+  Object3D,
   Vector3,
   Euler,
   Mesh,
@@ -14,36 +15,36 @@ import {
 } from "three";
 import { useSnapshot } from "valtio";
 import { state, modes } from "../store/store";
+import { useFrame } from "@react-three/fiber";
 
 const MyDirectionalLight = () => {
-  const s = 200;
-  const { shadowWidth } = useControls({
+  const s = 50;
+
+  const [{ shadowWidth, shadowHeight, bias }] = useControls("box", () => ({
     shadowWidth: {
       value: 0.1,
       min: -s,
       max: s,
       step: 0.1,
     },
-  });
-  const { shadowHeight } = useControls({
     shadowHeight: {
       value: 0.1,
       min: -s,
       max: s,
       step: 0.1,
     },
-  });
-
-  const { bias } = useControls({
     bias: {
       value: 0,
       min: -0.01,
       max: 0.01,
       step: 0.00001,
     },
-  });
+  }));
+
+  const [{ position }, set] = useControls(() => ({ position: [0, 0, 0] }));
 
   const ref = useRef<DirectionalLight>(null);
+  const containerRef = useRef<Mesh>(null);
   const name = "directionalLight";
   const snap = useSnapshot(state);
   const [hovered, setHovered] = useState(false);
@@ -54,15 +55,37 @@ const MyDirectionalLight = () => {
     [shadowWidth, shadowHeight]
   );
 
-  useEffect(
-    () => {ref.current!.shadow.bias=bias},
-    [bias]
-  );
+  useEffect(() => {
+    ref.current!.shadow.bias = bias;
+  }, [bias]);
+
+  useFrame((_, delta) => {
+    if (name === snap.current && containerRef.current) {
+      const _ = containerRef.current.position;
+      set({ position: [_.x, _.y, _.z] });
+    }
+  });
 
   return (
     <mesh
-      onClick={(e) => (e.stopPropagation(), (state.current = name))}
-      onPointerMissed={(e) => e.type === "click" && (state.current = null)}
+      ref={containerRef}
+      name={name}
+      position={[5, 5, 5]}
+      dispose={null}
+      onClick={(e) => {
+        e.stopPropagation();
+        state.current = name;
+        // console.log("ref.current", ref.current);
+        if (containerRef.current) {
+          state.position = containerRef.current.position;
+        }
+      }}
+      onPointerMissed={(e) => {
+        if (e.type === "click") {
+          state.current = null;
+          state.position = null;
+        }
+      }}
       // Right click cycles through the transform modes
       onContextMenu={(e) =>
         snap.current === name &&
@@ -70,9 +93,6 @@ const MyDirectionalLight = () => {
       }
       onPointerOver={(e) => (e.stopPropagation(), setHovered(true))}
       onPointerOut={(e) => setHovered(false)}
-      name={name}
-      position={[5, 5, 5]}
-      dispose={null}
     >
       <boxGeometry args={[0.1, 0.1, 0.1]} />
       <meshStandardMaterial color={0xb4af9f} />
