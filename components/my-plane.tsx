@@ -1,18 +1,4 @@
-import { Suspense, useState, useRef } from "react";
 import { useControls } from "leva";
-import { Canvas, useThree, useFrame, useLoader } from "@react-three/fiber";
-import {
-  OrbitControls,
-  TransformControls,
-  ContactShadows,
-  useGLTF,
-  PerspectiveCamera,
-  useCursor,
-  useHelper,
-  Text,
-} from "@react-three/drei";
-import { proxy, useSnapshot, subscribe } from "valtio";
-
 import {
   Material,
   Vector3,
@@ -21,26 +7,27 @@ import {
   CameraHelper,
   DirectionalLight,
   MathUtils,
-  Object3D,
+  DoubleSide,
 } from "three";
+import { useState, useRef } from "react";
 
-import { GLTF as GLTFThree } from "three/examples/jsm/loaders/GLTFLoader";
-
-import * as THREE from "three";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
-import { DDSLoader } from "three-stdlib";
-import MyDirectionalLight from "../components/dirLight";
+import { useFrame } from "@react-three/fiber";
+import { useCursor, Text, Plane } from "@react-three/drei";
+import { useSnapshot } from "valtio";
 
 import { state, modes } from "../store/store";
 
-const MyText = () => {
-  // print values
+interface MyPlaneProps {
+  textProp: string;
+}
+
+const MyPlane = ({ w, h }: { w: number; h: number }) => {
   const [{ position }, set] = useControls(() => ({ position: [0, 0, 0] }));
   const snap = useSnapshot(state);
   const ref = useRef<Mesh>(null);
   const [hovered, setHovered] = useState(false);
   useCursor(hovered);
-  const name = "mainText";
+  const name = "myPlane";
 
   // print values
   useFrame((_, delta) => {
@@ -54,18 +41,10 @@ const MyText = () => {
     }
   });
 
-  const textSource = `
-    Hi, I’m Pedro.
-    I’m a spatial designer
-    based in Berlin since 2019.
-    
-    I work across multiple 
-    disciplines to plan, 
-    communicate and produce
-    contemporary environments.`;
-
   return (
-    <mesh
+    <Plane
+      args={[w, h]}
+      receiveShadow
       ref={ref}
       onClick={(e) => {
         e.stopPropagation();
@@ -94,15 +73,17 @@ const MyText = () => {
       onPointerOut={(e) => setHovered(false)}
       name={name}
       position={[0, 0, 0]}
-      rotation={[0, MathUtils.degToRad(90), 0]}
-      scale={3}
+      rotation={[MathUtils.degToRad(90), 0, 0]}
       dispose={null}
     >
-      <Text color="black" anchorX="center" anchorY="middle">
-        {textSource}
-      </Text>
-    </mesh>
+      <shadowMaterial
+        attach="material"
+        opacity={1}
+        color="black"
+        side={DoubleSide}
+      />
+      <planeGeometry args={[h, w]} />
+    </Plane>
   );
 };
-
-export default MyText;
+export default MyPlane;

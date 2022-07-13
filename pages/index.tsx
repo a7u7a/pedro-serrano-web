@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import MainScene from "../components/mainScene";
+import MainScene from "../components/main-scene";
 
 const TestScene: NextPage = () => {
   return (

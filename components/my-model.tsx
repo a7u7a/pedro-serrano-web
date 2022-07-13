@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { useGLTF, useCursor } from "@react-three/drei";
 import { useSnapshot } from "valtio";
-import { Material, Vector3, Euler, Mesh, Object3D,Group } from "three";
+import { Material, Vector3, Euler, Mesh, Object3D, Group } from "three";
 import { state, modes } from "../store/store";
 import { useControls } from "leva";
 import { useFrame } from "@react-three/fiber";
@@ -16,7 +16,6 @@ interface MyModelProps {
 }
 
 const MyModel = ({ name, fileName, modelProps }: MyModelProps) => {
-  
   // print values
   const [{ position }, set] = useControls(() => ({ position: [0, 0, 0] }));
 
@@ -41,12 +40,11 @@ const MyModel = ({ name, fileName, modelProps }: MyModelProps) => {
       {...modelProps}
       dispose={null}
       name={name}
-
       onClick={(e) => {
         e.stopPropagation();
         state.current = name;
         if (ref.current) {
-        state.position = ref.current.position;
+          state.position = ref.current.position;
         }
       }}
       onPointerMissed={(e) => {
@@ -81,20 +79,6 @@ const MyModel = ({ name, fileName, modelProps }: MyModelProps) => {
           );
         }
       })}
-      {/* {nodes.Scene.children.map((child, i) => {
-        if (child instanceof Mesh && child.type != "Group") {
-          return (
-            <mesh
-              receiveShadow
-              castShadow
-              key={i}
-              geometry={child.geometry}
-              material={child.material}
-              material-color={snap.current === name ? "#ff6080" : "white"}
-            />
-          );
-        }
-      })} */}
     </group>
   );
 };
