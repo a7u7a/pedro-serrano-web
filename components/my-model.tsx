@@ -5,6 +5,7 @@ import { Material, Vector3, Euler, Mesh, Object3D, Group } from "three";
 import { state, modes } from "../store/store";
 import { useControls } from "leva";
 import { useFrame } from "@react-three/fiber";
+import useObjPosControl from "../lib/obj-position-control"
 /**
  * Loads all children into a group
  */
@@ -17,7 +18,7 @@ interface MyModelProps {
 
 const MyModel = ({ name, fileName, modelProps }: MyModelProps) => {
   // print values
-  const [{ position }, set] = useControls(() => ({ position: [0, 0, 0] }));
+  const [{ position }, set] = useObjPosControl();
 
   const ref = useRef<Group>(null);
   const snap = useSnapshot(state);

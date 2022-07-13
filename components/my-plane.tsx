@@ -16,13 +16,14 @@ import { useCursor, Text, Plane } from "@react-three/drei";
 import { useSnapshot } from "valtio";
 
 import { state, modes } from "../store/store";
+import useObjPosControl from "../lib/obj-position-control"
 
 interface MyPlaneProps {
   textProp: string;
 }
 
 const MyPlane = ({ w, h }: { w: number; h: number }) => {
-  const [{ position }, set] = useControls(() => ({ position: [0, 0, 0] }));
+  const [{ position }, set] = useObjPosControl();
   const snap = useSnapshot(state);
   const ref = useRef<Mesh>(null);
   const [hovered, setHovered] = useState(false);

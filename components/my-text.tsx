@@ -5,10 +5,10 @@ import { useCursor, Text } from "@react-three/drei";
 import { useSnapshot } from "valtio";
 import { Mesh, MathUtils } from "three";
 import { state, modes } from "../store/store";
-
+import useObjPosControl from "../lib/obj-position-control"
 const MyText = () => {
   // print values
-  const [{ position }, set] = useControls(() => ({ position: [0, 0, 0] }));
+  const [{ position }, set] = useObjPosControl();
   const snap = useSnapshot(state);
   const ref = useRef<Mesh>(null);
   const [hovered, setHovered] = useState(false);

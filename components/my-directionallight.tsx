@@ -1,10 +1,11 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { useCursor, useHelper } from "@react-three/drei";
 import { Mesh, DirectionalLight, DirectionalLightHelper } from "three";
 import { useSnapshot } from "valtio";
 import { useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
 import { state, modes } from "../store/store";
+import useObjPosControl from "../lib/obj-position-control";
 
 const MyDirectionalLight = () => {
   const name = "directionalLight";
@@ -12,7 +13,7 @@ const MyDirectionalLight = () => {
   const ref = useRef<DirectionalLight>(null);
 
   const { shadowWidth, shadowHeight, bias, dirIntensity } = useControls(
-    "Light",
+    "Main Light",
     {
       dirIntensity: {
         label: "intensity",
@@ -22,7 +23,7 @@ const MyDirectionalLight = () => {
         step: 0.01,
       },
       bias: {
-        label: "bias",
+        label: "shadow bias",
         value: -0.00008,
         min: -0.01,
         max: 0.01,
@@ -58,7 +59,7 @@ const MyDirectionalLight = () => {
   );
 
   // print values
-  const [{ position }, set] = useControls(() => ({ position: [0, 0, 0] }));
+  const [{ position }, set] = useObjPosControl();
   const containerRef = useRef<Mesh>(null);
   const snap = useSnapshot(state);
   const [hovered, setHovered] = useState(false);

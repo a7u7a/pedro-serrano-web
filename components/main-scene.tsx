@@ -3,9 +3,6 @@ import { Canvas, useThree, useFrame } from "@react-three/fiber";
 import {
   OrbitControls,
   TransformControls,
-  ScrollControls,
-  PerspectiveCamera,
-  useScroll,
 } from "@react-three/drei";
 import { useSnapshot } from "valtio";
 import {
@@ -15,7 +12,6 @@ import {
   Mesh,
   MathUtils,
   DefaultLoadingManager,
-  Object3D,
 } from "three";
 import { GLTF as GLTFThree } from "three/examples/jsm/loaders/GLTFLoader";
 import { DDSLoader } from "three-stdlib";
@@ -25,8 +21,7 @@ import MyText from "./my-text";
 import MyModel from "./my-model";
 import MyPlane from "./my-plane";
 import MyAmbientLight from "./my-ambientlight";
-import { useControls } from "leva";
-import MyPerspectiveCamera from "./my-perspectivecamera";
+import EditorCamera from "./editor-camera";
 
 DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 
@@ -57,8 +52,6 @@ function Controls() {
 }
 
 export default function MainScene() {
-  // control for selected obj
-  //const [{ position }, set] = useControls(() => ({ position: [0, 0, 0] }));
   return (
     <>
       <Canvas
@@ -71,8 +64,9 @@ export default function MainScene() {
       >
         {/* <gridHelper args={[30, 30]} /> */}
         <Suspense fallback={null}>
-          <ScrollControls pages={1}>
-            <MyPerspectiveCamera />
+          {/* <ScrollControls pages={3}> */}
+            <EditorCamera /> 
+            {/* <ScrollCamera /> */}
             <MyText />
             <MyPlane w={10} h={10} />
             <MyAmbientLight />
@@ -100,12 +94,12 @@ export default function MainScene() {
                   MathUtils.degToRad(0),
                   MathUtils.degToRad(0)
                 ),
-                scale: 0.0005,
+                scale: 0.0003,
               }}
             />
-          </ScrollControls>
+          {/* </ScrollControls> */}
         </Suspense>
-        {/* <Controls /> */}
+        <Controls />
       </Canvas>
     </>
   );

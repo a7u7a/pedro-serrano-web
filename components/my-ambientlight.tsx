@@ -5,8 +5,8 @@ interface MyAmbientLightProps {
 }
 
 const MyAmbientLight = () => {
-  const { ambient } = useControls({
-    ambient: {
+  const { intensity } = useControls("Ambient Light",{
+    intensity: {
       value: 0.13,
       min: 0,
       max: 1,
@@ -15,6 +15,6 @@ const MyAmbientLight = () => {
     
   });
 
-  return <ambientLight intensity={ambient} />;
+  return <ambientLight intensity={intensity} />;
 };
 export default MyAmbientLight;
