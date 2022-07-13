@@ -8,7 +8,7 @@ const TestScene: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>Pedro Serrano</title>
         <meta name="description" content="Pedro Serrano, Spatial designer" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

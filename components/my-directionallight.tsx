@@ -9,49 +9,61 @@ import { state, modes } from "../store/store";
 const MyDirectionalLight = () => {
   const name = "directionalLight";
   const s = 5;
+  const ref = useRef<DirectionalLight>(null);
 
-  const [{ shadowWidth, shadowHeight, bias }] = useControls("box", () => ({
-    shadowWidth: {
-      value: 2.6,
-      min: -s,
-      max: s,
-      step: 0.1,
-    },
-    shadowHeight: {
-      value: 4.0,
-      min: -s,
-      max: s,
-      step: 0.1,
-    },
-    bias: {
-      value: -0.00008,
-      min: -0.01,
-      max: 0.01,
-      step: 0.00001,
-    },
-  }));
+  const { shadowWidth, shadowHeight, bias, dirIntensity } = useControls(
+    "Light",
+    {
+      dirIntensity: {
+        label: "intensity",
+        value: 0.42,
+        min: 0,
+        max: 1,
+        step: 0.01,
+      },
+      bias: {
+        label: "bias",
+        value: -0.00008,
+        min: -0.01,
+        max: 0.01,
+        step: 0.00001,
+        onChange: (v) => {
+          ref.current!.shadow.bias = v;
+        },
+        transient: false,
+      },
+      shadowWidth: {
+        label: "width",
+        value: 2.6,
+        min: -s,
+        max: s,
+        step: 0.1,
+        onChange: (v) => {
+          ref.current!.shadow.camera.updateProjectionMatrix();
+        },
+        transient: false,
+      },
+      shadowHeight: {
+        label: "height",
+        value: 4.0,
+        min: -s,
+        max: s,
+        step: 0.1,
+        onChange: (v) => {
+          ref.current!.shadow.camera.updateProjectionMatrix();
+        },
+        transient: false,
+      },
+    }
+  );
 
   // print values
   const [{ position }, set] = useControls(() => ({ position: [0, 0, 0] }));
-
-  const ref = useRef<DirectionalLight>(null);
   const containerRef = useRef<Mesh>(null);
-
   const snap = useSnapshot(state);
   const [hovered, setHovered] = useState(false);
   useCursor(hovered);
   useHelper(ref, DirectionalLightHelper, 1);
-
-  // shadow control
-  useEffect(
-    () => void ref.current!.shadow.camera.updateProjectionMatrix(),
-    [shadowWidth, shadowHeight]
-  );
-
-  // bias control
-  useEffect(() => {
-    ref.current!.shadow.bias = bias;
-  });
 
   // print values
   useFrame((_, delta) => {
@@ -97,7 +109,7 @@ const MyDirectionalLight = () => {
       <directionalLight
         ref={ref}
         castShadow
-        intensity={1}
+        intensity={dirIntensity}
         position={[0, 0, 0]}
         shadow-mapSize={[2048, 2048]}
       >
