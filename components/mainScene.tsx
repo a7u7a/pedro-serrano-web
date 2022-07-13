@@ -117,7 +117,7 @@ function Controls() {
 export default function MainScene() {
   return (
     <>
-      <Canvas shadows camera={{ position: [3, 3, 3], fov: 50 }} dpr={[1, 2]}>
+      <Canvas shadows camera={{ position: [4.909386858716061,4.465615823958192,-7.39310221699141], fov: 50 }} dpr={[1, 2]}>
         <gridHelper args={[30, 30]} />
 
         <MyText />
@@ -127,7 +127,7 @@ export default function MainScene() {
             name="house"
             fileName="/geometry/house.glb"
             modelProps={{
-              position: new Vector3(0, 0, 4),
+              position: new Vector3(0,1.3719456112400583,0),
               rotation: new Euler(
                 MathUtils.degToRad(90),
                 MathUtils.degToRad(0),
@@ -140,7 +140,7 @@ export default function MainScene() {
             name="silla"
             fileName="/geometry/silla.glb"
             modelProps={{
-              position: new Vector3(0, 0, 0),
+              position: new Vector3(0, -5.516419869616031, 0),
               rotation: new Euler(
                 MathUtils.degToRad(90),
                 MathUtils.degToRad(0),

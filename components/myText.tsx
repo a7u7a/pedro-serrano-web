@@ -1,4 +1,5 @@
 import { Suspense, useState, useRef } from "react";
+import { useControls } from "leva";
 import { Canvas, useThree, useFrame, useLoader } from "@react-three/fiber";
 import {
   OrbitControls,
@@ -20,7 +21,7 @@ import {
   CameraHelper,
   DirectionalLight,
   MathUtils,
-  Object3D
+  Object3D,
 } from "three";
 
 import { GLTF as GLTFThree } from "three/examples/jsm/loaders/GLTFLoader";
@@ -33,11 +34,26 @@ import MyDirectionalLight from "../components/dirLight";
 import { state, modes } from "../store/store";
 
 const MyText = () => {
+  // print values
+  const [{ position }, set] = useControls(() => ({ position: [0, 0, 0] }));
   const snap = useSnapshot(state);
-  const ref = useRef<Object3D>(null);
+  const ref = useRef<Mesh>(null);
   const [hovered, setHovered] = useState(false);
   useCursor(hovered);
   const name = "mainText";
+
+  // print values
+  useFrame((_, delta) => {
+    // if selected
+    if (name === snap.current && ref.current) {
+      const _ = ref.current.position;
+      set({ position: [_.x, _.y, _.z] });
+    }
+    if (!state.position) {
+      set({ position: [0, 0, 0] });
+    }
+  });
+
   const textSource = `
     Hi, I’m Pedro.
     I’m a spatial designer
@@ -50,19 +66,20 @@ const MyText = () => {
 
   return (
     <mesh
-    onClick={(e) => {
-      e.stopPropagation();
-      state.current = name;
-      if (ref.current) {
-      state.position = ref.current.position;
-      }
-    }}
-    onPointerMissed={(e) => {
-      if (e.type === "click") {
-        state.current = null;
-        state.position = null;
-      }
-    }}
+      ref={ref}
+      onClick={(e) => {
+        e.stopPropagation();
+        state.current = name;
+        if (ref.current) {
+          state.position = ref.current.position;
+        }
+      }}
+      onPointerMissed={(e) => {
+        if (e.type === "click") {
+          state.current = null;
+          state.position = null;
+        }
+      }}
       // Right click cycles through the transform modes
       onContextMenu={(e) => {
         if (snap.current === name) {
@@ -88,5 +105,4 @@ const MyText = () => {
   );
 };
 
-
-export default MyText
+export default MyText;

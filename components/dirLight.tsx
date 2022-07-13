@@ -1,68 +1,67 @@
 import { useState, useRef, useEffect } from "react";
-import { useControls } from "leva";
 import { useCursor, useHelper } from "@react-three/drei";
-
-import {
-  Material,
-  Object3D,
-  Vector3,
-  Euler,
-  Mesh,
-  CameraHelper,
-  DirectionalLight,
-  MathUtils,
-  DirectionalLightHelper,
-} from "three";
+import { Mesh, DirectionalLight, DirectionalLightHelper } from "three";
 import { useSnapshot } from "valtio";
-import { state, modes } from "../store/store";
 import { useFrame } from "@react-three/fiber";
+import { useControls } from "leva";
+import { state, modes } from "../store/store";
 
 const MyDirectionalLight = () => {
-  const s = 50;
+  const name = "directionalLight";
+  const s = 5;
 
   const [{ shadowWidth, shadowHeight, bias }] = useControls("box", () => ({
     shadowWidth: {
-      value: 0.1,
+      value: 2.6,
       min: -s,
       max: s,
       step: 0.1,
     },
     shadowHeight: {
-      value: 0.1,
+      value: 4.0,
       min: -s,
       max: s,
       step: 0.1,
     },
     bias: {
-      value: 0,
+      value: -0.00008,
       min: -0.01,
       max: 0.01,
       step: 0.00001,
     },
   }));
 
+  // print values
   const [{ position }, set] = useControls(() => ({ position: [0, 0, 0] }));
 
   const ref = useRef<DirectionalLight>(null);
   const containerRef = useRef<Mesh>(null);
-  const name = "directionalLight";
+
   const snap = useSnapshot(state);
   const [hovered, setHovered] = useState(false);
   useCursor(hovered);
   useHelper(ref, DirectionalLightHelper, 1);
+
+  // shadow control
   useEffect(
     () => void ref.current!.shadow.camera.updateProjectionMatrix(),
     [shadowWidth, shadowHeight]
   );
 
+  // bias control
   useEffect(() => {
     ref.current!.shadow.bias = bias;
-  }, [bias]);
+  });
 
+  // print values
   useFrame((_, delta) => {
+    // if selected
     if (name === snap.current && containerRef.current) {
       const _ = containerRef.current.position;
       set({ position: [_.x, _.y, _.z] });
+    }
+    if (!state.position) {
+      set({ position: [0, 0, 0] });
     }
   });
 
@@ -70,12 +69,11 @@ const MyDirectionalLight = () => {
     <mesh
       ref={containerRef}
       name={name}
-      position={[5, 5, 5]}
+      position={[-3.2908660193824417, 11.720124693629694, -5.625147550960824]}
       dispose={null}
       onClick={(e) => {
         e.stopPropagation();
         state.current = name;
-        // console.log("ref.current", ref.current);
         if (containerRef.current) {
           state.position = containerRef.current.position;
         }
@@ -105,6 +103,7 @@ const MyDirectionalLight = () => {
       >
         <orthographicCamera
           attach="shadow-camera"
+          far={1000}
           left={-shadowWidth}
           right={shadowWidth}
           top={shadowHeight}

@@ -23,8 +23,3 @@ export const state = proxy<Store>({
     mode: 0,
     position: new Vector3(0, 0, 0)
 });
-
-export const testing = () => {
-    console.log(state);
-
-}

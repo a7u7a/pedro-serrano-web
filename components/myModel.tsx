@@ -3,7 +3,8 @@ import { useGLTF, useCursor } from "@react-three/drei";
 import { useSnapshot } from "valtio";
 import { Material, Vector3, Euler, Mesh, Object3D,Group } from "three";
 import { state, modes } from "../store/store";
-
+import { useControls } from "leva";
+import { useFrame } from "@react-three/fiber";
 /**
  * Loads all children into a group
  */
@@ -15,12 +16,25 @@ interface MyModelProps {
 }
 
 const MyModel = ({ name, fileName, modelProps }: MyModelProps) => {
+  
+  // print values
+  const [{ position }, set] = useControls(() => ({ position: [0, 0, 0] }));
+
   const ref = useRef<Group>(null);
   const snap = useSnapshot(state);
   const { nodes } = useGLTF(fileName);
-  console.log("nodes", nodes);
   const [hovered, setHovered] = useState(false);
   useCursor(hovered);
+
+  // print values
+  useFrame((_, delta) => {
+    // if selected
+    if (name === snap.current && ref.current) {
+      const _ = ref.current.position;
+      set({ position: [_.x, _.y, _.z] });
+    }
+  });
+
   return (
     <group
       ref={ref}
