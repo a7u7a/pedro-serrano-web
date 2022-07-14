@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { Image } from "@react-three/drei";
-import { Mesh, MathUtils, Group, Euler } from "three";
+import { Mesh, MathUtils, Group, Euler ,Vector3 } from "three";
 import { useFrame } from "@react-three/fiber";
 import { useCursor, Text, Plane } from "@react-three/drei";
 import { useSnapshot } from "valtio";
