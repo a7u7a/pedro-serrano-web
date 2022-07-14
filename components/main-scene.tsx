@@ -27,6 +27,7 @@ import EditorCamera from "./editor-camera";
 import ScrollCamera from "./scroll-camera";
 import MyImages from "./my-images";
 import { Leva } from "leva";
+import { debug } from "console";
 
 DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 
@@ -60,10 +61,10 @@ export default function MainScene() {
   const debug = true;
   const scene = (
     <>
-      <MyImages />
+      {/* <MyImages /> */}
       {debug && <EditorCamera />}
       {!debug && <ScrollCamera />}
-      <MyText />
+      {/* <MyText /> */}
       <MyPlane w={10} h={10} />
       <MyAmbientLight />
       <MyDirectionalLight />

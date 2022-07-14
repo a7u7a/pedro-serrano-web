@@ -1,5 +1,9 @@
 import { useRef } from "react";
-import { PerspectiveCamera, useScroll } from "@react-three/drei";
+import {
+  PerspectiveCamera,
+  OrthographicCamera,
+  useScroll,
+} from "@react-three/drei";
 
 import { Object3D } from "three";
 
@@ -12,13 +16,24 @@ const ScrollCamera = () => {
       label: "position",
       value: [0, 0, 0],
     },
+    zoom: {
+      label: "zoom",
+      value: 1,
+    },
   }));
   useFrame((state, delta) => {
     const pos = state.camera.position;
-    set({ editorCamPos: [pos.x, pos.y, pos.z] });
+    const zoom = state.camera.zoom;
+    set({ editorCamPos: [pos.x, pos.y, pos.z], zoom: zoom });
   });
-  
+
   const cameraRef = useRef<Object3D>();
-  return <PerspectiveCamera makeDefault position={[36.18777195174221,10.781571136958314,-30.76004038628325]} fov={10} />;
+  return (
+    <OrthographicCamera
+      makeDefault
+      position={[4.7561085802765,4.960221817148011,-5.270259073073082]}
+      zoom={100}
+    />
+  );
 };
 export default ScrollCamera;

@@ -1,5 +1,9 @@
 import { useRef } from "react";
-import { PerspectiveCamera, useScroll } from "@react-three/drei";
+import {
+  PerspectiveCamera,
+  OrthographicCamera,
+  useScroll,
+} from "@react-three/drei";
 
 import { Object3D } from "three";
 
@@ -29,11 +33,11 @@ const ScrollCamera = () => {
 
   const cameraRef = useRef<Object3D>();
   return (
-    <PerspectiveCamera
+    <OrthographicCamera
       ref={cameraRef}
       makeDefault
       position={[10, 5, -10]}
-      fov={30}
+      zoom={100}
     />
   );
 };
