@@ -3,6 +3,8 @@ import { Canvas, useThree, useFrame } from "@react-three/fiber";
 import {
   OrbitControls,
   TransformControls,
+  ScrollControls,
+  Scroll
 } from "@react-three/drei";
 import { useSnapshot } from "valtio";
 import {
@@ -22,6 +24,8 @@ import MyModel from "./my-model";
 import MyPlane from "./my-plane";
 import MyAmbientLight from "./my-ambientlight";
 import EditorCamera from "./editor-camera";
+import ScrollCamera from "./scroll-camera";
+import MyImages from "./my-images";
 
 DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 
@@ -55,51 +59,51 @@ export default function MainScene() {
   return (
     <>
       <Canvas
+        gl={{ antialias: true }}
         style={{ background: "#AFAFAF" }}
         shadows
-        camera={{
-          position: [10, 5, -10],
-          fov: 30,
-        }}
       >
         {/* <gridHelper args={[30, 30]} /> */}
         <Suspense fallback={null}>
-          {/* <ScrollControls pages={3}> */}
-            <EditorCamera /> 
-            {/* <ScrollCamera /> */}
-            <MyText />
-            <MyPlane w={10} h={10} />
-            <MyAmbientLight />
-            <MyDirectionalLight />
-            <MyModel
-              name="house"
-              fileName="/geometry/house.glb"
-              modelProps={{
-                position: new Vector3(0, 1.3719456112400583, 0),
-                rotation: new Euler(
-                  MathUtils.degToRad(90),
-                  MathUtils.degToRad(0),
-                  MathUtils.degToRad(0)
-                ),
-                scale: 0.001,
-              }}
-            />
-            <MyModel
-              name="silla"
-              fileName="/geometry/silla.glb"
-              modelProps={{
-                position: new Vector3(0, -5.516419869616031, 0),
-                rotation: new Euler(
-                  MathUtils.degToRad(90),
-                  MathUtils.degToRad(0),
-                  MathUtils.degToRad(0)
-                ),
-                scale: 0.0003,
-              }}
-            />
-          {/* </ScrollControls> */}
+          <ScrollControls pages={3}>
+          {/* <Scroll> */}
+          <MyImages/>
+          {/* </Scroll> */}
+          {/* <EditorCamera /> */}
+          <ScrollCamera />
+          <MyText />
+          <MyPlane w={10} h={10} />
+          <MyAmbientLight />
+          <MyDirectionalLight />
+          <MyModel
+            name="house"
+            fileName="/geometry/house.glb"
+            modelProps={{
+              position: new Vector3(0, 1.3719456112400583, 0),
+              rotation: new Euler(
+                MathUtils.degToRad(90),
+                MathUtils.degToRad(0),
+                MathUtils.degToRad(0)
+              ),
+              scale: 0.001,
+            }}
+          />
+          <MyModel
+            name="silla"
+            fileName="/geometry/silla.glb"
+            modelProps={{
+              position: new Vector3(0, -5.516419869616031, 0),
+              rotation: new Euler(
+                MathUtils.degToRad(90),
+                MathUtils.degToRad(0),
+                MathUtils.degToRad(0)
+              ),
+              scale: 0.0003,
+            }}
+          />
+          </ScrollControls>
         </Suspense>
-        <Controls />
+        {/* <Controls /> */}
       </Canvas>
     </>
   );

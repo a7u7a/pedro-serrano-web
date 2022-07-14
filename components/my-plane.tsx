@@ -1,22 +1,10 @@
-import { useControls } from "leva";
-import {
-  Material,
-  Vector3,
-  Euler,
-  Mesh,
-  CameraHelper,
-  DirectionalLight,
-  MathUtils,
-  DoubleSide,
-} from "three";
 import { useState, useRef } from "react";
-
+import { Mesh, MathUtils } from "three";
 import { useFrame } from "@react-three/fiber";
-import { useCursor, Text, Plane } from "@react-three/drei";
+import { useCursor, Plane } from "@react-three/drei";
 import { useSnapshot } from "valtio";
-
 import { state, modes } from "../store/store";
-import useObjPosControl from "../lib/obj-position-control"
+import useObjPosControl from "../lib/obj-position-control";
 
 interface MyPlaneProps {
   textProp: string;
@@ -74,14 +62,14 @@ const MyPlane = ({ w, h }: { w: number; h: number }) => {
       onPointerOut={(e) => setHovered(false)}
       name={name}
       position={[0, 0, 0]}
-      rotation={[MathUtils.degToRad(90), 0, 0]}
+      rotation={[MathUtils.degToRad(90), MathUtils.degToRad(180), 0]}
       dispose={null}
     >
       <shadowMaterial
         attach="material"
-        opacity={1}
+        opacity={0.5}
         color="black"
-        side={DoubleSide}
+        // side={DoubleSide}
       />
       <planeGeometry args={[h, w]} />
     </Plane>

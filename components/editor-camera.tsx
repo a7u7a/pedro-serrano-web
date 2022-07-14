@@ -17,8 +17,8 @@ const ScrollCamera = () => {
     const pos = state.camera.position;
     set({ editorCamPos: [pos.x, pos.y, pos.z] });
   });
-
+  
   const cameraRef = useRef<Object3D>();
-  return <PerspectiveCamera makeDefault position={[10, 5, -10]} fov={30} />;
+  return <PerspectiveCamera makeDefault position={[36.18777195174221,10.781571136958314,-30.76004038628325]} fov={10} />;
 };
 export default ScrollCamera;
