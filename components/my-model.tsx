@@ -6,32 +6,24 @@ import { state, modes } from "../store/store";
 import { useControls } from "leva";
 import { useFrame } from "@react-three/fiber";
 import useObjPosControl from "../lib/obj-position-control"
-/**
- * Loads all children into a group
- */
-
-interface MyModelProps {
-  name: string;
-  fileName: string;
-  modelProps: { position: Vector3; rotation: Euler; scale: number };
-}
+import { MyModelProps } from "../lib/interfaces";
 
 const MyModel = ({ name, fileName, modelProps }: MyModelProps) => {
-  // print values
-  const [{ position }, set] = useObjPosControl();
-
+  const [{ pos }, set] = useObjPosControl();
   const ref = useRef<Group>(null);
   const snap = useSnapshot(state);
-  const { nodes } = useGLTF(fileName);
+  const { nodes } = useGLTF(fileName!);
   const [hovered, setHovered] = useState(false);
   useCursor(hovered);
 
-  // print values
   useFrame((_, delta) => {
     // if selected
     if (name === snap.current && ref.current) {
       const _ = ref.current.position;
-      set({ position: [_.x, _.y, _.z] });
+      set({ pos: [_.x, _.y, _.z] });
+    }
+    if (!state.position) {
+      set({ pos: [0, 0, 0] });
     }
   });
 

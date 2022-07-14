@@ -23,11 +23,10 @@ import MyText from "./my-text";
 import MyModel from "./my-model";
 import MyPlane from "./my-plane";
 import MyAmbientLight from "./my-ambientlight";
-import EditorCamera from "./editor-camera";
-import ScrollCamera from "./scroll-camera";
-import MyImages from "./my-images";
+import EditorCamera from "./cameras/editor-camera";
+import ScrollCamera from "./cameras/scroll-camera";
+import MyImage from "./my-images";
 import { Leva } from "leva";
-import { debug } from "console";
 
 DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 
@@ -61,18 +60,53 @@ export default function MainScene() {
   const debug = true;
   const scene = (
     <>
-      {/* <MyImages /> */}
+      <MyImage
+        name="DSC0223.jpg"
+        url="/imgs/_DSC0223.jpg"
+        modelProps={{
+          position: new Vector3(-0.2354, 0.4849, -2.9184),
+          rotation: new Euler(
+            MathUtils.degToRad(0),
+            MathUtils.degToRad(180),
+            MathUtils.degToRad(0)
+          ),
+        }}
+      />
       {debug && <EditorCamera />}
       {!debug && <ScrollCamera />}
-      {/* <MyText /> */}
-      <MyPlane w={10} h={10} />
+      <MyText
+        name="mytext1"
+        modelProps={{
+          position: new Vector3(-0.4257, 2.8166, -1.1355),
+          rotation: new Euler(0, MathUtils.degToRad(90), 0),
+          scale: 2,
+        }}
+      />
+      <MyPlane
+        width={10}
+        height={10}
+        name={"shadowPlane1"}
+        modelProps={{
+          position: new Vector3(0, 0, 0),
+          rotation: new Euler(
+            MathUtils.degToRad(90),
+            MathUtils.degToRad(180),
+            0
+          ),
+        }}
+      />
       <MyAmbientLight />
-      <MyDirectionalLight />
+      <MyDirectionalLight
+        name="light1"
+        modelProps={{
+          position: new Vector3(-3.29, 11.72, -5.625),
+        }}
+      />
       <MyModel
         name="house"
         fileName="/geometry/house.glb"
         modelProps={{
-          position: new Vector3(0, 1.3719456112400583, 0),
+          position: new Vector3(0, 1.371, 0),
           rotation: new Euler(
             MathUtils.degToRad(90),
             MathUtils.degToRad(0),
@@ -85,7 +119,7 @@ export default function MainScene() {
         name="silla"
         fileName="/geometry/silla.glb"
         modelProps={{
-          position: new Vector3(0, -5.516419869616031, 0),
+          position: new Vector3(0, -5.516, 0),
           rotation: new Euler(
             MathUtils.degToRad(90),
             MathUtils.degToRad(0),

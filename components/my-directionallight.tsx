@@ -6,12 +6,11 @@ import { useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
 import { state, modes } from "../store/store";
 import useObjPosControl from "../lib/obj-position-control";
+import { MyModelProps } from "../lib/interfaces";
 
-const MyDirectionalLight = () => {
-  const name = "directionalLight";
-  const s = 5;
+const MyDirectionalLight = ({ name, modelProps }: MyModelProps) => {
+  const dim = 5;
   const ref = useRef<DirectionalLight>(null);
-
   const { shadowWidth, shadowHeight, bias, dirIntensity } = useControls(
     "Main Light",
     {
@@ -36,8 +35,8 @@ const MyDirectionalLight = () => {
       shadowWidth: {
         label: "width",
         value: 2.6,
-        min: -s,
-        max: s,
+        min: -dim,
+        max: dim,
         step: 0.1,
         onChange: (v) => {
           ref.current!.shadow.camera.updateProjectionMatrix();
@@ -47,8 +46,8 @@ const MyDirectionalLight = () => {
       shadowHeight: {
         label: "height",
         value: 4.0,
-        min: -s,
-        max: s,
+        min: -dim,
+        max: dim,
         step: 0.1,
         onChange: (v) => {
           ref.current!.shadow.camera.updateProjectionMatrix();
@@ -58,23 +57,21 @@ const MyDirectionalLight = () => {
     }
   );
 
-  // print values
-  const [{ position }, set] = useObjPosControl();
+  const [{ pos }, set] = useObjPosControl();
   const containerRef = useRef<Mesh>(null);
   const snap = useSnapshot(state);
   const [hovered, setHovered] = useState(false);
   useCursor(hovered);
   useHelper(ref, DirectionalLightHelper, 1);
 
-  // print values
   useFrame((_, delta) => {
     // if selected
     if (name === snap.current && containerRef.current) {
       const _ = containerRef.current.position;
-      set({ position: [_.x, _.y, _.z] });
+      set({ pos: [_.x, _.y, _.z] });
     }
     if (!state.position) {
-      set({ position: [0, 0, 0] });
+      set({ pos: [0, 0, 0] });
     }
   });
 
@@ -82,7 +79,7 @@ const MyDirectionalLight = () => {
     <mesh
       ref={containerRef}
       name={name}
-      position={[-3.2908660193824417, 11.720124693629694, -5.625147550960824]}
+      {...modelProps}
       dispose={null}
       onClick={(e) => {
         e.stopPropagation();

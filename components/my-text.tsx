@@ -5,25 +5,26 @@ import { useCursor, Text } from "@react-three/drei";
 import { useSnapshot } from "valtio";
 import { Mesh, MathUtils } from "three";
 import { state, modes } from "../store/store";
-import useObjPosControl from "../lib/obj-position-control"
-const MyText = () => {
+import useObjPosControl from "../lib/obj-position-control";
+import { MyModelProps } from "../lib/interfaces";
+
+const MyText = ({ name ,modelProps}: MyModelProps) => {
   // print values
-  const [{ position }, set] = useObjPosControl();
+  const [{ pos }, set] = useObjPosControl();
   const snap = useSnapshot(state);
   const ref = useRef<Mesh>(null);
   const [hovered, setHovered] = useState(false);
   useCursor(hovered);
-  const name = "myText";
 
   // print values
   useFrame((_, delta) => {
     // if selected
     if (name === snap.current && ref.current) {
       const _ = ref.current.position;
-      set({ position: [_.x, _.y, _.z] });
+      set({ pos: [_.x, _.y, _.z] });
     }
     if (!state.position) {
-      set({ position: [0, 0, 0] });
+      set({ pos: [0, 0, 0] });
     }
   });
 
@@ -39,6 +40,8 @@ const MyText = () => {
 
   return (
     <mesh
+      name={name}
+      {...modelProps}
       ref={ref}
       onClick={(e) => {
         e.stopPropagation();
@@ -65,10 +68,6 @@ const MyText = () => {
         setHovered(true);
       }}
       onPointerOut={(e) => setHovered(false)}
-      name={name}
-      position={[-0.42575943651065984, 2.8166087001878317, -1.1355812934777942]}
-      rotation={[0, MathUtils.degToRad(90), 0]}
-      scale={3}
       dispose={null}
     >
       <Text color="white" anchorX="center" anchorY="middle">
