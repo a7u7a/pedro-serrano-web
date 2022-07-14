@@ -66,7 +66,7 @@ const MyImages = () => {
     >
       <Image
         position={[0, 0, 0]}
-        scale={[1.3, 2, 1]}
+        scale={1}
         url="/imgs/_DSC0223.jpg"
       />
     </group>

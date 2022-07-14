@@ -18,9 +18,9 @@ const ScrollCamera = () => {
   useFrame((state, delta) => {
     const offset = 1 - scroll.offset;
     state.camera.position.set(
-      Math.sin(offset) * -10,
-      Math.atan(offset * Math.PI * 2) * 5,
-      Math.cos((offset * Math.PI) / 3) * -10
+      Math.sin(offset) * -15,
+      Math.atan(offset * Math.PI * 2) * 10,
+      Math.cos((offset * Math.PI) / 3) * -15
     );
     state.camera.lookAt(0, 0, 0);
     const pos = state.camera.position;

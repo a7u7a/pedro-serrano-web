@@ -65,7 +65,7 @@ export default function MainScene() {
       >
         {/* <gridHelper args={[30, 30]} /> */}
         <Suspense fallback={null}>
-          <ScrollControls pages={3}>
+          <ScrollControls pages={2} damping={15} >
           {/* <Scroll> */}
           <MyImages/>
           {/* </Scroll> */}
