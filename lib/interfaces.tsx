@@ -6,5 +6,5 @@ export interface MyModelProps {
   url?: string;
   width?: number;
   height?: number;
-  modelProps: { position?: Vector3; rotation?: Euler; scale?: number };
+  modelProps?: { position?: Vector3; rotation?: Euler; scale?: number };
 }

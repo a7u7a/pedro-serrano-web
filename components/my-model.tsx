@@ -5,11 +5,11 @@ import { Material, Vector3, Euler, Mesh, Object3D, Group } from "three";
 import { state, modes } from "../store/store";
 import { useControls } from "leva";
 import { useFrame } from "@react-three/fiber";
-import useObjPosControl from "../lib/obj-position-control"
+import useObjPosControl from "../lib/obj-position-control";
 import { MyModelProps } from "../lib/interfaces";
 
 const MyModel = ({ name, fileName, modelProps }: MyModelProps) => {
-  const [{ pos }, set] = useObjPosControl();
+  const [{ pos, displayName }, set] = useObjPosControl();
   const ref = useRef<Group>(null);
   const snap = useSnapshot(state);
   const { nodes } = useGLTF(fileName!);
@@ -20,10 +20,10 @@ const MyModel = ({ name, fileName, modelProps }: MyModelProps) => {
     // if selected
     if (name === snap.current && ref.current) {
       const _ = ref.current.position;
-      set({ pos: [_.x, _.y, _.z] });
+      set({ pos: [_.x, _.y, _.z], displayName: name });
     }
     if (!state.position) {
-      set({ pos: [0, 0, 0] });
+      set({ pos: [0, 0, 0], displayName: "" });
     }
   });
 

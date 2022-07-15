@@ -1,16 +1,18 @@
-import { useState, useRef } from "react";
-import { Mesh, MathUtils } from "three";
+import { useRef, useState } from "react";
+import { Image } from "@react-three/drei";
+import { Mesh, MathUtils, Group, Euler, Vector3, Object3D } from "three";
 import { useFrame } from "@react-three/fiber";
-import { useCursor, Plane } from "@react-three/drei";
+import { useCursor, Text, Plane } from "@react-three/drei";
 import { useSnapshot } from "valtio";
 import { state, modes } from "../store/store";
 import useObjPosControl from "../lib/obj-position-control";
 import { MyModelProps } from "../lib/interfaces";
 
-const MyPlane = ({ width, height, name, modelProps }: MyModelProps) => {
-  const [{ pos, displayName }, set] = useObjPosControl();
+const MyImage = ({ name, url, modelProps }: MyModelProps) => {
+  const ref = useRef<any>(null);
   const snap = useSnapshot(state);
-  const ref = useRef<Mesh>(null);
+
+  const [{ pos,displayName }, set] = useObjPosControl();
   const [hovered, setHovered] = useState(false);
   useCursor(hovered);
 
@@ -19,20 +21,18 @@ const MyPlane = ({ width, height, name, modelProps }: MyModelProps) => {
     // if selected
     if (name === snap.current && ref.current) {
       const _ = ref.current.position;
-      set({ pos: [_.x, _.y, _.z], displayName: name });
+      set({ pos: [_.x, _.y, _.z],displayName:name });
     }
     if (!state.position) {
-      set({ pos: [0, 0, 0], displayName: "" });
+      set({ pos: [0, 0, 0],displayName:"" });
     }
   });
-
   return (
-    <Plane
+    <Image
       {...modelProps}
-      name={name}
-      args={[width, height]}
-      receiveShadow
       ref={ref}
+      name={name}
+      url={url!}
       onClick={(e) => {
         e.stopPropagation();
         state.current = name;
@@ -58,16 +58,7 @@ const MyPlane = ({ width, height, name, modelProps }: MyModelProps) => {
         setHovered(true);
       }}
       onPointerOut={(e) => setHovered(false)}
-      dispose={null}
-    >
-      <shadowMaterial
-        attach="material"
-        opacity={0.5}
-        color="black"
-        // side={DoubleSide}
-      />
-      {/* <planeGeometry args={[h, w]} /> */}
-    </Plane>
+    />
   );
 };
-export default MyPlane;
+export default MyImage;

@@ -25,8 +25,9 @@ import MyPlane from "./my-plane";
 import MyAmbientLight from "./my-ambientlight";
 import EditorCamera from "./cameras/editor-camera";
 import ScrollCamera from "./cameras/scroll-camera";
-import MyImage from "./my-images";
+import MyImage from "./my-image";
 import { Leva } from "leva";
+import CameraTarget from "./camera-target";
 
 DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 
@@ -82,6 +83,23 @@ export default function MainScene() {
           scale: 2,
         }}
       />
+      <MyModel
+        name="pullinco"
+        fileName="/geometry/pullinco.glb"
+        modelProps={{
+          position: new Vector3(
+            10.862094920343754,
+            1.737142113143977,
+            0.2098554263218122
+          ),
+          rotation: new Euler(
+            MathUtils.degToRad(90),
+            MathUtils.degToRad(0),
+            MathUtils.degToRad(180)
+          ),
+          scale: 0.00018,
+        }}
+      />
       <MyPlane
         width={10}
         height={10}
@@ -97,37 +115,62 @@ export default function MainScene() {
       />
       <MyAmbientLight />
       <MyDirectionalLight
+        targetName="camTarget1"
         name="light1"
         modelProps={{
           position: new Vector3(-3.29, 11.72, -5.625),
         }}
       />
-      <MyModel
-        name="house"
-        fileName="/geometry/house.glb"
-        modelProps={{
-          position: new Vector3(0, 1.371, 0),
-          rotation: new Euler(
-            MathUtils.degToRad(90),
-            MathUtils.degToRad(0),
-            MathUtils.degToRad(0)
-          ),
-          scale: 0.001,
-        }}
-      />
-      <MyModel
-        name="silla"
-        fileName="/geometry/silla.glb"
-        modelProps={{
-          position: new Vector3(0, -5.516, 0),
-          rotation: new Euler(
-            MathUtils.degToRad(90),
-            MathUtils.degToRad(0),
-            MathUtils.degToRad(0)
-          ),
-          scale: 0.0003,
-        }}
-      />
+      <CameraTarget name="camTarget1" />
+      <group>
+        <MyModel
+          name="house"
+          fileName="/geometry/house.glb"
+          modelProps={{
+            position: new Vector3(0, 1.371, 0),
+            rotation: new Euler(
+              MathUtils.degToRad(90),
+              MathUtils.degToRad(0),
+              MathUtils.degToRad(0)
+            ),
+            scale: 0.001,
+          }}
+        />
+        <MyModel
+          name="silla"
+          fileName="/geometry/silla.glb"
+          modelProps={{
+            position: new Vector3(
+              0.2708508373488536,
+              0.9636909542297383,
+              -0.3113245387096917
+            ),
+            rotation: new Euler(
+              MathUtils.degToRad(90),
+              MathUtils.degToRad(0),
+              MathUtils.degToRad(10)
+            ),
+            scale: 0.00012,
+          }}
+        />
+        <MyModel
+          name="silla2"
+          fileName="/geometry/silla.glb"
+          modelProps={{
+            position: new Vector3(
+              0.7277002141278832,
+              0.9636909542297383,
+              0.6923155809925486
+            ),
+            rotation: new Euler(
+              MathUtils.degToRad(90),
+              MathUtils.degToRad(0),
+              MathUtils.degToRad(-40)
+            ),
+            scale: 0.00012,
+          }}
+        />
+      </group>
     </>
   );
   return (

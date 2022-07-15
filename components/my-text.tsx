@@ -8,7 +8,7 @@ import { state, modes } from "../store/store";
 import useObjPosControl from "../lib/obj-position-control";
 import { MyModelProps } from "../lib/interfaces";
 
-const MyText = ({ name ,modelProps}: MyModelProps) => {
+const MyText = ({ name, modelProps }: MyModelProps) => {
   // print values
   const [{ pos }, set] = useObjPosControl();
   const snap = useSnapshot(state);
@@ -21,10 +21,10 @@ const MyText = ({ name ,modelProps}: MyModelProps) => {
     // if selected
     if (name === snap.current && ref.current) {
       const _ = ref.current.position;
-      set({ pos: [_.x, _.y, _.z] });
+      set({ pos: [_.x, _.y, _.z], displayName: name });
     }
     if (!state.position) {
-      set({ pos: [0, 0, 0] });
+      set({ pos: [0, 0, 0], displayName: "" });
     }
   });
 

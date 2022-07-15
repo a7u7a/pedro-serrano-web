@@ -1,38 +1,37 @@
-import { useRef, useState } from "react";
-import { Image } from "@react-three/drei";
-import { Mesh, MathUtils, Group, Euler, Vector3, Object3D } from "three";
-import { useFrame } from "@react-three/fiber";
-import { useCursor, Text, Plane } from "@react-three/drei";
+import { useState, useRef } from "react";
+import { useCursor, useHelper } from "@react-three/drei";
+import { Mesh, DirectionalLight, DirectionalLightHelper } from "three";
 import { useSnapshot } from "valtio";
+import { useFrame } from "@react-three/fiber";
+import { useControls } from "leva";
 import { state, modes } from "../store/store";
 import useObjPosControl from "../lib/obj-position-control";
 import { MyModelProps } from "../lib/interfaces";
 
-const MyImage = ({ name, url, modelProps }: MyModelProps) => {
-  const ref = useRef<any>(null);
+const CameraTarget = ({ name, modelProps }: MyModelProps) => {
+  const [{ pos, displayName }, set] = useObjPosControl();
+  const ref = useRef<Mesh>(null);
   const snap = useSnapshot(state);
-
-  const [{ pos }, set] = useObjPosControl();
   const [hovered, setHovered] = useState(false);
   useCursor(hovered);
 
-  // print values
   useFrame((_, delta) => {
     // if selected
     if (name === snap.current && ref.current) {
       const _ = ref.current.position;
-      set({ pos: [_.x, _.y, _.z] });
+      set({ pos: [_.x, _.y, _.z], displayName: name });
     }
     if (!state.position) {
-      set({ pos: [0, 0, 0] });
+      set({ pos: [0, 0, 0], displayName: "" });
     }
   });
+
   return (
-    <Image
-      {...modelProps}
+    <mesh
       ref={ref}
       name={name}
-      url={url!}
+      position={[0, 0, 0]}
+      dispose={null}
       onClick={(e) => {
         e.stopPropagation();
         state.current = name;
@@ -47,18 +46,16 @@ const MyImage = ({ name, url, modelProps }: MyModelProps) => {
         }
       }}
       // Right click cycles through the transform modes
-      onContextMenu={(e) => {
-        if (snap.current === name) {
-          e.stopPropagation();
-          state.mode = (snap.mode + 1) % modes.length;
-        }
-      }}
-      onPointerOver={(e) => {
-        e.stopPropagation();
-        setHovered(true);
-      }}
+      onContextMenu={(e) =>
+        snap.current === name &&
+        (e.stopPropagation(), (state.mode = (snap.mode + 1) % modes.length))
+      }
+      onPointerOver={(e) => (e.stopPropagation(), setHovered(true))}
       onPointerOut={(e) => setHovered(false)}
-    />
+    >
+      <boxGeometry args={[0.1, 0.1, 0.1]} />
+    </mesh>
   );
 };
-export default MyImage;
+
+export default CameraTarget;
