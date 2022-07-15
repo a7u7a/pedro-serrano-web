@@ -8,7 +8,7 @@ import { state, modes } from "../store/store";
 import useObjPosControl from "../lib/obj-position-control";
 import { MyModelProps } from "../lib/interfaces";
 
-const CameraTarget = ({ name, modelProps }: MyModelProps) => {
+const MyPoint = ({ name, modelProps }: MyModelProps) => {
   const [{ pos, displayName }, set] = useObjPosControl();
   const ref = useRef<Mesh>(null);
   const snap = useSnapshot(state);
@@ -30,7 +30,7 @@ const CameraTarget = ({ name, modelProps }: MyModelProps) => {
     <mesh
       ref={ref}
       name={name}
-      position={[0, 0, 0]}
+      {...modelProps}
       dispose={null}
       onClick={(e) => {
         e.stopPropagation();
@@ -53,9 +53,9 @@ const CameraTarget = ({ name, modelProps }: MyModelProps) => {
       onPointerOver={(e) => (e.stopPropagation(), setHovered(true))}
       onPointerOut={(e) => setHovered(false)}
     >
-      <boxGeometry args={[0.1, 0.1, 0.1]} />
+      <sphereGeometry args={[0.1]} />
     </mesh>
   );
 };
 
-export default CameraTarget;
+export default MyPoint;

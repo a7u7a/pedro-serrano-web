@@ -15,7 +15,7 @@ const ScrollCamera = () => {
   const [{ scrollCamPos }, set] = useControls("Scroll Camera", () => ({
     scrollCamPos: {
       label: "position",
-      value: [0, 0, 0],
+      value: [0, 1.21, 0],
     },
   }));
 
@@ -42,3 +42,6 @@ const ScrollCamera = () => {
   );
 };
 export default ScrollCamera;
+// Math.sin(offset) * -15,
+// Math.atan(offset * Math.PI * 2) * 10,
+// Math.cos((offset * Math.PI) / 3) * -15

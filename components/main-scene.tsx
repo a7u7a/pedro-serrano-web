@@ -27,7 +27,7 @@ import EditorCamera from "./cameras/editor-camera";
 import ScrollCamera from "./cameras/scroll-camera";
 import MyImage from "./my-image";
 import { Leva } from "leva";
-import CameraTarget from "./camera-target";
+import MyPoint from "./my-point";
 
 DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 
@@ -58,46 +58,54 @@ function Controls() {
 }
 
 export default function MainScene() {
-  const debug = true;
+  const debug = false;
   const scene = (
     <>
-      <MyImage
-        name="DSC0223.jpg"
-        url="/imgs/_DSC0223.jpg"
+      <group>
+        <MyImage
+          name="DSC0223.jpg"
+          url="/imgs/_DSC0223.jpg"
+          modelProps={{
+            position: new Vector3(
+              4.027861649520682,
+              -0.8377942634987993,
+              -0.09114219493733566
+            ),
+            rotation: new Euler(
+              MathUtils.degToRad(0),
+              MathUtils.degToRad(180),
+              MathUtils.degToRad(0)
+            ),
+            scale: 2,
+          }}
+        />
+      </group>
+
+      {debug && <EditorCamera />}
+      {!debug && <ScrollCamera />}
+      <MyText
+        name="mytext1"
+        textSource={`
+        Hi, I’m Pedro.
+        I’m a spatial designer
+        based in Berlin since 2019.
+        
+        I work across multiple 
+        disciplines to plan, 
+        communicate and produce
+        contemporary environments.`}
         modelProps={{
-          position: new Vector3(-0.2354, 0.4849, -2.9184),
+          position: new Vector3(
+            3.9704027720466804,
+            1.4695501073759614,
+            -0.08079588190820397
+          ),
           rotation: new Euler(
             MathUtils.degToRad(0),
             MathUtils.degToRad(180),
             MathUtils.degToRad(0)
           ),
-        }}
-      />
-      {debug && <EditorCamera />}
-      {!debug && <ScrollCamera />}
-      <MyText
-        name="mytext1"
-        modelProps={{
-          position: new Vector3(-0.4257, 2.8166, -1.1355),
-          rotation: new Euler(0, MathUtils.degToRad(90), 0),
           scale: 2,
-        }}
-      />
-      <MyModel
-        name="pullinco"
-        fileName="/geometry/pullinco.glb"
-        modelProps={{
-          position: new Vector3(
-            10.862094920343754,
-            1.737142113143977,
-            0.2098554263218122
-          ),
-          rotation: new Euler(
-            MathUtils.degToRad(90),
-            MathUtils.degToRad(0),
-            MathUtils.degToRad(180)
-          ),
-          scale: 0.00018,
         }}
       />
       <MyPlane
@@ -121,7 +129,12 @@ export default function MainScene() {
           position: new Vector3(-3.29, 11.72, -5.625),
         }}
       />
-      <CameraTarget name="camTarget1" />
+      <MyPoint
+        name="camTarget1"
+        modelProps={{
+          position: new Vector3(0, 1.21, 0),
+        }}
+      />
       <group>
         <MyModel
           name="house"
