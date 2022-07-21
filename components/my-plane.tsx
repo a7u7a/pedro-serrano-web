@@ -62,7 +62,7 @@ const MyPlane = ({ width, height, name, modelProps }: MyModelProps) => {
     >
       <shadowMaterial
         attach="material"
-        opacity={0.5}
+        opacity={1}
         color="black"
         // side={DoubleSide}
       />

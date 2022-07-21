@@ -16,26 +16,27 @@ import { useControls } from "leva";
 import { state, modes } from "../store/store";
 import useObjPosControl from "../lib/obj-position-control";
 import { MyModelProps } from "../lib/interfaces";
+import { off } from "process";
 
-interface test extends THREE.Material {
+interface WithColor extends THREE.Material {
+  // terrible hack
   color: any;
 }
 
 const MyBackground = () => {
   const scroll = useScroll();
   const mesh = useRef<THREE.Mesh>(null);
+  // update background color with scroll
   useFrame((state) => {
-    // console.log("ref.current!.material", ref.current!.material);
     const offset = scroll.offset;
-    console.log("scroll", offset);
     if (!Array.isArray(mesh.current!.material)) {
-      const mat = mesh.current!.material as test;
-      mat.color.setHSL(1, 1, offset / 1);
+      const mat = mesh.current!.material as WithColor;
+      mat.color.setHSL(0, 0, offset / 1);
     }
   });
   return (
     <mesh ref={mesh}>
-      <meshStandardMaterial opacity={0.5} side={DoubleSide} />
+      <meshBasicMaterial opacity={0.5} side={DoubleSide} />
       <sphereGeometry args={[20]} />
     </mesh>
   );

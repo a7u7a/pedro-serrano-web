@@ -132,12 +132,12 @@ export default function MainScene() {
           position: new Vector3(-3.29, 11.72, -5.625),
         }}
       />
-      <MyPoint
+      {/* <MyPoint
         name="camTarget1"
         modelProps={{
           position: new Vector3(0, 1.21, 0),
         }}
-      />
+      /> */}
       <group>
         <MyModel
           name="house"
@@ -193,7 +193,7 @@ export default function MainScene() {
     <>
       <Canvas
         gl={{ antialias: true }}
-        style={{ background: "hsl(0, 100%, 50%)" }}
+        style={{ background: "#000000" }}
         shadows
       >
         {/* <gridHelper args={[30, 30]} /> */}
