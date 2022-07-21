@@ -30,8 +30,8 @@ const ScrollCamera = () => {
     // console.log("offset", MathUtils.degToRad((offset*90)));
 
     // offsets
-    const yOff = 2
-    const xOff = -2
+    const yOff = 1.5
+    const xOff = 0
 
     const theta = MathUtils.degToRad(scroll.offset * 90);
     const x = (Math.cos(theta) * 15);
