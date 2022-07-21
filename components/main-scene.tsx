@@ -14,6 +14,7 @@ import {
   Mesh,
   MathUtils,
   DefaultLoadingManager,
+  DoubleSide,
 } from "three";
 import { GLTF as GLTFThree } from "three/examples/jsm/loaders/GLTFLoader";
 import { DDSLoader } from "three-stdlib";
@@ -28,6 +29,7 @@ import ScrollCamera from "./cameras/scroll-camera";
 import MyImage from "./my-image";
 import { Leva } from "leva";
 import MyPoint from "./my-point";
+import MyBackground from "./my-background";
 
 DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 
@@ -62,7 +64,8 @@ export default function MainScene() {
   const scene = (
     <>
       <group>
-        <MyImage
+        <MyBackground />
+        {/* <MyImage
           name="DSC0223.jpg"
           url="/imgs/_DSC0223.jpg"
           modelProps={{
@@ -78,12 +81,12 @@ export default function MainScene() {
             ),
             scale: 2,
           }}
-        />
+        /> */}
       </group>
 
       {debug && <EditorCamera />}
       {!debug && <ScrollCamera />}
-      <MyText
+      {/* <MyText
         name="mytext1"
         textSource={`
         Hi, I’m Pedro.
@@ -107,7 +110,7 @@ export default function MainScene() {
           ),
           scale: 2,
         }}
-      />
+      /> */}
       <MyPlane
         width={10}
         height={10}
@@ -190,13 +193,13 @@ export default function MainScene() {
     <>
       <Canvas
         gl={{ antialias: true }}
-        style={{ background: "#AFAFAF" }}
+        style={{ background: "hsl(0, 100%, 50%)" }}
         shadows
       >
         {/* <gridHelper args={[30, 30]} /> */}
         <Suspense fallback={null}>
           {!debug ? (
-            <ScrollControls pages={2} damping={15}>
+            <ScrollControls pages={1} damping={100}>
               {scene}
             </ScrollControls>
           ) : (

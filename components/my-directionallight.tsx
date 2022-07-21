@@ -81,32 +81,33 @@ const MyDirectionalLight = ({
 
   useCursor(hovered);
   // useHelper(ref, DirectionalLightHelper, 1);
-  useHelper(orthoRef, CameraHelper);
+  // useHelper(orthoRef, CameraHelper);
 
-  
+  // useFrame((_, delta) => {
+  //   if (targetName === snap.current && snap.position) {
+  //     const __ = snap.position;
+  //     ref.current!.target.position.set(__.x, __.y, __.z);
+  //     ref.current!.target.updateMatrixWorld();
+  //   }
+  //   // if selected
+  //   if (name === snap.current && containerRef.current) {
+  //     const _ = containerRef.current.position;
+  //     set({ pos: [_.x, _.y, _.z], displayName: name });
+  //   }
+  //   if (!state.position) {
+  //     set({ pos: [0, 0, 0], displayName: "" });
+  //   }
+  // });
 
-  useFrame((_, delta) => {
-    if (targetName === snap.current && snap.position) {
-      const __ = snap.position;
-      ref.current!.target.position.set(__.x, __.y, __.z);
-      ref.current!.target.updateMatrixWorld();
-    }
-    // if selected
-    if (name === snap.current && containerRef.current) {
-      const _ = containerRef.current.position;
-      set({ pos: [_.x, _.y, _.z], displayName: name });
-    }
-    if (!state.position) {
-      set({ pos: [0, 0, 0], displayName: "" });
-    }
-  });
-
-  // doesnt work to animate the light target
+  // doesnt work to animate the light t arget
   // useFrame((_, delta) => {
   //   const offset = 1 - scroll.offset;
-  //   console.log("offset",  Math.sin(offset) * -15,
-  //   Math.atan(offset * Math.PI * 2) * 10,
-  //   Math.cos((offset * Math.PI) / 3) * -15);
+  //   console.log(
+  //     "offset",
+  //     Math.sin(offset) * -15,
+  //     Math.atan(offset * Math.PI * 2) * 10,
+  //     Math.cos((offset * Math.PI) / 3) * -15
+  //   );
   //   ref.current!.target.position.set(
   //     Math.sin(offset) * -15,
   //     Math.atan(offset * Math.PI * 2) * 10,
