@@ -2,7 +2,6 @@ import { useRef } from "react";
 import {
   PerspectiveCamera,
   OrthographicCamera,
-  useScroll,
 } from "@react-three/drei";
 
 import { Object3D } from "three";
@@ -10,7 +9,7 @@ import { Object3D } from "three";
 import { useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
 
-const ScrollCamera = () => {
+const EditorCamera = () => {
   const [{ editorCamPos }, set] = useControls("Editor Camera", () => ({
     editorCamPos: {
       label: "position",
@@ -36,4 +35,4 @@ const ScrollCamera = () => {
     />
   );
 };
-export default ScrollCamera;
+export default EditorCamera;

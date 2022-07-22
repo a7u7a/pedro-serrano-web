@@ -23,15 +23,21 @@ interface WithColor extends THREE.Material {
   color: any;
 }
 
-const MyBackground = () => {
+interface MyBackgroundProps {
+  debug:boolean
+}
+
+const MyBackground = ({debug}:MyBackgroundProps) => {
   const scroll = useScroll();
   const mesh = useRef<THREE.Mesh>(null);
   // update background color with scroll
   useFrame((state) => {
-    const offset = scroll.offset;
-    if (!Array.isArray(mesh.current!.material)) {
-      const mat = mesh.current!.material as WithColor;
-      mat.color.setHSL(0, 0, offset / 1);
+    if (!debug) {
+      const offset = scroll.offset;
+      if (!Array.isArray(mesh.current!.material)) {
+        const mat = mesh.current!.material as WithColor;
+        mat.color.setHSL(0, 0, offset / 1);
+      }
     }
   });
   return (

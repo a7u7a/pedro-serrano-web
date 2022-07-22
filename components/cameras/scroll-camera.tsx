@@ -25,23 +25,26 @@ const ScrollCamera = () => {
     },
   }));
 
+  // move and zoom camera on scroll
   useFrame((state, delta) => {
     // const offset = scroll.offset;
     // console.log("offset", MathUtils.degToRad((offset*90)));
 
     // offsets
-    const yOff = 1.5
-    const xOff = 0
+    const yOff = 1.5;
+    const xOff = 0;
 
-    const theta = MathUtils.degToRad(scroll.offset * 90);
-    const x = (Math.cos(theta) * 15);
-    const y = (theta * 4)+yOff;
-    const z = (Math.sin(theta) * -15)+xOff;
+    const t = scroll.range(0, 1 / 3);
 
-    const zoom = linearMap(scroll.offset, 90, 120);
+    const theta = MathUtils.degToRad(t * 70);
+    const x = Math.cos(theta) * 15;
+    const y = theta * 4 + yOff;
+    const z = Math.sin(theta) * -15 + xOff;
+
+    const zoom = linearMap(t, 90, 120);
     state.camera.zoom = zoom;
     state.camera.position.set(x, y, z);
-    state.camera.lookAt(0, (scroll.offset)+yOff, xOff);
+    state.camera.lookAt(0, t + yOff, xOff);
 
     const pos = state.camera.position;
     set({ scrollCamPos: [pos.x, pos.y, pos.z] });

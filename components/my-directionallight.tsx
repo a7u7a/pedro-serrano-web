@@ -18,12 +18,14 @@ import { off } from "process";
 
 interface MyDirectionalLightProps extends MyModelProps {
   targetName: string;
+  debug: boolean;
 }
 
 const MyDirectionalLight = ({
   name,
   modelProps,
   targetName,
+  debug,
 }: MyDirectionalLightProps) => {
   const dim = 5;
   const scroll = useScroll();
@@ -83,15 +85,19 @@ const MyDirectionalLight = ({
   useCursor(hovered);
   // useHelper(orthoRef, CameraHelper);
 
-// update light target with scroll
+  // update light target with scroll
   useFrame((_, delta) => {
-    const offset = scroll.offset;
-    ref.current!.target.position.set(
-      0,
-      offset*5,
-      0
-    );
-    ref.current!.target.updateMatrixWorld();
+    if (!debug) {
+      const offset = scroll.offset;
+      // ref.current!.target.position.set(0, 0, 0);
+      // ref.current!.target.updateMatrixWorld();
+
+      ref.current!.position.set(offset * -5, 20, offset * -10);
+      ref.current!.updateMatrixWorld();
+    } else {
+      ref.current!.position.set(-5, 20, -10);
+      ref.current!.updateMatrixWorld();
+    }
   });
 
   return (
@@ -122,7 +128,7 @@ const MyDirectionalLight = ({
         onPointerOver={(e) => (e.stopPropagation(), setHovered(true))}
         onPointerOut={(e) => setHovered(false)}
       >
-        <boxGeometry args={[0.1, 0.1, 0.1]} />
+        {/* <boxGeometry args={[0.1, 0.1, 0.1]} /> */}
         <directionalLight
           ref={ref}
           castShadow

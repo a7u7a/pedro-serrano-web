@@ -13,7 +13,7 @@ const TestScene: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* Testing css */}
-      {/* <div className="absolute flex flex-col inset-x-0 w-1/4 top-0 z-10 overflow-auto h-full">
+      {/* <div className="absolute flex flex-col inset-x-0 w-1/4 top-0 z-10 h-full">
         <p className="text-5xl ">hello</p>
         <p className="text-5xl">hello</p>
         <p className="text-5xl">hello</p>
@@ -42,7 +42,6 @@ const TestScene: NextPage = () => {
         <p className="text-5xl">hello</p>
         <p className="text-5xl">hello</p>
         <p className="text-5xl">hello</p>
-
       </div> */}
 
       <div className="absolute bg-gray-200 h-screen w-screen">

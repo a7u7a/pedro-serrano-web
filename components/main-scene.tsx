@@ -64,7 +64,7 @@ export default function MainScene() {
   const scene = (
     <>
       <group>
-        <MyBackground />
+        <MyBackground debug={debug} />
         {/* <MyImage
           name="DSC0223.jpg"
           url="/imgs/_DSC0223.jpg"
@@ -126,11 +126,12 @@ export default function MainScene() {
       />
       <MyAmbientLight />
       <MyDirectionalLight
+        debug={debug}
         targetName="camTarget1"
         name="light1"
-        modelProps={{
-          position: new Vector3(-3.29, 11.72, -5.625),
-        }}
+        // modelProps={{
+        //   position: new Vector3(0, 20, 0),
+        // }}
       />
       {/* <MyPoint
         name="camTarget1"
@@ -199,8 +200,15 @@ export default function MainScene() {
         {/* <gridHelper args={[30, 30]} /> */}
         <Suspense fallback={null}>
           {!debug ? (
-            <ScrollControls pages={1} damping={100}>
+            <ScrollControls pages={2} damping={100}>
               {scene}
+              <Scroll html>
+                <div className="flex h-screen flex-col p-8 space-y-12 overflow-y-auto">
+                  <h1 className="absolute top-[130vh] font-bold text-6xl">
+                    html in here (optional)
+                  </h1>
+                </div>
+              </Scroll>
             </ScrollControls>
           ) : (
             scene
