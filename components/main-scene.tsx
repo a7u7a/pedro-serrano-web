@@ -203,10 +203,17 @@ export default function MainScene() {
             <ScrollControls pages={2} damping={100}>
               {scene}
               <Scroll html>
-                <div className="flex h-screen flex-col p-8 space-y-12 overflow-y-auto">
-                  <h1 className="absolute top-[130vh] font-bold text-6xl">
-                    html in here (optional)
-                  </h1>
+                <div className="absolute pl-6 pt-6 top-[68vh] font-semibold text-5xl text-white w-screen">
+                  <div className="flex flex-col w-5/12 space-y-12">
+                    <div className="">Hi, I’m Pedro.</div>
+                    <p className="">
+                      I’m a spatial designer based in Berlin since 2019.
+                    </p>
+                    <p className="">
+                      I work across multiple disciplines to plan, communicate
+                      and produce contemporary environments.
+                    </p>
+                  </div>
                 </div>
               </Scroll>
             </ScrollControls>

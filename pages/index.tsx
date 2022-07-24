@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import MainScene from "../components/main-scene";
+import FadeInText from "../components/fade-in-text";
 
 const TestScene: NextPage = () => {
   return (
@@ -12,40 +13,13 @@ const TestScene: NextPage = () => {
         <meta name="description" content="Pedro Serrano, Spatial designer" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* Testing css */}
-      {/* <div className="absolute flex flex-col inset-x-0 w-1/4 top-0 z-10 h-full">
-        <p className="text-5xl ">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-        <p className="text-5xl">hello</p>
-      </div> */}
-
-      <div className="absolute bg-gray-200 h-screen w-screen">
+      <div className="">{/* <FadeInText /> */}</div>
+      <div className=" bg-gray-200 h-screen w-screen">
         <MainScene />
+      </div>
+      {/* Testing css */}
+      <div>
+        <div className="pl-6 pt-6 font-semibold text-5xl">Works</div>
       </div>
     </>
   );
