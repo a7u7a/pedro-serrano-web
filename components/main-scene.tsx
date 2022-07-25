@@ -5,6 +5,7 @@ import {
   TransformControls,
   ScrollControls,
   Scroll,
+  SpotLight
 } from "@react-three/drei";
 import { useSnapshot } from "valtio";
 import {
@@ -30,6 +31,7 @@ import MyImage from "./my-image";
 import { Leva } from "leva";
 import MyPoint from "./my-point";
 import MyBackground from "./my-background";
+import MainContent from "./main-content";
 
 DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 
@@ -124,15 +126,32 @@ export default function MainScene() {
           ),
         }}
       />
-      <MyAmbientLight />
-      <MyDirectionalLight
+
+      {/* <MyAmbientLight /> */}
+
+      <SpotLight
+        castShadow
+        position={[0, 15, 0]}
+        penumbra={0.2}
+        radiusTop={0.4}
+        radiusBottom={40}
+        distance={80}
+        angle={0.45}
+        attenuation={20}
+        anglePower={5}
+        intensity={1}
+        opacity={0.2}
+      />
+
+      {/* <MyDirectionalLight
         debug={debug}
         targetName="camTarget1"
         name="light1"
         // modelProps={{
         //   position: new Vector3(0, 20, 0),
         // }}
-      />
+      /> */}
+
       {/* <MyPoint
         name="camTarget1"
         modelProps={{
@@ -154,8 +173,8 @@ export default function MainScene() {
           }}
         />
         <MyModel
-          name="silla"
-          fileName="/geometry/silla.glb"
+          name="chair"
+          fileName="/geometry/chair.glb"
           modelProps={{
             position: new Vector3(
               0.2708508373488536,
@@ -171,8 +190,8 @@ export default function MainScene() {
           }}
         />
         <MyModel
-          name="silla2"
-          fileName="/geometry/silla.glb"
+          name="chair_2"
+          fileName="/geometry/chair.glb"
           modelProps={{
             position: new Vector3(
               0.7277002141278832,
@@ -194,28 +213,15 @@ export default function MainScene() {
     <>
       <Canvas
         gl={{ antialias: true }}
-        style={{ background: "#000000" }}
+        style={{ background: "#E0E0E0" }}
         shadows
       >
         {/* <gridHelper args={[30, 30]} /> */}
         <Suspense fallback={null}>
           {!debug ? (
-            <ScrollControls pages={2} damping={100}>
+            <ScrollControls pages={3} damping={100}>
               {scene}
-              <Scroll html>
-                <div className="absolute pl-6 pt-6 top-[68vh] font-semibold text-5xl text-white w-screen">
-                  <div className="flex flex-col w-5/12 space-y-12">
-                    <div className="">Hi, I’m Pedro.</div>
-                    <p className="">
-                      I’m a spatial designer based in Berlin since 2019.
-                    </p>
-                    <p className="">
-                      I work across multiple disciplines to plan, communicate
-                      and produce contemporary environments.
-                    </p>
-                  </div>
-                </div>
-              </Scroll>
+              <MainContent />
             </ScrollControls>
           ) : (
             scene
