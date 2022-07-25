@@ -21,15 +21,15 @@ const MainContent = () => {
             Third paragraph with some more detail. Pellentesque habitant morbi
             tristique senectus et netus et malesuada fames ac turpis egestas.
           </p>
-          <p>
-            Contact
+          <div>
+            <p>Contact</p>
             <ul>
               <li>hi@pese.works</li>
               <li>
                 <a href="https://www.instagram.com/_pese/">@pese</a>
               </li>
             </ul>
-          </p>
+          </div>
 
           <PeseLogo />
         </div>
