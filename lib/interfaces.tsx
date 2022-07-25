@@ -8,3 +8,12 @@ export interface MyModelProps {
   height?: number;
   modelProps?: { position?: Vector3; rotation?: Euler; scale?: number };
 }
+
+export interface PesePost {
+  date: string;
+  title: string;
+  body: string;
+  image: string;
+  category: string;
+  id: string;
+}
