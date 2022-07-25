@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import MainScene from "../components/main-scene";
-import { getPosts } from "../lib/posts";
+// import { getPosts } from "../lib/posts";
 import { PesePost } from "../lib/interfaces";
 
 interface HomeProps {
@@ -45,15 +45,15 @@ const Home = ({ allPosts }: HomeProps) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  const allPosts = getPosts();
-  console.log("allPosts", allPosts);
+// export const getStaticProps: GetStaticProps = async () => {
+//   const allPosts = getPosts();
+//   console.log("allPosts", allPosts);
 
-  return {
-    props: {
-      allPosts,
-    },
-  };
-};
+//   return {
+//     props: {
+//       allPosts,
+//     },
+//   };
+// };
 
 export default Home;
