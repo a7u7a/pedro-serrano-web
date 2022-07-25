@@ -12,7 +12,6 @@
     "@react-three/drei": "^9.13.2",
     "@react-three/fiber": "^8.0.26",
     "@types/three": "^0.141.0",
-    "gray-matter": "^4.0.3",
     "leva": "^0.9.29",
     "next": "12.1.6",
     "react": "18.2.0",
