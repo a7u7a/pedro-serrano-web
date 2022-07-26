@@ -33,31 +33,31 @@ const MyPlane = ({ width, height, name, modelProps }: MyModelProps) => {
       args={[width, height]}
       receiveShadow
       ref={ref}
-      onClick={(e) => {
-        e.stopPropagation();
-        state.current = name;
-        if (ref.current) {
-          state.position = ref.current.position;
-        }
-      }}
-      onPointerMissed={(e) => {
-        if (e.type === "click") {
-          state.current = null;
-          state.position = null;
-        }
-      }}
-      // Right click cycles through the transform modes
-      onContextMenu={(e) => {
-        if (snap.current === name) {
-          e.stopPropagation();
-          state.mode = (snap.mode + 1) % modes.length;
-        }
-      }}
-      onPointerOver={(e) => {
-        e.stopPropagation();
-        setHovered(true);
-      }}
-      onPointerOut={(e) => setHovered(false)}
+      // onClick={(e) => {
+      //   e.stopPropagation();
+      //   state.current = name;
+      //   if (ref.current) {
+      //     state.position = ref.current.position;
+      //   }
+      // }}
+      // onPointerMissed={(e) => {
+      //   if (e.type === "click") {
+      //     state.current = null;
+      //     state.position = null;
+      //   }
+      // }}
+      // // Right click cycles through the transform modes
+      // onContextMenu={(e) => {
+      //   if (snap.current === name) {
+      //     e.stopPropagation();
+      //     state.mode = (snap.mode + 1) % modes.length;
+      //   }
+      // }}
+      // onPointerOver={(e) => {
+      //   e.stopPropagation();
+      //   setHovered(true);
+      // }}
+      // onPointerOut={(e) => setHovered(false)}
       dispose={null}
     >
       <shadowMaterial

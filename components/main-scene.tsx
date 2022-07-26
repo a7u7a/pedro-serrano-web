@@ -1,13 +1,13 @@
-import { Suspense, useRef } from "react";
-import { Canvas, useThree, useFrame } from "@react-three/fiber";
+import { Suspense } from "react";
+import { Canvas, useThree } from "@react-three/fiber";
 import {
   OrbitControls,
   TransformControls,
   ScrollControls,
+  SpotLight,
   Scroll,
-  SpotLight
 } from "@react-three/drei";
-import { useSnapshot } from "valtio";
+
 import {
   Material,
   Vector3,
@@ -27,11 +27,13 @@ import MyPlane from "./my-plane";
 import MyAmbientLight from "./my-ambientlight";
 import EditorCamera from "./cameras/editor-camera";
 import ScrollCamera from "./cameras/scroll-camera";
-import MyImage from "./my-image";
 import { Leva } from "leva";
-import MyPoint from "./my-point";
 import MyBackground from "./my-background";
 import MainContent from "./main-content";
+import Controls from "../lib/controls";
+import { PesePost } from "../lib/interfaces";
+import Works from "./works";
+import MySpotlight from "./my-spotlight";
 
 DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 
@@ -42,26 +44,11 @@ declare module "three-stdlib" {
   }
 }
 
-function Controls() {
-  // Get notified on changes to state
-  const snap = useSnapshot(state);
-  const scene = useThree((state) => state.scene);
-  return (
-    <>
-      {/* As of drei@7.13 transform-controls can refer to the target by children, or the object prop */}
-      {snap.current && (
-        <TransformControls
-          object={scene.getObjectByName(snap.current)}
-          mode={modes[snap.mode]}
-        />
-      )}
-      {/* makeDefault makes the controls known to r3f, now transform-controls can auto-disable them when active */}
-      <OrbitControls makeDefault enableDamping={false} />
-    </>
-  );
+interface MainSceneProps {
+  allPosts: PesePost[];
 }
 
-export default function MainScene() {
+export default function MainScene({ allPosts }: MainSceneProps) {
   const debug = false;
   const scene = (
     <>
@@ -129,18 +116,11 @@ export default function MainScene() {
 
       {/* <MyAmbientLight /> */}
 
-      <SpotLight
-        castShadow
-        position={[0, 15, 0]}
-        penumbra={0.2}
-        radiusTop={0.4}
-        radiusBottom={40}
-        distance={80}
-        angle={0.45}
-        attenuation={20}
-        anglePower={5}
-        intensity={1}
-        opacity={0.2}
+      <MySpotlight
+        name="spotlight1"
+        modelProps={{
+          position: new Vector3(0, 10, 0),
+        }}
       />
 
       {/* <MyDirectionalLight
@@ -219,9 +199,14 @@ export default function MainScene() {
         {/* <gridHelper args={[30, 30]} /> */}
         <Suspense fallback={null}>
           {!debug ? (
-            <ScrollControls pages={3} damping={100}>
+            <ScrollControls pages={4} damping={100}>
               {scene}
-              <MainContent />
+              <Scroll html>
+                <div className="absolute pt-6 top-[68vh] font-semibold text-5xl text-white w-screen">
+                  <MainContent allPosts={allPosts} />
+                  <Works allPosts={allPosts} />
+                </div>
+              </Scroll>
             </ScrollControls>
           ) : (
             scene

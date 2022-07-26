@@ -1,7 +1,7 @@
 ---
 date: July 25, 2022 6:14 PM
 title: Primera foto
-image: /uploads/_DSC0270.jpg
+image: /uploads/030_AS_House_full_final_small_post.jpg
 category: Cat1
 alt: hola
 ---

@@ -14,7 +14,7 @@ import { useControls } from "leva";
 import { state, modes } from "../store/store";
 import useObjPosControl from "../lib/obj-position-control";
 import { MyModelProps } from "../lib/interfaces";
-import { off } from "process";
+
 
 interface MyDirectionalLightProps extends MyModelProps {
   targetName: string;

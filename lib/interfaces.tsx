@@ -16,4 +16,7 @@ export interface PesePost {
   image: string;
   category: string;
   id: string;
+  imgWidth: number;
+  imgHeight: number;
+  alt: string
 }

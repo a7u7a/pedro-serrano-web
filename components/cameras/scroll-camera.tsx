@@ -28,7 +28,7 @@ const ScrollCamera = () => {
   // move and zoom camera on scroll
   useFrame((state, delta) => {
     // const offset = scroll.offset;
-    // console.log("offset", MathUtils.degToRad((offset*90)));
+    
 
     // offsets
     const yOff = 1.5;

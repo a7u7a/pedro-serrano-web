@@ -12,7 +12,6 @@ interface HomeProps {
 }
 
 const Home = ({ allPosts }: HomeProps) => {
-  console.log("allPosts", allPosts);
   return (
     <>
       <Head>
@@ -25,14 +24,14 @@ const Home = ({ allPosts }: HomeProps) => {
       </Head>
 
       <div className="h-screen w-screen">
-        <MainScene />
+        <MainScene allPosts={allPosts} />
       </div>
     </>
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const allPosts = getPosts();
+  const allPosts = await getPosts();
   return {
     props: {
       allPosts,
