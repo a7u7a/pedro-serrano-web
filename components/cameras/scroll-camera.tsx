@@ -34,9 +34,9 @@ const ScrollCamera = () => {
     const yOff = 1.5;
     const xOff = 0;
 
-    const t = scroll.range(0, 1 / 3);
+    const t = scroll.range(0, 1 /1);
 
-    const theta = MathUtils.degToRad(t * 70);
+    const theta = MathUtils.degToRad(t * 180);
     const x = Math.cos(theta) * 15;
     const y = theta * 4 + yOff;
     const z = Math.sin(theta) * -15 + xOff;

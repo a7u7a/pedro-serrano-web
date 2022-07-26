@@ -33,6 +33,7 @@ const MyModel = ({ name, fileName, modelProps }: MyModelProps) => {
       {...modelProps}
       dispose={null}
       name={name}
+
       // onClick={(e) => {
       //   e.stopPropagation();
       //   state.current = name;

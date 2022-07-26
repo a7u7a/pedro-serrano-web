@@ -6,6 +6,7 @@ import {
   ScrollControls,
   SpotLight,
   Scroll,
+  RoundedBox,
 } from "@react-three/drei";
 
 import {
@@ -53,7 +54,6 @@ export default function MainScene({ allPosts }: MainSceneProps) {
   const scene = (
     <>
       <group>
-        <MyBackground debug={debug} />
         {/* <MyImage
           name="DSC0223.jpg"
           url="/imgs/_DSC0223.jpg"
@@ -72,6 +72,21 @@ export default function MainScene({ allPosts }: MainSceneProps) {
           }}
         /> */}
       </group>
+      <MyBackground debug={debug} />
+      {/* <RoundedBox position={[0, 3, 0]} receiveShadow castShadow>
+        <meshStandardMaterial color={"gray"} transparent={false} />
+      </RoundedBox> */}
+
+      <MySpotlight
+        debug={debug}
+        name="spotlight1"
+        modelProps={{
+          position: new Vector3(0, 18, 0),
+        }}
+      />
+
+<MyAmbientLight />
+
 
       {debug && <EditorCamera />}
       {!debug && <ScrollCamera />}
@@ -101,8 +116,8 @@ export default function MainScene({ allPosts }: MainSceneProps) {
         }}
       /> */}
       <MyPlane
-        width={10}
-        height={10}
+        width={25}
+        height={25}
         name={"shadowPlane1"}
         modelProps={{
           position: new Vector3(0, 0, 0),
@@ -114,14 +129,7 @@ export default function MainScene({ allPosts }: MainSceneProps) {
         }}
       />
 
-      {/* <MyAmbientLight /> */}
-
-      <MySpotlight
-        name="spotlight1"
-        modelProps={{
-          position: new Vector3(0, 10, 0),
-        }}
-      />
+      
 
       {/* <MyDirectionalLight
         debug={debug}
@@ -202,7 +210,7 @@ export default function MainScene({ allPosts }: MainSceneProps) {
             <ScrollControls pages={4} damping={100}>
               {scene}
               <Scroll html>
-                <div className="absolute pt-6 top-[68vh] font-semibold text-5xl text-white w-screen">
+                <div className="absolute pt-6 top-[68vh] w-screen">
                   <MainContent allPosts={allPosts} />
                   <Works allPosts={allPosts} />
                 </div>

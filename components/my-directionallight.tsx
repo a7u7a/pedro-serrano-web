@@ -7,6 +7,7 @@ import {
   Vector3,
   CameraHelper,
   OrthographicCamera,
+  SpotLight
 } from "three";
 import { useSnapshot } from "valtio";
 import { useFrame } from "@react-three/fiber";
@@ -29,7 +30,7 @@ const MyDirectionalLight = ({
 }: MyDirectionalLightProps) => {
   const dim = 5;
   const scroll = useScroll();
-  const ref = useRef<DirectionalLight>(null);
+  const lightRef = useRef<DirectionalLight>(null);
   const { shadowWidth, shadowHeight, bias, dirIntensity } = useControls(
     "Main Light",
     {
@@ -47,7 +48,7 @@ const MyDirectionalLight = ({
         max: 0.01,
         step: 0.00001,
         onChange: (v) => {
-          ref.current!.shadow.bias = v;
+          lightRef.current!.shadow.bias = v;
         },
         transient: false,
       },
@@ -58,7 +59,7 @@ const MyDirectionalLight = ({
         max: dim,
         step: 0.1,
         onChange: (v) => {
-          ref.current!.shadow.camera.updateProjectionMatrix();
+          lightRef.current!.shadow.camera.updateProjectionMatrix();
         },
         transient: false,
       },
@@ -69,7 +70,7 @@ const MyDirectionalLight = ({
         max: dim,
         step: 0.1,
         onChange: (v) => {
-          ref.current!.shadow.camera.updateProjectionMatrix();
+          lightRef.current!.shadow.camera.updateProjectionMatrix();
         },
         transient: false,
       },
@@ -83,7 +84,7 @@ const MyDirectionalLight = ({
   const [hovered, setHovered] = useState(false);
 
   useCursor(hovered);
-  // useHelper(orthoRef, CameraHelper);
+  useHelper(orthoRef, CameraHelper);
 
   // update light target with scroll
   useFrame((_, delta) => {
@@ -92,11 +93,11 @@ const MyDirectionalLight = ({
       // ref.current!.target.position.set(0, 0, 0);
       // ref.current!.target.updateMatrixWorld();
 
-      ref.current!.position.set(offset * -5, 20, offset * -10);
-      ref.current!.updateMatrixWorld();
+      lightRef.current!.position.set(offset * -5, 20, offset * -10);
+      lightRef.current!.updateMatrixWorld();
     } else {
-      ref.current!.position.set(-5, 20, -10);
-      ref.current!.updateMatrixWorld();
+      lightRef.current!.position.set(-5, 20, -10);
+      lightRef.current!.updateMatrixWorld();
     }
   });
 
@@ -130,7 +131,7 @@ const MyDirectionalLight = ({
       >
         {/* <boxGeometry args={[0.1, 0.1, 0.1]} /> */}
         <directionalLight
-          ref={ref}
+          ref={lightRef}
           castShadow
           intensity={dirIntensity}
           position={[0, 0, 0]}

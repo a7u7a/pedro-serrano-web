@@ -11,7 +11,7 @@ const ImagePost = ({ post }: ImagePostProps) => {
 
   return (
     <div className="relative pr-4 pt-4">
-      <div className="relative w-96">
+      <div className={`relative ${post.imgWidth>post.imgHeight? "w-[35rem]": "w-80"} `}>
         <Image
           src={post.image}
           width={post.imgWidth}
@@ -21,12 +21,10 @@ const ImagePost = ({ post }: ImagePostProps) => {
         <div className="absolute bottom-0 left-0 pb-3 pl-2 text-sm font-normal">
           {expanded ? <div className="">{post.body}</div> : <></>}
           <button onClick={() => setExpanded(!expanded)} className="">
-            <p className="underline pt-2">{expanded?"less":"more"}</p>
+            <p className="underline pt-2">{expanded ? "less" : "more"}</p>
           </button>
         </div>
       </div>
-
-      {/* <div className="absolute top-0">{post.body}</div> */}
     </div>
   );
 };
