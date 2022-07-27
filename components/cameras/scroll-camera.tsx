@@ -1,14 +1,13 @@
-import { useRef } from "react";
+import { useRef, useState,useEffect } from "react";
 import {
   PerspectiveCamera,
   OrthographicCamera,
   useScroll,
 } from "@react-three/drei";
-
 import { Object3D, MathUtils } from "three";
-
 import { useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
+import useMediaQuery from "../../lib/media";
 
 const linearMap = (val: number, toA: number, toB: number) => {
   const fromA = 0;
@@ -17,6 +16,17 @@ const linearMap = (val: number, toA: number, toB: number) => {
 };
 
 const ScrollCamera = () => {
+  // set zoom level based on media query so that 3d model is not cropped on mobile
+  const isSm = useMediaQuery("(max-width: 768px)");
+  const [zoomLevel, setZoomLevel] = useState([90, 120]);
+  useEffect(() => {
+    if (isSm) {
+      setZoomLevel([40, 70]);
+    } else {
+      setZoomLevel([90, 120]);
+    }
+  }, [isSm]);
+
   const scroll = useScroll();
   const [{ scrollCamPos }, set] = useControls("Scroll Camera", () => ({
     scrollCamPos: {
@@ -28,20 +38,19 @@ const ScrollCamera = () => {
   // move and zoom camera on scroll
   useFrame((state, delta) => {
     // const offset = scroll.offset;
-    
 
     // offsets
     const yOff = 1.5;
     const xOff = 0;
 
-    const t = scroll.range(0, 1 /1);
+    const t = scroll.range(0, 1 / 1);
 
     const theta = MathUtils.degToRad(t * 180);
     const x = Math.cos(theta) * 15;
     const y = theta * 4 + yOff;
     const z = Math.sin(theta) * -15 + xOff;
 
-    const zoom = linearMap(t, 90, 120);
+    const zoom = linearMap(t, zoomLevel[0], zoomLevel[1]);
     state.camera.zoom = zoom;
     state.camera.position.set(x, y, z);
     state.camera.lookAt(0, t + yOff, xOff);
@@ -51,16 +60,6 @@ const ScrollCamera = () => {
   });
 
   const cameraRef = useRef<Object3D>();
-  return (
-    <OrthographicCamera
-      ref={cameraRef}
-      makeDefault
-      // position={[10, 5, -10]}
-      zoom={100}
-    />
-  );
+  return <OrthographicCamera ref={cameraRef} makeDefault zoom={100} />;
 };
 export default ScrollCamera;
-// Math.sin(offset) * -15,
-// Math.atan(offset * Math.PI * 2) * 10,
-// Math.cos((offset * Math.PI) / 3) * -15

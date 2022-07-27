@@ -137,7 +137,7 @@ export default function MainScene({ allPosts }: MainSceneProps) {
         {/* <gridHelper args={[30, 30]} /> */}
         <Suspense fallback={null}>
           {!debug ? (
-            <ScrollControls pages={4} damping={100}>
+            <ScrollControls pages={5} damping={100}>
               {scene}
               <Scroll html>
                 <div className="absolute pt-6 top-[76vh] w-screen">

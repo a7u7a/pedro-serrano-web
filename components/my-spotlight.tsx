@@ -23,7 +23,7 @@ const MySpotlight = ({ name, modelProps, debug }: MySpotlightProps) => {
   const targetRef = useRef<Object3D>();
     // useHelper(lightRef, SpotLightHelper, "red");
   const scroll = useScroll();
-
+  const dim = 5;
   const { bias } = useControls("Spot Light", {
     bias: {
       label: "shadow bias",
@@ -35,7 +35,7 @@ const MySpotlight = ({ name, modelProps, debug }: MySpotlightProps) => {
         lightRef.current!.shadow.bias = v;
       },
       transient: false,
-    },
+    }
   });
 
   useFrame(() => {
