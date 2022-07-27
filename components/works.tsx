@@ -10,10 +10,10 @@ const Works = ({ allPosts }: WorksProps) => {
   const w = allPosts[0].imgWidth;
   const h = allPosts[0].imgHeight;
   return (
-    <div className="mt-24 w-screen bg-white font-semibold text-5xl pb-96">
+    <div className="mt-16 w-screen bg-white pb-96">
       <div className="pl-6 flex flex-col text-black">
-        <p className="mt-6">Recent works</p>
-        <div className="mt-12 flex flex-col ">
+        <p className="mt-10 font-regular text-4xl">Recent works</p>
+        <div className="mt-6 flex flex-col ">
           <div className="flex flex-row flex-wrap">
             {allPosts.map((post) => (
               <ImagePost post={post} key={post.id} />

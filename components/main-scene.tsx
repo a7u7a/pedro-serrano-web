@@ -1,12 +1,8 @@
 import { Suspense } from "react";
-import { Canvas, useThree } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import {
-  OrbitControls,
-  TransformControls,
   ScrollControls,
-  SpotLight,
   Scroll,
-  RoundedBox,
 } from "@react-three/drei";
 
 import {
@@ -16,7 +12,6 @@ import {
   Mesh,
   MathUtils,
   DefaultLoadingManager,
-  DoubleSide,
 } from "three";
 import { GLTF as GLTFThree } from "three/examples/jsm/loaders/GLTFLoader";
 import { DDSLoader } from "three-stdlib";
@@ -53,29 +48,7 @@ export default function MainScene({ allPosts }: MainSceneProps) {
   const debug = false;
   const scene = (
     <>
-      <group>
-        {/* <MyImage
-          name="DSC0223.jpg"
-          url="/imgs/_DSC0223.jpg"
-          modelProps={{
-            position: new Vector3(
-              4.027861649520682,
-              -0.8377942634987993,
-              -0.09114219493733566
-            ),
-            rotation: new Euler(
-              MathUtils.degToRad(0),
-              MathUtils.degToRad(180),
-              MathUtils.degToRad(0)
-            ),
-            scale: 2,
-          }}
-        /> */}
-      </group>
       <MyBackground debug={debug} />
-      {/* <RoundedBox position={[0, 3, 0]} receiveShadow castShadow>
-        <meshStandardMaterial color={"gray"} transparent={false} />
-      </RoundedBox> */}
 
       <MySpotlight
         debug={debug}
@@ -85,36 +58,10 @@ export default function MainScene({ allPosts }: MainSceneProps) {
         }}
       />
 
-<MyAmbientLight />
-
+      <MyAmbientLight />
 
       {debug && <EditorCamera />}
       {!debug && <ScrollCamera />}
-      {/* <MyText
-        name="mytext1"
-        textSource={`
-        Hi, I’m Pedro.
-        I’m a spatial designer
-        based in Berlin since 2019.
-        
-        I work across multiple 
-        disciplines to plan, 
-        communicate and produce
-        contemporary environments.`}
-        modelProps={{
-          position: new Vector3(
-            3.9704027720466804,
-            1.4695501073759614,
-            -0.08079588190820397
-          ),
-          rotation: new Euler(
-            MathUtils.degToRad(0),
-            MathUtils.degToRad(180),
-            MathUtils.degToRad(0)
-          ),
-          scale: 2,
-        }}
-      /> */}
       <MyPlane
         width={25}
         height={25}
@@ -129,23 +76,6 @@ export default function MainScene({ allPosts }: MainSceneProps) {
         }}
       />
 
-      
-
-      {/* <MyDirectionalLight
-        debug={debug}
-        targetName="camTarget1"
-        name="light1"
-        // modelProps={{
-        //   position: new Vector3(0, 20, 0),
-        // }}
-      /> */}
-
-      {/* <MyPoint
-        name="camTarget1"
-        modelProps={{
-          position: new Vector3(0, 1.21, 0),
-        }}
-      /> */}
       <group>
         <MyModel
           name="house"
@@ -161,7 +91,7 @@ export default function MainScene({ allPosts }: MainSceneProps) {
           }}
         />
         <MyModel
-          name="chair"
+          name="chair_1"
           fileName="/geometry/chair.glb"
           modelProps={{
             position: new Vector3(
@@ -210,7 +140,7 @@ export default function MainScene({ allPosts }: MainSceneProps) {
             <ScrollControls pages={4} damping={100}>
               {scene}
               <Scroll html>
-                <div className="absolute pt-6 top-[68vh] w-screen">
+                <div className="absolute pt-6 top-[76vh] w-screen">
                   <MainContent allPosts={allPosts} />
                   <Works allPosts={allPosts} />
                 </div>

@@ -9,7 +9,7 @@ interface MainContentProps {
 
 const MainContent = ({ allPosts }: MainContentProps) => {
   return (
-    <div className="pl-6 flex flex-col w-[40rem] space-y-24 font-semibold text-5xl text-white">
+    <div className="pl-6 flex flex-col w-[40rem] space-y-16 font-regular text-4xl text-white">
       <div className="">Hi, I’m Pedro.</div>
       <p>I’m a spatial designer based in Berlin since 2019.</p>
       <p>
@@ -23,9 +23,9 @@ const MainContent = ({ allPosts }: MainContentProps) => {
       <div>
         <p>Contact</p>
         <ul>
-          <li>hi@pese.works</li>
+          <li>→ hi@pese.works</li>
           <li>
-            <a href="https://www.instagram.com/_pese/">@pese</a>
+            <a href="https://www.instagram.com/_pese/">→ @pese</a>
           </li>
         </ul>
       </div>
