@@ -14,7 +14,7 @@ const Works = ({ allPosts }: WorksProps) => {
       <div className="pl-6 flex flex-col text-black">
         <p className="mt-10 font-regular text-4xl">Recent works</p>
         <div className="mt-6 flex flex-col ">
-          <div className="flex flex-row flex-wrap">
+          <div className="flex flex-col pr-6 md:flex-row flex-wrap">
             {allPosts.map((post) => (
               <ImagePost post={post} key={post.id} />
             ))}

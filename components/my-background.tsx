@@ -1,22 +1,8 @@
-import { useState, useRef } from "react";
-import { useCursor, useHelper, useScroll } from "@react-three/drei";
-import {
-  Mesh,
-  DirectionalLight,
-  DirectionalLightHelper,
-  DoubleSide,
-  Material,
-} from "three";
-
-import * as THREE from "three";
-
-import { useSnapshot } from "valtio";
+import { useRef } from "react";
+import { useScroll } from "@react-three/drei";
+import { DoubleSide } from "three";
+import { Mesh } from "three";
 import { useFrame } from "@react-three/fiber";
-import { useControls } from "leva";
-import { state, modes } from "../store/store";
-import useObjPosControl from "../lib/obj-position-control";
-import { MyModelProps } from "../lib/interfaces";
-import { off } from "process";
 
 interface WithColor extends THREE.Material {
   // terrible hack
@@ -24,19 +10,20 @@ interface WithColor extends THREE.Material {
 }
 
 interface MyBackgroundProps {
-  debug:boolean
+  debug: boolean;
 }
 
-const MyBackground = ({debug}:MyBackgroundProps) => {
+const MyBackground = ({ debug }: MyBackgroundProps) => {
   const scroll = useScroll();
-  const mesh = useRef<THREE.Mesh>(null);
-  // update background color with scroll
-  useFrame((state) => {
+  const mesh = useRef<Mesh>(null);
+
+  useFrame(() => {
     if (!debug) {
       const offset = scroll.offset;
+      const t = scroll.range(1/ 8, 3 / 6);
       if (!Array.isArray(mesh.current!.material)) {
         const mat = mesh.current!.material as WithColor;
-        mat.color.setHSL(0, 0, offset / 1);
+        mat.color.setHSL(0, 0, t / 1);
       }
     }
   });

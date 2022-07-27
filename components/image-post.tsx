@@ -10,7 +10,7 @@ const ImagePost = ({ post }: ImagePostProps) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="relative pr-4 pt-4">
+    <div className="relative pr-0 md:pr-4 pt-4">
       <div className={`relative ${post.imgWidth>post.imgHeight? "w-[35rem]": "w-80"} `}>
         <Image
           src={post.image}

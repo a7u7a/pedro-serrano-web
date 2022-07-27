@@ -1,9 +1,7 @@
-import { useState, useRef, forwardRef, useEffect } from "react";
+import { useState, useRef } from "react";
 
 import { SpotLight, useHelper, useScroll } from "@react-three/drei";
 import {
-  PerspectiveCamera,
-  CameraHelper,
   SpotLightHelper,
   Object3D,
   SpotLight as SpotLightImpl,
@@ -22,7 +20,8 @@ interface MySpotlightProps extends MyModelProps {
 const MySpotlight = ({ name, modelProps, debug }: MySpotlightProps) => {
   const [target] = useState(() => new Object3D());
   const lightRef = useRef<SpotLightImpl>(null);
-//   useHelper(lightRef, SpotLightHelper, "red");
+  const targetRef = useRef<Object3D>();
+    // useHelper(lightRef, SpotLightHelper, "red");
   const scroll = useScroll();
 
   const { bias } = useControls("Spot Light", {
@@ -44,8 +43,11 @@ const MySpotlight = ({ name, modelProps, debug }: MySpotlightProps) => {
     if (!debug) {
       const offset = scroll.offset;
       if (lightRef.current) {
-        lightRef.current!.position.set(offset * -8, 18, offset * -10);
-        lightRef.current!.updateMatrixWorld();
+        lightRef.current.position.set(offset * -8, 18, offset * -10);
+        lightRef.current.updateMatrixWorld();
+      }
+      if (targetRef.current) {
+        targetRef.current.position.set(0, 0, (offset * 20)-5.6);
       }
     }
   });
@@ -66,7 +68,7 @@ const MySpotlight = ({ name, modelProps, debug }: MySpotlightProps) => {
         intensity={5}
         opacity={1}
       />
-      <primitive object={target} position={[0, 0, 0]} />
+      <primitive ref={targetRef} object={target} position={[0, 0, -5]} />
     </>
   );
 };
