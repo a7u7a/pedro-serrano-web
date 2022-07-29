@@ -22,11 +22,11 @@ const Blog = forwardRef<HTMLDivElement, BlogProps>(
     return (
       <div ref={ref} className="w-screen bg-white pb-12">
         <div className="pl-4 sm:pl-6 flex flex-col text-black">
-          <p className="mt-10 font-regular text-4xl">Recent works</p>
+          <p className="mt-10 font-regular text-4xl text-neutral-600">Projects</p>
           <div className="mt-6 flex flex-col ">
             {cats.map((cat, i) => (
               <div key={i}>
-                <div className="mt-4 text-xl">{cat}</div>
+                <div className="mt-4 text-xl text-neutral-600">{cat}</div>
                 <div className=" flex flex-col pr-6 md:flex-row flex-wrap">
                   {allPosts
                     .filter((post) => {

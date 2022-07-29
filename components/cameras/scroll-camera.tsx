@@ -4,12 +4,14 @@ import { Object3D, MathUtils } from "three";
 import { useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
 import useMediaQuery from "../../lib/media";
+import { off } from "process";
 
 interface ScrollCameraProps {
-  introPages: number;
-  blogPages: number;
-  footerPages: number;
-  totalPages: number;
+  introBottom: number;
+  blogBottom: number;
+  totalTop: number;
+  totalBottom: number;
+  footerHeight: number;
 }
 
 const linearMap = (val: number, toA: number, toB: number) => {
@@ -19,12 +21,12 @@ const linearMap = (val: number, toA: number, toB: number) => {
 };
 
 const ScrollCamera = ({
-  introPages,
-  blogPages,
-  footerPages,
-  totalPages
+  introBottom,
+  blogBottom,
+  totalTop,
+  totalBottom,
+  footerHeight,
 }: ScrollCameraProps) => {
-  
   // set zoom level based on media query so that 3d model is not cropped on mobile
   const isSm = useMediaQuery("(max-width: 768px)");
   const [zoomLevel, setZoomLevel] = useState([90, 120]);
@@ -46,15 +48,19 @@ const ScrollCamera = ({
 
   // move and zoom camera on scroll
   useFrame((state, delta) => {
-    // const offset = scroll.offset;
-
     // offsets
     const yOff = 1.5;
     const xOff = 0;
 
-    const t = scroll.range(0, 1 / introPages);
-    const p = scroll.range(1 / (blogPages + introPages), 1 / footerPages);
-    console.log("t", t, "p", p);
+    const offset = scroll.offset;
+    // begins increasing at 0 offset and reaches 1 when top of viewport clears intro section
+    const t = scroll.range(0, introBottom / totalTop);
+    // begins increasing when bottom of viewport reaches footer section and reaches 1 at end of scroll
+    const p = scroll.range(
+      1 - footerHeight / blogBottom,
+      footerHeight / totalBottom
+    );
+    // console.log("offset", offset, "t", t, "p", p);
 
     const theta = MathUtils.degToRad(t * 130);
     const x = Math.cos(theta) * 15;
