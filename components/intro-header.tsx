@@ -1,16 +1,15 @@
-import { Scroll } from "@react-three/drei";
+import { forwardRef } from "react";
 import PeseLogo from "./logo";
-import { PesePost } from "../lib/interfaces";
-import Works from "./works";
 
-interface MainContentProps {
-  allPosts: PesePost[];
-}
-
-const MainContent = ({ allPosts }: MainContentProps) => {
+const IntroHeader = forwardRef<HTMLDivElement>((props, ref) => {
+  // avoids eslint error
+  IntroHeader.displayName = "IntroHeader";
   return (
-    <div className="pl-4 sm:pl-6 pr-4 sm:pr-0 flex flex-col w-full md:w-[40rem] space-y-6 md:space-y-16 font-regular text-3xl md:text-4xl text-white mix-blend-exclusion">
-      <div className="">Hi, I’m Pedro.</div>
+    <div
+      ref={ref}
+      className="pt-[79vh] pl-4 sm:pl-6 pr-4 sm:pr-0 flex flex-col w-full md:w-2/3 lg:w-1/2 space-y-6 md:space-y-12 font-normal text-3xl md:text-4xl text-white mix-blend-exclusion pb-12"
+    >
+      <p>Hi, I’m Pedro.</p>
       <p>I’m a spatial designer based in Berlin since 2019.</p>
       <p>
         From houses to bespoke furniture pieces, interior architecture and
@@ -24,10 +23,10 @@ const MainContent = ({ allPosts }: MainContentProps) => {
       </p>
       <p>
         There’s never been a more urgent time to connect and think about new
-        ideas, spaces and realities. If you agree, send me an email
+        ideas, spaces and realities.
       </p>
       <div>
-        <p>Contact</p>
+        <p>Get in touch if you agree:</p>
         <ul>
           <li>→ hi@pese.works</li>
           <li>
@@ -38,5 +37,5 @@ const MainContent = ({ allPosts }: MainContentProps) => {
       <PeseLogo />
     </div>
   );
-};
-export default MainContent;
+});
+export default IntroHeader;

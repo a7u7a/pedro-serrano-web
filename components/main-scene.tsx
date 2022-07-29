@@ -1,10 +1,6 @@
-import { Suspense } from "react";
+import { Suspense, useEffect, useRef, useState, useCallback } from "react";
 import { Canvas } from "@react-three/fiber";
-import {
-  ScrollControls,
-  Scroll,
-} from "@react-three/drei";
-
+import { ScrollControls, Scroll } from "@react-three/drei";
 import {
   Material,
   Vector3,
@@ -15,21 +11,20 @@ import {
 } from "three";
 import { GLTF as GLTFThree } from "three/examples/jsm/loaders/GLTFLoader";
 import { DDSLoader } from "three-stdlib";
-import MyDirectionalLight from "./my-directionallight";
-import { state, modes } from "../store/store";
-import MyText from "./my-text";
+import { Leva } from "leva";
+import useMeasure from "react-use-measure";
 import MyModel from "./my-model";
 import MyPlane from "./my-plane";
 import MyAmbientLight from "./my-ambientlight";
 import EditorCamera from "./cameras/editor-camera";
 import ScrollCamera from "./cameras/scroll-camera";
-import { Leva } from "leva";
 import MyBackground from "./my-background";
-import MainContent from "./main-content";
+import IntroHeader from "./intro-header";
 import Controls from "../lib/controls";
 import { PesePost } from "../lib/interfaces";
-import Works from "./works";
+import Blog from "./my-blog";
 import MySpotlight from "./my-spotlight";
+import MyFooter from "./my-footer";
 
 DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 
@@ -45,12 +40,118 @@ interface MainSceneProps {
 }
 
 export default function MainScene({ allPosts }: MainSceneProps) {
+  /**
+   * Refs are forwarded to components so we can measure them and pass
+   * the height to scrollcamera or other components so it can
+   * calculate scroll ranges.
+   */
+
+  const [blogContainer, bounds] = useMeasure();
+
+  useEffect(() => {
+    console.log("bounds", bounds);
+  }, [bounds]);
+
   const debug = false;
+  const [windowHeight, setWindowHeight] = useState(800); // triggers update of pages
+  const [totalPages, setTotalPages] = useState(1);
+  const [introPages, setintroPages] = useState(1);
+  const [blogPages, setblogPages] = useState(1);
+  const [footerPages, setfooterPages] = useState(1);
+
+  // determine the number of pages for scrollControls
+  const mainContainer = useCallback(
+    (node: HTMLDivElement) => {
+      if (node !== null) {
+        const pages = node.offsetHeight / windowHeight;
+        setTotalPages(pages);
+        console.log(
+          "totalPages",
+          totalPages,
+          "node.offsetHeight",
+          node.offsetHeight,
+          "windowHeight",
+          windowHeight
+        );
+      }
+    },
+    [windowHeight, totalPages]
+  );
+
+  // measure the number of pages that IntroHeader takes up
+  const introContainer = useCallback(
+    (node: HTMLDivElement) => {
+      if (node !== null) {
+        const pages = node.offsetHeight / windowHeight;
+        setintroPages(pages);
+        console.log(
+          "introPages",
+          introPages,
+          "node.offsetHeight",
+          node.offsetHeight,
+          "windowHeight",
+          windowHeight
+        );
+      }
+    },
+    [windowHeight, introPages]
+  );
+
+  // measure the number of pages that IntroHeader takes up
+  // const blogContainer = useCallback(
+  //   (node: HTMLDivElement) => {
+  //     if (node !== null) {
+  //       const pages = node.offsetHeight / windowHeight;
+  //       setblogPages(pages);
+  //       console.log(
+  //         "blogPages",
+  //         blogPages,
+  //         "node.offsetHeight",
+  //         node.offsetHeight,
+  //         "windowHeight",
+  //         windowHeight
+  //       );
+  //     }
+  //   },
+  //   [windowHeight, blogPages]
+  // );
+
+  // useEffect(() => {
+  //   console.log(
+  //     "introPages",
+  //     introPages,
+  //     "blogPages",
+  //     blogPages,
+  //     "footerPages",
+  //     footerPages,
+  //     "totalPages",
+  //     totalPages
+  //   );
+  //   setfooterPages(totalPages - (introPages + blogPages));
+  // }, [windowHeight, introPages, blogPages, footerPages, totalPages]);
+
+  // get window height
+  useEffect(() => {
+    setWindowHeight(window.innerHeight);
+  }, [windowHeight]);
+
+  // handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowHeight(window.innerHeight);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [windowHeight]);
+
   const scene = (
     <>
       <MyBackground debug={debug} />
 
       <MySpotlight
+        introPages={introPages}
         debug={debug}
         name="spotlight1"
         modelProps={{
@@ -61,7 +162,14 @@ export default function MainScene({ allPosts }: MainSceneProps) {
       <MyAmbientLight />
 
       {debug && <EditorCamera />}
-      {!debug && <ScrollCamera />}
+      {!debug && (
+        <ScrollCamera
+          totalPages={totalPages}
+          blogPages={blogPages}
+          introPages={introPages}
+          footerPages={footerPages}
+        />
+      )}
       <MyPlane
         width={25}
         height={25}
@@ -137,12 +245,13 @@ export default function MainScene({ allPosts }: MainSceneProps) {
         {/* <gridHelper args={[30, 30]} /> */}
         <Suspense fallback={null}>
           {!debug ? (
-            <ScrollControls pages={5} damping={100}>
+            <ScrollControls pages={totalPages} damping={100}>
               {scene}
               <Scroll html>
-                <div className="absolute pt-6 top-[76vh] w-screen">
-                  <MainContent allPosts={allPosts} />
-                  <Works allPosts={allPosts} />
+                <div className="absolute w-screen" ref={mainContainer}>
+                  <IntroHeader ref={introContainer} />
+                  <Blog allPosts={allPosts} ref={blogContainer} />
+                  <MyFooter />
                 </div>
               </Scroll>
             </ScrollControls>
