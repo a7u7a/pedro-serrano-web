@@ -22,7 +22,7 @@ import { Leva } from "leva";
 import useMeasure from "react-use-measure";
 import MyModel from "./my-model";
 import MyPlane from "./my-plane";
-import MyAmbientLight from "./my-ambientLight";
+// import MyAmbientLight from "./my-ambientLight";
 import EditorCamera from "./cameras/editor-camera";
 import ScrollCamera from "./cameras/scroll-camera";
 import MyBackground from "./my-background";
@@ -239,7 +239,7 @@ export default function MainScene({ allPosts }: MainSceneProps) {
         }}
       />
 
-      <MyAmbientLight />
+      {/* <MyAmbientLight />  */}
 
       <MyPlane
         width={25}
