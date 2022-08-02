@@ -30,7 +30,7 @@ import IntroHeader from "./intro-header";
 import Controls from "../lib/controls";
 import { PesePost } from "../lib/interfaces";
 import Blog from "./my-blog";
-import MySpotlight from "./my-spotLight";
+// import MySpotlight from "./my-spotLight";
 import MyFooter from "./my-footer";
 
 DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
@@ -230,14 +230,14 @@ export default function MainScene({ allPosts }: MainSceneProps) {
 
       <MyBackground debug={debug} />
 
-      <MySpotlight
+      {/* <MySpotlight
         introPages={introPages}
         debug={debug}
         name="spotlight1"
         modelProps={{
           position: new Vector3(0, 18, 0),
         }}
-      />
+      /> */}
 
       <MyAmbientLight /> 
 
