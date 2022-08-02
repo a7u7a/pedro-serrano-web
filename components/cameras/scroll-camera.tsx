@@ -60,7 +60,7 @@ const ScrollCamera = ({
       1 - footerHeight / blogBottom,
       footerHeight / totalBottom
     );
-    // console.log("offset", offset, "t", t, "p", p);
+    console.log("offset", offset, "t", t, "p", p);
 
     const theta = MathUtils.degToRad(t * 130);
     const x = Math.cos(theta) * 15;

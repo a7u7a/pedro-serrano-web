@@ -68,18 +68,6 @@ export default function MainScene({ allPosts }: MainSceneProps) {
   const [totalTop, setTotalTop] = useState(1);
 
   useEffect(() => {
-    console.log(
-      "blogBounds.bottom",
-      blogBounds.bottom,
-      "blogBounds.height",
-      blogBounds.height,
-      "introBounds.height",
-      introBounds.height,
-      "footerBounds.height",
-      footerBounds.height,
-      "mainBounds.bottom",
-      mainBounds.bottom
-    );
     const pages = mainBounds.bottom / windowHeight;
     setTotalTop(mainBounds.bottom - windowHeight);
     console.log(
@@ -91,7 +79,7 @@ export default function MainScene({ allPosts }: MainSceneProps) {
       pages
     );
     setTotalPages(pages);
-  }, [windowHeight, mainBounds]);
+  }, [windowHeight, mainBounds, mainBounds.bottom]);
 
   useEffect(() => {
     const pages = introBounds.bottom / windowHeight;
