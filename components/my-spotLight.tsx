@@ -27,7 +27,7 @@ const MySpotlight = ({
   const [target] = useState(() => new Object3D());
   const lightRef = useRef<SpotLightImpl>(null);
   const targetRef = useRef<Object3D>();
-  useHelper(lightRef, SpotLightHelper, "red");
+//   useHelper(lightRef, SpotLightHelper, "red");
   const scroll = useScroll();
   const dim = 5;
   const { bias } = useControls("Spot Light", {
