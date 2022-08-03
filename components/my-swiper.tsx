@@ -10,7 +10,7 @@ interface SwiperProps {
 const MySwiper = ({ posts }: SwiperProps) => {
   // slidesPerView auto, scrollbar, navigation
   return (
-    <div className="">
+    <div className="mr-6">
       <Swiper
         slidesPerView={"auto"}
         navigation={true}

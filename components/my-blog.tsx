@@ -22,17 +22,11 @@ const Blog = forwardRef<HTMLDivElement, BlogProps>(
 
     return (
       <div ref={ref} className="w-screen bg-white pb-12">
-        <div className="pl-4 sm:pl-6 flex flex-col text-black">
-          <p className="mt-10 mb-4 font-regular text-4xl text-neutral-600">
-            Projects
-          </p>
-
-          <MySwiper posts={allPosts} />
-
-          <div className="mt-6 flex flex-col ">
+        <div className="pl-4 sm:pl-6 flex flex-col">
+          <div className="flex flex-col ">
             {cats.map((cat, i) => (
               <div key={i}>
-                <div className="mt-4 text-xl text-neutral-600">{cat}</div>
+                <div className="mt-10 mb-6 text-3xl text-neutral-600">{cat}</div>
                 <MySwiper
                   posts={allPosts.filter((post) => {
                     return post.category === cat;
