@@ -21,7 +21,7 @@ const Blog = forwardRef<HTMLDivElement, BlogProps>(
     const cats = getCategories(allPosts);
 
     return (
-      <div ref={ref} className="w-screen bg-white pb-12">
+      <div ref={ref} className="w-screen pb-12">
         <div className="pl-4 sm:pl-6 flex flex-col">
           <div className="flex flex-col ">
             {cats.map((cat, i) => (

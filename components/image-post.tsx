@@ -14,7 +14,7 @@ const ImagePost = ({ post }: ImagePostProps) => {
       onMouseEnter={() => setExpanded(true)}
       onMouseLeave={() => setExpanded(false)}
       className={`relative max-h-screen ${
-        post.imgWidth > post.imgHeight ? "w-[35rem]" : "w-[20rem]"
+        post.imgWidth > post.imgHeight ? "w-[35rem]" : "w-[25rem]"
       } `}
     >
       <Image
