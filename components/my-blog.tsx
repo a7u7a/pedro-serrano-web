@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import { PesePost } from "../lib/interfaces";
 import ImagePost from "./image-post";
+import MySwiper from "./my-swiper"
 
 interface BlogProps {
   allPosts: PesePost[];
@@ -22,8 +23,11 @@ const Blog = forwardRef<HTMLDivElement, BlogProps>(
     return (
       <div ref={ref} className="w-screen bg-white pb-12">
         <div className="pl-4 sm:pl-6 flex flex-col text-black">
-          <p className="mt-10 font-regular text-4xl text-neutral-600">Projects</p>
-          <div className="mt-6 flex flex-col ">
+          <p className="mt-10 mb-4 font-regular text-4xl text-neutral-600">Projects</p>
+
+          <MySwiper allPosts={allPosts}/>
+
+          {/* <div className="mt-6 flex flex-col ">
             {cats.map((cat, i) => (
               <div key={i}>
                 <div className="mt-4 text-xl text-neutral-600">{cat}</div>
@@ -38,7 +42,7 @@ const Blog = forwardRef<HTMLDivElement, BlogProps>(
                 </div>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     );

@@ -47,15 +47,17 @@ interface MainSceneProps {
 }
 
 export default function MainScene({ allPosts }: MainSceneProps) {
+  const debug = false;
+
   /**
    * Refs are forwarded to components so we can measure them and pass
    * the height to scrollcamera or other components so it can
    * calculate scroll ranges.
    */
-  const debug = false;
+
   const [windowHeight, setWindowHeight] = useState(800); // triggers update of pages
 
-  // get bounds for each container
+  // Get bounds for each container
   const [mainContainer, mainBounds] = useMeasure();
   const [introContainer, introBounds] = useMeasure();
   const [blogContainer, blogBounds] = useMeasure();

@@ -27,7 +27,7 @@ const MySpotlight = ({
   const [target] = useState(() => new Object3D());
   const lightRef = useRef<SpotLightImpl>(null);
   const targetRef = useRef<Object3D>();
-//   useHelper(lightRef, SpotLightHelper, "red");
+  //   useHelper(lightRef, SpotLightHelper, "red");
   const scroll = useScroll();
   const dim = 5;
   const { bias } = useControls("Spot Light", {
@@ -48,15 +48,15 @@ const MySpotlight = ({
     lightRef.current!.shadow.mapSize = new Vector2(1024 * 4, 1024 * 4);
     if (!debug) {
       const t = scroll.range(0, 1 / introPages);
-      if (lightRef.current) {
-        // move light source
-        lightRef.current.position.set(t * -8, 18, t * -10);
-        lightRef.current.updateMatrixWorld();
-      }
-      if (targetRef.current) {
-        // move light target
-        targetRef.current.position.set(0, 0, t * 10 - 5.6);
-      }
+      // move light source
+      lightRef.current!.position.set(t * -8, 18, t * -10);
+      lightRef.current!.updateMatrixWorld();
+      // move light target
+      targetRef.current!.position.set(0, 0, t * 10 - 5.6);
+    } else {
+      lightRef.current!.position.set(-8, 18, -10);
+      lightRef.current!.updateMatrixWorld();
+      targetRef.current!.position.set(0, 0, 10 - 5.6);
     }
   });
   return (

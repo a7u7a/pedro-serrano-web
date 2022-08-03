@@ -20,10 +20,15 @@ const MyBackground = ({ debug }: MyBackgroundProps) => {
   useFrame(() => {
     if (!debug) {
       const offset = scroll.offset;
-      const t = scroll.range(1/ 8, 3 / 6);
+      const t = scroll.range(1 / 8, 3 / 6);
       if (!Array.isArray(mesh.current!.material)) {
         const mat = mesh.current!.material as WithColor;
         mat.color.setHSL(0, 0, t / 1);
+      }
+    } else {
+      if (!Array.isArray(mesh.current!.material)) {
+        const mat = mesh.current!.material as WithColor;
+        mat.color.setHSL(0, 0, 0);
       }
     }
   });
