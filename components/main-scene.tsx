@@ -1,11 +1,4 @@
-import {
-  Suspense,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-  useCallback,
-} from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { ScrollControls, Scroll } from "@react-three/drei";
 import {
@@ -72,53 +65,53 @@ export default function MainScene({ allPosts }: MainSceneProps) {
   useEffect(() => {
     const pages = mainBounds.bottom / windowHeight;
     setTotalTop(mainBounds.bottom - windowHeight);
-    console.log(
-      "mainBounds.bottom",
-      mainBounds.bottom,
-      "windowHeight",
-      windowHeight,
-      "pages",
-      pages
-    );
+    // console.log(
+    //   "mainBounds.bottom",
+    //   mainBounds.bottom,
+    //   "windowHeight",
+    //   windowHeight,
+    //   "pages",
+    //   pages
+    // );
     setTotalPages(pages);
   }, [windowHeight, mainBounds, mainBounds.bottom]);
 
   useEffect(() => {
     const pages = introBounds.bottom / windowHeight;
-    console.log(
-      "introBounds.bottom",
-      introBounds.bottom,
-      "windowHeight",
-      windowHeight,
-      "pages",
-      pages
-    );
+    // console.log(
+    //   "introBounds.bottom",
+    //   introBounds.bottom,
+    //   "windowHeight",
+    //   windowHeight,
+    //   "pages",
+    //   pages
+    // );
     setIntroPages(introBounds.bottom / windowHeight);
   }, [windowHeight, introBounds]);
 
   useEffect(() => {
     const pages = blogBounds.bottom / windowHeight;
-    console.log(
-      "blogBounds.bottom",
-      blogBounds.bottom,
-      "windowHeight",
-      windowHeight,
-      "pages",
-      pages
-    );
+    // console.log(
+    //   "blogBounds.bottom",
+    //   blogBounds.bottom,
+    //   "windowHeight",
+    //   windowHeight,
+    //   "pages",
+    //   pages
+    // );
     setBlogPages(blogBounds.bottom / windowHeight);
   }, [windowHeight, blogBounds]);
 
   useEffect(() => {
     const pages = footerBounds.bottom / windowHeight;
-    console.log(
-      "footerBounds.bottom",
-      footerBounds.bottom,
-      "windowHeight",
-      windowHeight,
-      "pages",
-      pages
-    );
+    // console.log(
+    //   "footerBounds.bottom",
+    //   footerBounds.bottom,
+    //   "windowHeight",
+    //   windowHeight,
+    //   "pages",
+    //   pages
+    // );
     setFooterPages(footerBounds.bottom / windowHeight);
   }, [windowHeight, footerBounds]);
 
@@ -241,7 +234,7 @@ export default function MainScene({ allPosts }: MainSceneProps) {
         }}
       />
 
-      <MyAmbientLight /> 
+      <MyAmbientLight />
 
       <MyPlane
         width={25}

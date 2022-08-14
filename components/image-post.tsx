@@ -13,7 +13,7 @@ const ImagePost = ({ post }: ImagePostProps) => {
     <div
       onMouseEnter={() => setExpanded(true)}
       onMouseLeave={() => setExpanded(false)}
-      className={`relative max-h-screen ${
+      className={`relative max-h-screen text-left ${
         post.imgWidth > post.imgHeight ? "w-[35rem]" : "w-[25rem]"
       } `}
     >
@@ -30,7 +30,7 @@ const ImagePost = ({ post }: ImagePostProps) => {
       >
         {expanded ? <div className=" pl-2 pr-2 pt-2">{post.body}</div> : <></>}
         <button onClick={() => setExpanded(!expanded)} className="">
-          <p className="underline pt-2 pb-2 pl-2">
+          <p className=" underline pt-2 pb-2 pl-2">
             {expanded ? "less" : "more"}
           </p>
         </button>

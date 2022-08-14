@@ -3,6 +3,7 @@ import { useScroll } from "@react-three/drei";
 import { DoubleSide } from "three";
 import { Mesh } from "three";
 import { useFrame } from "@react-three/fiber";
+import { linearMap } from "../lib/utils";
 
 interface WithColor extends THREE.Material {
   // terrible hack
@@ -21,9 +22,10 @@ const MyBackground = ({ debug }: MyBackgroundProps) => {
     if (!debug) {
       const offset = scroll.offset;
       const t = scroll.range(1 / 8, 3 / 6);
+      const lum = linearMap(t, 0, 0.4);
       if (!Array.isArray(mesh.current!.material)) {
         const mat = mesh.current!.material as WithColor;
-        mat.color.setHSL(0, 0, t / 1);
+        mat.color.setHSL(0, 0, lum);
       }
     } else {
       if (!Array.isArray(mesh.current!.material)) {

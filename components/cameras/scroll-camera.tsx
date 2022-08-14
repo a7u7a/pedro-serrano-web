@@ -4,7 +4,7 @@ import { Object3D, MathUtils } from "three";
 import { useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
 import useMediaQuery from "../../lib/media";
-import { off } from "process";
+import {linearMap} from "../../lib/utils"
 
 interface ScrollCameraProps {
   introBottom: number;
@@ -13,12 +13,6 @@ interface ScrollCameraProps {
   totalBottom: number;
   footerHeight: number;
 }
-
-const linearMap = (val: number, toA: number, toB: number) => {
-  const fromA = 0;
-  const fromB = 1;
-  return ((val - fromA) * (toB - toA)) / (fromB - fromA) + toA;
-};
 
 const ScrollCamera = ({
   introBottom,
@@ -60,7 +54,7 @@ const ScrollCamera = ({
       1 - footerHeight / blogBottom,
       footerHeight / totalBottom
     );
-    console.log("offset", offset, "t", t, "p", p);
+    // console.log("offset", offset, "t", t, "p", p);
 
     const theta = MathUtils.degToRad(t * 130);
     const x = Math.cos(theta) * 15;

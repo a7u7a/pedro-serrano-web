@@ -10,6 +10,7 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
- .swiper-slide {
-  width: auto;
+.swiper-button-prev,
+.swiper-button-next {
+  display: hidden;
 }
