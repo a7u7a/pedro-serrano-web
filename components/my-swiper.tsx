@@ -15,6 +15,7 @@ const SwiperNavigation = () => {
   const [slideProgress, setSlideProgress] = useState<number>(0);
 
   swiper.on("slideChange", (e) => {
+    console.log("hello", e.translate);
     setSlideProgress(e.progress);
   });
 
@@ -52,6 +53,11 @@ const MySwiper = ({ posts }: SwiperProps) => {
       spaceBetween={30}
       modules={[Navigation]}
       className="mySwiper"
+      slidesOffsetBefore={0}
+      onInit={(swiper) => {
+        console.log("swiper", swiper);
+        // swiper.slidesOffsetBefore = 
+      }}
     >
       <SwiperNavigation />
 
