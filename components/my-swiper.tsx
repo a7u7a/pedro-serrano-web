@@ -22,19 +22,19 @@ const SwiperNavigation = () => {
   });
 
   return (
-    <div className="flex flex-row justify-end">
+    <div className="flex flex-row justify-end mb-2">
       <div className="flex flex-row space-x-3">
-        <button
-          className={`${slideProgress === 1 ? "text-gray-300" : "text-white"}`}
-          onClick={() => swiper.slideNext()}
-          disabled={slideProgress === 1}
-        >
-          ←
-        </button>
         <button
           className={`${slideProgress === 0 ? "text-gray-300" : "text-white"}`}
           onClick={() => swiper.slidePrev()}
           disabled={slideProgress === 0}
+        >
+          ←
+        </button>
+        <button
+          className={`${slideProgress === 1 ? "text-gray-300" : "text-white"}`}
+          onClick={() => swiper.slideNext()}
+          disabled={slideProgress === 1}
         >
           →
         </button>
@@ -67,18 +67,19 @@ const MySwiper = ({ posts }: SwiperProps) => {
         modules={[Navigation]}
         className="mySwiper"
         slidesOffsetBefore={swiperWidth - 400}
-        onInit={(swiper) => {
-          // setfirstSlideWidth(swiper.slidesSizesGrid[0])
-          console.log("swiper", swiper);
-        }}
+        // onInit={(swiper) => {
+        //   // setfirstSlideWidth(swiper.slidesSizesGrid[0])
+        //   console.log("swiper", swiper);
+        // }}
       >
-        <SwiperNavigation />
-
         {posts.map((post, i) => (
           <SwiperSlide key={i}>
             <ImagePost post={post} key={post.id} />
           </SwiperSlide>
         ))}
+        <span slot={"container-start"}>
+          <SwiperNavigation />
+        </span>
       </Swiper>
     </div>
   );
