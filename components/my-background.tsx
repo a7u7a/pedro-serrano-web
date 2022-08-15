@@ -22,7 +22,7 @@ const MyBackground = ({ debug }: MyBackgroundProps) => {
     if (!debug) {
       const offset = scroll.offset;
       const t = scroll.range(1 / 8, 3 / 6);
-      const lum = linearMap(t, 0, 0.4);
+      const lum = linearMap(t, 0, 0.2);
       if (!Array.isArray(mesh.current!.material)) {
         const mat = mesh.current!.material as WithColor;
         mat.color.setHSL(0, 0, lum);
