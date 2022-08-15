@@ -65,6 +65,7 @@ export default function MainScene({ allPosts }: MainSceneProps) {
   useEffect(() => {
     const pages = mainBounds.bottom / windowHeight;
     setTotalTop(mainBounds.bottom - windowHeight);
+    setTotalPages(pages);
     // console.log(
     //   "mainBounds.bottom",
     //   mainBounds.bottom,
@@ -73,11 +74,11 @@ export default function MainScene({ allPosts }: MainSceneProps) {
     //   "pages",
     //   pages
     // );
-    setTotalPages(pages);
   }, [windowHeight, mainBounds, mainBounds.bottom]);
 
   useEffect(() => {
     const pages = introBounds.bottom / windowHeight;
+    setIntroPages(introBounds.bottom / windowHeight);
     // console.log(
     //   "introBounds.bottom",
     //   introBounds.bottom,
@@ -86,11 +87,11 @@ export default function MainScene({ allPosts }: MainSceneProps) {
     //   "pages",
     //   pages
     // );
-    setIntroPages(introBounds.bottom / windowHeight);
   }, [windowHeight, introBounds]);
 
   useEffect(() => {
     const pages = blogBounds.bottom / windowHeight;
+    setBlogPages(blogBounds.bottom / windowHeight);
     // console.log(
     //   "blogBounds.bottom",
     //   blogBounds.bottom,
@@ -99,11 +100,11 @@ export default function MainScene({ allPosts }: MainSceneProps) {
     //   "pages",
     //   pages
     // );
-    setBlogPages(blogBounds.bottom / windowHeight);
   }, [windowHeight, blogBounds]);
 
   useEffect(() => {
     const pages = footerBounds.bottom / windowHeight;
+    setFooterPages(footerBounds.bottom / windowHeight);
     // console.log(
     //   "footerBounds.bottom",
     //   footerBounds.bottom,
@@ -112,7 +113,6 @@ export default function MainScene({ allPosts }: MainSceneProps) {
     //   "pages",
     //   pages
     // );
-    setFooterPages(footerBounds.bottom / windowHeight);
   }, [windowHeight, footerBounds]);
 
   // determine the number of pages for scrollControls

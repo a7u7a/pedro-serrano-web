@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import FadeIn from "./fade-in";
 import PeseLogo from "./logo";
 
 const MyFooter = forwardRef<HTMLDivElement>((props, ref) => {
@@ -15,21 +16,29 @@ const MyFooter = forwardRef<HTMLDivElement>((props, ref) => {
     mt-20
     text-white font-regular text-3xl md:text-4xl`}
     >
-      <p>
-        {`There's never been a more urgent time to connect and think about
+      <FadeIn threshold={1}>
+        <p>
+          {`There's never been a more urgent time to connect and think about
               new ideas, spaces and realities. If you agree, send me an email ;)`}
-      </p>
-      <div>
-        <p>Get in touch if you agree:</p>
-        <ul>
-          <li>→ hi@pese.works</li>
-          <li>
-            <a href="https://www.instagram.com/_pese/">→ @pese</a>
-          </li>
-        </ul>
-      </div>
-      <p className="underline">Full PDF portfolio here</p>
-      <PeseLogo />
+        </p>
+      </FadeIn>
+      <FadeIn threshold={1}>
+        <div>
+          <p>Get in touch if you agree:</p>
+          <ul>
+            <li>→ hi@pese.works</li>
+            <li>
+              <a href="https://www.instagram.com/_pese/">→ @pese</a>
+            </li>
+          </ul>
+        </div>
+      </FadeIn>
+      <FadeIn threshold={1}>
+        <p className="underline">Full PDF portfolio here</p>
+      </FadeIn>
+      <FadeIn threshold={1}>
+        <PeseLogo />
+      </FadeIn>
     </div>
   );
 });

@@ -1,11 +1,11 @@
 import { useRef } from "react";
 import { useScroll } from "@react-three/drei";
-import { DoubleSide } from "three";
+import { DoubleSide, Material } from "three";
 import { Mesh } from "three";
 import { useFrame } from "@react-three/fiber";
 import { linearMap } from "../lib/utils";
 
-interface WithColor extends THREE.Material {
+interface WithColor extends Material {
   // terrible hack
   color: any;
 }

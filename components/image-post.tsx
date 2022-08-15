@@ -25,7 +25,7 @@ const ImagePost = ({ post }: ImagePostProps) => {
       />
       <div
         className={`absolute bottom-0 left-0 mb-1.5 right-0 text-sm font-normal ${
-          expanded ? "bg-gradient-to-t	from-neutral-200 via-neutral-200" : ""
+          expanded ? "bg-gradient-to-t	from-neutral-600 via-neutral-600" : ""
         }`}
       >
         {expanded ? <div className=" pl-2 pr-2 pt-2">{post.body}</div> : <></>}
