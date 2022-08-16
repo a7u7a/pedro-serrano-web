@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import FadeIn from "./fade-in";
+import FadeIn from "./wrappers/fade-in";
 
 const IntroHeader = forwardRef<HTMLDivElement>((props, ref) => {
   // avoids eslint error

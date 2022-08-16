@@ -17,8 +17,9 @@ const SwiperNavigation = () => {
   const [slideProgress, setSlideProgress] = useState<number>(0);
 
   swiper.on("slideChange", (e) => {
-    // console.log("hello", e.translate);
     setSlideProgress(e.progress);
+    // console.log("swiper.translate", swiper.translate);
+    // console.log("swiper", swiper);
   });
 
   return (
@@ -66,11 +67,22 @@ const MySwiper = ({ posts }: SwiperProps) => {
         spaceBetween={gap}
         modules={[Navigation]}
         className="mySwiper"
-        slidesOffsetBefore={swiperWidth - 400}
-        // onInit={(swiper) => {
-        //   // setfirstSlideWidth(swiper.slidesSizesGrid[0])
-        //   console.log("swiper", swiper);
-        // }}
+        // slidesOffsetBefore={swiperWidth - 560}
+        onSlideChange={(swiper) => {
+          // console.log("slideChange", swiper);
+          // here we set progress of the bar according to the next slide width
+          // we need to detect direction before calling setProgress()
+          // swiper.setProgress(0.1, 500)
+        }}
+        onInit={(swiper) => {
+          // here we get the width of the first slide to apply on slidesOffsetBefore
+          // setfirstSlideWidth(swiper.slidesSizesGrid[0])
+          console.log("swiper", swiper);
+          if(swiper.slides[0]){
+            const firstSlideWidth = swiper.slides[0].clientWidth
+            console.log("firstSlideWidth", firstSlideWidth);
+          }
+        }}
       >
         {posts.map((post, i) => (
           <SwiperSlide key={i}>

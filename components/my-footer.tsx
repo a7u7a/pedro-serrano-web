@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import FadeIn from "./fade-in";
+import FadeIn from "./wrappers/fade-in";
 import PeseLogo from "./logo";
 
 const MyFooter = forwardRef<HTMLDivElement>((props, ref) => {

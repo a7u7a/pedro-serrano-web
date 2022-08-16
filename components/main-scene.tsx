@@ -22,7 +22,7 @@ import MyBackground from "./my-background";
 import IntroHeader from "./intro-header";
 import Controls from "../lib/controls";
 import { PesePost } from "../lib/interfaces";
-import Blog from "./my-blog";
+import Gallery from "./my-gallery";
 import MySpotlight from "./my-spotLight";
 import MyFooter from "./my-footer";
 
@@ -316,7 +316,8 @@ export default function MainScene({ allPosts }: MainSceneProps) {
               <Scroll html>
                 <div className="absolute w-screen" ref={mainContainer}>
                   <IntroHeader ref={introContainer} />
-                  <Blog allPosts={allPosts} ref={blogContainer} />
+                  <Gallery allPosts={allPosts} ref={blogContainer} category={"Built work"} />
+                  <Gallery allPosts={allPosts} ref={blogContainer} category={"Experiments"} />
                   <MyFooter ref={footerContainer} />
                 </div>
               </Scroll>
