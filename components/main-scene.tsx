@@ -18,12 +18,13 @@ import MyPlane from "./my-plane";
 import MyAmbientLight from "./my-ambientLight";
 import EditorCamera from "./cameras/editor-camera";
 import ScrollCamera from "./cameras/scroll-camera";
+import MySpotlight from "./my-spotLight";
 import MyBackground from "./my-background";
-import IntroHeader from "./intro-header";
 import Controls from "../lib/controls";
 import { PesePost } from "../lib/interfaces";
+import IntroHeader from "./my-header";
 import Gallery from "./my-gallery";
-import MySpotlight from "./my-spotLight";
+import MainText from "./my-main-text";
 import MyFooter from "./my-footer";
 
 DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
@@ -317,6 +318,7 @@ export default function MainScene({ allPosts }: MainSceneProps) {
                 <div className="absolute w-screen" ref={mainContainer}>
                   <IntroHeader ref={introContainer} />
                   <Gallery allPosts={allPosts} ref={blogContainer} category={"Built work"} />
+                  <MainText/>
                   <Gallery allPosts={allPosts} ref={blogContainer} category={"Experiments"} />
                   <MyFooter ref={footerContainer} />
                 </div>
