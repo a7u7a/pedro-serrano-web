@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useSwiper } from "swiper/react";
 import getTotalSliderWidth from "../lib/swiper-utils";
 
+// external arrows reference: https://github.com/nolimits4web/swiper/issues/3855#issuecomment-1188290035
+
 const SwiperNavigation = () => {
   const swiper = useSwiper();
   const [slideProgress, setSlideProgress] = useState<number>(0);
@@ -17,7 +19,12 @@ const SwiperNavigation = () => {
       const nextSlideWidth = swiper.slides[index + 1].clientWidth;
       const nextProgress = (nextSlideWidth + gap) / totalEffectiveSlidesWidth;
       const targetProgress = progress + nextProgress;
-      swiper.setProgress(targetProgress, 500);
+      if (index === swiper.slides.length - 2) {
+        // fixes small rounding error
+        swiper.setProgress(1, 500);
+      } else {
+        swiper.setProgress(targetProgress, 500);
+      }
     }
   };
 
@@ -28,7 +35,12 @@ const SwiperNavigation = () => {
     const prevSlideWidth = swiper.slides[index].clientWidth;
     const prevProgress = (prevSlideWidth + gap) / totalEffectiveSlidesWidth;
     const targetProgress = progress - prevProgress;
-    swiper.setProgress(targetProgress, 500);
+    if (index === 1) {
+      // fixes small rounding error
+      swiper.setProgress(0, 500);
+    } else {
+      swiper.setProgress(targetProgress, 500);
+    }
   };
 
   swiper.on("init", (swiper) => {

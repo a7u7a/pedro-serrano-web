@@ -6,8 +6,6 @@ import ImagePost from "./image-post";
 import useMeasure from "react-use-measure";
 import SwiperNavigation from "./swiper-nav"
 
-// external arrows reference: https://github.com/nolimits4web/swiper/issues/3855#issuecomment-1188290035
-
 interface SwiperProps {
   posts: PesePost[];
 }
