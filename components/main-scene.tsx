@@ -319,7 +319,7 @@ export default function MainScene({ allPosts }: MainSceneProps) {
                   <IntroHeader ref={introContainer} />
                   <Gallery allPosts={allPosts} ref={blogContainer} category={"Built work"} />
                   <MainText/>
-                  <Gallery allPosts={allPosts} ref={blogContainer} category={"Experiments"} />
+                  {/* <Gallery allPosts={allPosts} ref={blogContainer} category={"Experiments"} /> */}
                   <MyFooter ref={footerContainer} />
                 </div>
               </Scroll>
