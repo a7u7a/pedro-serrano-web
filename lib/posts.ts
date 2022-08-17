@@ -26,7 +26,6 @@ export const getPosts = (): Promise<PesePost[]> => {
             category: matterResult.data.category,
             imgWidth: dimensions.width,
             imgHeight: dimensions.height
-
         }
     }
     const processFileNames = async () => {

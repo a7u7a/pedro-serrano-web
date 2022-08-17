@@ -8,10 +8,24 @@ import { getPosts } from "../lib/posts";
 import { PesePost } from "../lib/interfaces";
 
 interface HomeProps {
-  allPosts: PesePost[];
+  builtProj: PesePost[];
+  experimentsProj: PesePost[];
 }
 
-const Home = ({ allPosts }: HomeProps) => {
+const builtCat = "Built work";
+const experimentsCat = "Experiments";
+
+function SortArray(x: PesePost, y: PesePost) {
+  if (x.title < y.title) {
+    return -1;
+  }
+  if (x.title > y.title) {
+    return 1;
+  }
+  return 0;
+}
+
+const Home = ({ builtProj, experimentsProj }: HomeProps) => {
   return (
     <>
       <Head>
@@ -24,17 +38,40 @@ const Home = ({ allPosts }: HomeProps) => {
       </Head>
 
       <div className="h-screen w-screen">
-        <MainScene allPosts={allPosts} />
+        <MainScene builtProj={builtProj} experimentsProj={experimentsProj} />
       </div>
     </>
   );
 };
 
+const sortAlphaNum = (posts: PesePost[]) => {
+  return posts.sort((a, b) => {
+    return a.title.localeCompare(b.title, undefined, {
+      numeric: true,
+      sensitivity: "base",
+    });
+  });
+};
+
+const filterByCategory = (posts: PesePost[], category:string)=>{
+return posts.filter((post) => {
+  return post.category === category;
+});
+}
+
 export const getStaticProps: GetStaticProps = async () => {
   const allPosts = await getPosts();
+
+  const builtFiltered = filterByCategory(allPosts, builtCat )
+  const builtProj = sortAlphaNum(builtFiltered);
+
+  const expFiltered = filterByCategory(allPosts, experimentsCat)
+  const experimentsProj = sortAlphaNum(expFiltered);
+
   return {
     props: {
-      allPosts,
+      builtProj,
+      experimentsProj,
     },
   };
 };

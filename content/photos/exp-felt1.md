@@ -1,6 +1,6 @@
 ---
 date: July 25, 2022 6:14 PM
-title: felt1
+title: exp1
 image: /uploads/experiments/sel/felt1.jpg
 category: Experiments
 alt: alt

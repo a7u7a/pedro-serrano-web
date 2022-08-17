@@ -1,6 +1,6 @@
 ---
 date: July 25, 2022 6:14 PM
-title: sole1
+title: built12
 image: /uploads/built/sel/sole1.jpg
 category: Built work
 alt: alt

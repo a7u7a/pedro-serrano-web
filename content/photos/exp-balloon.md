@@ -1,6 +1,6 @@
 ---
 date: July 25, 2022 6:14 PM
-title: balloon
+title: exp8
 image: /uploads/experiments/sel/balloon.jpg
 category: Experiments
 alt: alt

@@ -1,6 +1,6 @@
 ---
 date: July 25, 2022 6:14 PM
-title: expo3
+title: exp11
 image: /uploads/experiments/sel/expo3.jpg
 category: Experiments
 alt: alt

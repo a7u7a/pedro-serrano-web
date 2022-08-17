@@ -1,6 +1,6 @@
 ---
 date: July 25, 2022 6:14 PM
-title: kub
+title: exp20
 image: /uploads/experiments/sel/kub.gif
 category: Experiments
 alt: alt

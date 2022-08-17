@@ -1,6 +1,6 @@
 ---
 date: July 25, 2022 6:14 PM
-title: pangi3
+title: built3
 image: /uploads/built/sel/pangi3.jpg
 category: Built work
 alt: alt

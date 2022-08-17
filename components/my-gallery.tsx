@@ -5,14 +5,18 @@ import MySwiper from "./my-swiper";
 import FadeIn from "./wrappers/fade-in";
 
 interface BlogProps {
-  allPosts: PesePost[];
+  posts: PesePost[];
   ref: HTMLDivElement;
   category: string;
 }
 
+
+
 const Gallery = forwardRef<HTMLDivElement, BlogProps>(
-  ({ allPosts, category }: BlogProps, ref) => {
+  ({ posts, category }: BlogProps, ref) => {
     Gallery.displayName = "Gallery";
+
+  
     return (
       <div
         ref={ref}
@@ -28,7 +32,7 @@ const Gallery = forwardRef<HTMLDivElement, BlogProps>(
           </FadeIn>
           <FadeIn threshold={0.2}>
             <MySwiper
-              posts={allPosts.filter((post) => {
+              posts={posts.filter((post) => {
                 return post.category === category;
               })}
             />

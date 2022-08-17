@@ -37,10 +37,11 @@ declare module "three-stdlib" {
 }
 
 interface MainSceneProps {
-  allPosts: PesePost[];
+  builtProj: PesePost[];
+  experimentsProj: PesePost[];
 }
 
-export default function MainScene({ allPosts }: MainSceneProps) {
+export default function MainScene({ builtProj,experimentsProj }: MainSceneProps) {
   const debug = false;
 
   /**
@@ -317,9 +318,9 @@ export default function MainScene({ allPosts }: MainSceneProps) {
               <Scroll html>
                 <div className="absolute w-screen" ref={mainContainer}>
                   <IntroHeader ref={introContainer} />
-                  <Gallery allPosts={allPosts} ref={blogContainer} category={"Built work"} />
+                  <Gallery posts={builtProj} ref={blogContainer} category={"Built work"} />
                   <MainText/>
-                  {/* <Gallery allPosts={allPosts} ref={blogContainer} category={"Experiments"} /> */}
+                  <Gallery posts={experimentsProj} ref={blogContainer} category={"Experiments"} />
                   <MyFooter ref={footerContainer} />
                 </div>
               </Scroll>
