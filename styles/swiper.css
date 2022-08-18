@@ -37,6 +37,10 @@ body {
   width: auto;
 }
 
+.swiper-slide {
+  height: 100%;
+}
+
 /* 
 .swiper-slide {
   

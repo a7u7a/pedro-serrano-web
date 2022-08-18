@@ -28,37 +28,7 @@ const MyModel = ({ name, fileName, modelProps }: MyModelProps) => {
   });
 
   return (
-    <group
-      ref={ref}
-      {...modelProps}
-      dispose={null}
-      name={name}
-
-      // onClick={(e) => {
-      //   e.stopPropagation();
-      //   state.current = name;
-      //   if (ref.current) {
-      //     state.position = ref.current.position;
-      //   }
-      // }}
-      // onPointerMissed={(e) => {
-      //   if (e.type === "click") {
-      //     state.current = null;
-      //     state.position = null;
-      //   }
-      // }}
-      // onContextMenu={(e) => {
-      //   if (snap.current === name) {
-      //     e.stopPropagation();
-      //     state.mode = (snap.mode + 1) % modes.length;
-      //   }
-      // }}
-      // onPointerOver={(e) => {
-      //   e.stopPropagation();
-      //   setHovered(true);
-      // }}
-      // onPointerOut={(e) => setHovered(false)}
-    >
+    <group ref={ref} {...modelProps} dispose={null} name={name}>
       {nodes.Scene.children.map((child, i) => {
         if (child instanceof Mesh && child.type != "Group") {
           return (

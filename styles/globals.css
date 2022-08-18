@@ -13,3 +13,8 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+.textOnImage {
+  @apply pl-3 text-right text-2xl pr-3 pt-3
+  prose-a:underline;
+}

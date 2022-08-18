@@ -14,14 +14,15 @@ const IntroHeader = forwardRef<HTMLDivElement>((props, ref) => {
       pt-[79vh]
       pl-4 sm:pl-6 
       pr-4 sm:pr-0 
+      max-w-2xl
       text-white font-regular text-3xl md:text-4xl`}
     >
       <FadeIn threshold={1}>
         <p>Hi, I’m Pedro.</p>
       </FadeIn>
       <FadeIn threshold={1}>
-        <p>
-          I’m a spatial designer based in Berlin since 2019. I work across
+        <p className="leading-tight">
+          I’m a spatial designer based in Berlin since 2019. <br /> Working across
           multiple disciplines to plan, communicate and produce contemporary
           environments.
         </p>

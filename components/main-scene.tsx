@@ -41,7 +41,10 @@ interface MainSceneProps {
   experimentsProj: PesePost[];
 }
 
-export default function MainScene({ builtProj,experimentsProj }: MainSceneProps) {
+export default function MainScene({
+  builtProj,
+  experimentsProj,
+}: MainSceneProps) {
   const debug = false;
 
   /**
@@ -266,6 +269,20 @@ export default function MainScene({ builtProj,experimentsProj }: MainSceneProps)
             scale: 0.001,
           }}
         />
+
+        {/* <MyModel
+          name="amapola"
+          fileName="/geometry/amapola.glb"
+          modelProps={{
+            position: new Vector3(1, 1.1, -0.15),
+            rotation: new Euler(
+              MathUtils.degToRad(0),
+              MathUtils.degToRad(0),
+              MathUtils.degToRad(0)
+            ),
+            scale: 0.03,
+          }}
+        /> */}
         <MyModel
           name="chair_1"
           fileName="/geometry/chair.glb"
@@ -307,7 +324,7 @@ export default function MainScene({ builtProj,experimentsProj }: MainSceneProps)
     <>
       <Canvas
         gl={{ antialias: true }}
-        style={{ background: "#E0E0E0" }}
+        style={{ background: "#000000" }}
         shadows
       >
         {/* <gridHelper args={[30, 30]} /> */}
@@ -318,9 +335,17 @@ export default function MainScene({ builtProj,experimentsProj }: MainSceneProps)
               <Scroll html>
                 <div className="absolute w-screen" ref={mainContainer}>
                   <IntroHeader ref={introContainer} />
-                  <Gallery posts={builtProj} ref={blogContainer} category={"Built work"} />
-                  <MainText/>
-                  <Gallery posts={experimentsProj} ref={blogContainer} category={"Experiments"} />
+                  <Gallery
+                    posts={builtProj}
+                    ref={blogContainer}
+                    category={"Built work"}
+                  />
+                  <MainText />
+                  <Gallery
+                    posts={experimentsProj}
+                    ref={blogContainer}
+                    category={"Experiments"}
+                  />
                   <MyFooter ref={footerContainer} />
                 </div>
               </Scroll>

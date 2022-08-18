@@ -1,4 +1,3 @@
-
 /** @type {import('tailwindcss').Config} */
 const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
@@ -8,11 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
-      
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
