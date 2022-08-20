@@ -232,6 +232,7 @@ export default function MainScene({
 
       <MySpotlight
         introPages={introPages}
+        spinning={false}
         debug={debug}
         name="spotlight1"
         modelProps={{
@@ -245,6 +246,7 @@ export default function MainScene({
         width={25}
         height={25}
         name={"shadowPlane1"}
+        spinning={false}
         modelProps={{
           position: new Vector3(0, 0, 0),
           rotation: new Euler(
@@ -256,9 +258,55 @@ export default function MainScene({
       />
 
       <group>
+        {/* <MyModel
+          name="amapola"
+          fileName="/geometry/amapola.glb"
+          spinning={true}
+          modelProps={{
+            position: new Vector3(1, 1.1, -0.15),
+            rotation: new Euler(
+              MathUtils.degToRad(0),
+              MathUtils.degToRad(0),
+              MathUtils.degToRad(0)
+            ),
+            scale: 0.03,
+          }}
+        /> */}
+
+        {/* <MyModel
+          name="silvestre"
+          fileName="/geometry/silvestre.glb"
+          spinning={true}
+          modelProps={{
+            position: new Vector3(1.1, 1.1, -0.15),
+            rotation: new Euler(
+              MathUtils.degToRad(0),
+              MathUtils.degToRad(0),
+              MathUtils.degToRad(0)
+            ),
+            scale: 0.0002,
+          }}
+        /> */}
+
+        {/* <MyModel
+          name="plantita"
+          fileName="/geometry/plantita.glb"
+          spinning={false}
+          modelProps={{
+            position: new Vector3(1, 1.1, 0),
+            rotation: new Euler(
+              MathUtils.degToRad(90),
+              MathUtils.degToRad(0),
+              MathUtils.degToRad(0)
+            ),
+            scale: 0.0008,
+          }}
+        /> */}
+
         <MyModel
           name="house"
           fileName="/geometry/house.glb"
+          spinning={false}
           modelProps={{
             position: new Vector3(0, 1.371, 0),
             rotation: new Euler(
@@ -270,21 +318,9 @@ export default function MainScene({
           }}
         />
 
-        {/* <MyModel
-          name="amapola"
-          fileName="/geometry/amapola.glb"
-          modelProps={{
-            position: new Vector3(1, 1.1, -0.15),
-            rotation: new Euler(
-              MathUtils.degToRad(0),
-              MathUtils.degToRad(0),
-              MathUtils.degToRad(0)
-            ),
-            scale: 0.03,
-          }}
-        /> */}
         <MyModel
           name="chair_1"
+          spinning={false}
           fileName="/geometry/chair.glb"
           modelProps={{
             position: new Vector3(
@@ -302,6 +338,7 @@ export default function MainScene({
         />
         <MyModel
           name="chair_2"
+          spinning={false}
           fileName="/geometry/chair.glb"
           modelProps={{
             position: new Vector3(

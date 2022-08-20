@@ -7,6 +7,7 @@ export interface MyModelProps {
   width?: number;
   height?: number;
   modelProps?: { position?: Vector3; rotation?: Euler; scale?: number };
+  spinning: boolean;
 }
 
 export interface PesePost {
@@ -18,5 +19,5 @@ export interface PesePost {
   id: string;
   imgWidth: number;
   imgHeight: number;
-  alt: string
+  alt: string;
 }

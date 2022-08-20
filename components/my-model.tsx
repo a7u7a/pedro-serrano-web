@@ -1,20 +1,36 @@
 import { useState, useRef } from "react";
 import { useGLTF, useCursor } from "@react-three/drei";
 import { useSnapshot } from "valtio";
-import { Material, Vector3, Euler, Mesh, Object3D, Group } from "three";
+import {
+  Material,
+  Vector3,
+  Euler,
+  Mesh,
+  Object3D,
+  Group,
+  MeshBasicMaterial,
+} from "three";
 import { state, modes } from "../store/store";
 import { useControls } from "leva";
 import { useFrame } from "@react-three/fiber";
 import useObjPosControl from "../lib/obj-position-control";
 import { MyModelProps } from "../lib/interfaces";
 
-const MyModel = ({ name, fileName, modelProps }: MyModelProps) => {
+const MyModel = ({ name, fileName, modelProps, spinning }: MyModelProps) => {
   const [{ pos, displayName }, set] = useObjPosControl();
   const ref = useRef<Group>(null);
+  const mesh = useRef<Mesh>(null);
   const snap = useSnapshot(state);
   const { nodes } = useGLTF(fileName!);
+  console.log("nodes", nodes);
   const [hovered, setHovered] = useState(false);
   useCursor(hovered);
+
+  useFrame((state, delta) => {
+    if (spinning) {
+      mesh.current!.rotation.y += 0.01;
+    }
+  });
 
   useFrame((_, delta) => {
     // if selected
@@ -33,13 +49,14 @@ const MyModel = ({ name, fileName, modelProps }: MyModelProps) => {
         if (child instanceof Mesh && child.type != "Group") {
           return (
             <mesh
+              ref={mesh}
               receiveShadow
               castShadow
               key={i}
               geometry={child.geometry}
-              material={child.material}
-              material-color={snap.current === name ? "#ff6080" : "white"}
-            />
+            >
+              <meshStandardMaterial color={"white"} />
+            </mesh>
           );
         }
       })}

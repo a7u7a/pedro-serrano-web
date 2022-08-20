@@ -7,6 +7,7 @@ const MyFooter = forwardRef<HTMLDivElement>((props, ref) => {
   return (
     <div
       className={`
+      invisible
     flex flex-col
     space-y-6 md:space-y-12
     w-full md:w-2/3 lg:w-1/2

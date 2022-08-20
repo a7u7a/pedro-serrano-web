@@ -60,6 +60,7 @@ const MyPlane = ({ width, height, name, modelProps }: MyModelProps) => {
       // onPointerOut={(e) => setHovered(false)}
       dispose={null}
     >
+      {/* <meshStandardMaterial color={"white"} /> */}
       <shadowMaterial
         attach="material"
         opacity={1}
