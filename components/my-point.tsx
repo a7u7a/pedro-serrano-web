@@ -5,26 +5,13 @@ import { useSnapshot } from "valtio";
 import { useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
 import { state, modes } from "../store/store";
-import useObjPosControl from "../lib/obj-position-control";
 import { MyModelProps } from "../lib/interfaces";
 
 const MyPoint = ({ name, modelProps }: MyModelProps) => {
-  const [{ pos, displayName }, set] = useObjPosControl();
   const ref = useRef<Mesh>(null);
   const snap = useSnapshot(state);
   const [hovered, setHovered] = useState(false);
   useCursor(hovered);
-
-  useFrame((_, delta) => {
-    // if selected
-    if (name === snap.current && ref.current) {
-      const _ = ref.current.position;
-      set({ pos: [_.x, _.y, _.z], displayName: name });
-    }
-    if (!state.position) {
-      set({ pos: [0, 0, 0], displayName: "" });
-    }
-  });
 
   return (
     <mesh

@@ -45,7 +45,7 @@ export default function MainScene({
   builtProj,
   experimentsProj,
 }: MainSceneProps) {
-  const debug = false;
+  const debug = true;
 
   /**
    * Refs are forwarded to components so we can measure them and pass
@@ -236,7 +236,7 @@ export default function MainScene({
         debug={debug}
         name="spotlight1"
         modelProps={{
-          position: new Vector3(0, 18, 0),
+          position: new Vector3(0, 15, 0),
         }}
       />
 
@@ -258,51 +258,6 @@ export default function MainScene({
       />
 
       <group>
-        {/* <MyModel
-          name="amapola"
-          fileName="/geometry/amapola.glb"
-          spinning={true}
-          modelProps={{
-            position: new Vector3(1, 1.1, -0.15),
-            rotation: new Euler(
-              MathUtils.degToRad(0),
-              MathUtils.degToRad(0),
-              MathUtils.degToRad(0)
-            ),
-            scale: 0.03,
-          }}
-        /> */}
-
-        {/* <MyModel
-          name="silvestre"
-          fileName="/geometry/silvestre.glb"
-          spinning={true}
-          modelProps={{
-            position: new Vector3(1.1, 1.1, -0.15),
-            rotation: new Euler(
-              MathUtils.degToRad(0),
-              MathUtils.degToRad(0),
-              MathUtils.degToRad(0)
-            ),
-            scale: 0.0002,
-          }}
-        /> */}
-
-        {/* <MyModel
-          name="plantita"
-          fileName="/geometry/plantita.glb"
-          spinning={false}
-          modelProps={{
-            position: new Vector3(1, 1.1, 0),
-            rotation: new Euler(
-              MathUtils.degToRad(90),
-              MathUtils.degToRad(0),
-              MathUtils.degToRad(0)
-            ),
-            scale: 0.0008,
-          }}
-        /> */}
-
         <MyModel
           name="house"
           fileName="/geometry/house.glb"
@@ -393,7 +348,7 @@ export default function MainScene({
         </Suspense>
         {debug && <Controls />}
       </Canvas>
-      <Leva hidden={debug ? false : true} />
+      <Leva hidden={false} />
     </>
   );
 }

@@ -1,8 +1,5 @@
 import { useRef } from "react";
-import {
-  PerspectiveCamera,
-  OrthographicCamera,
-} from "@react-three/drei";
+import { PerspectiveCamera, OrthographicCamera } from "@react-three/drei";
 
 import { Object3D } from "three";
 
@@ -27,12 +24,6 @@ const EditorCamera = () => {
   });
 
   const cameraRef = useRef<Object3D>();
-  return (
-    <OrthographicCamera
-      makeDefault
-      position={[4.7561085802765,4.960221817148011,-5.270259073073082]}
-      zoom={100}
-    />
-  );
+  return <OrthographicCamera makeDefault position={[20, 20, -20]} zoom={100} />;
 };
 export default EditorCamera;

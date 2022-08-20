@@ -21,7 +21,6 @@ const Gallery = forwardRef<HTMLDivElement, BlogProps>(
       <div
         ref={ref}
         className={`
-        invisible
         mt-40
         flex flex-col
         pr-4 sm:pr-6

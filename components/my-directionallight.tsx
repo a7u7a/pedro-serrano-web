@@ -3,19 +3,14 @@ import { useCursor, useHelper, useScroll } from "@react-three/drei";
 import {
   Mesh,
   DirectionalLight,
-  DirectionalLightHelper,
-  Vector3,
   CameraHelper,
   OrthographicCamera,
-  SpotLight
 } from "three";
 import { useSnapshot } from "valtio";
 import { useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
 import { state, modes } from "../store/store";
-import useObjPosControl from "../lib/obj-position-control";
 import { MyModelProps } from "../lib/interfaces";
-
 
 interface MyDirectionalLightProps extends MyModelProps {
   targetName: string;
@@ -77,7 +72,6 @@ const MyDirectionalLight = ({
     }
   );
 
-  const [{ pos, displayName }, set] = useObjPosControl();
   const containerRef = useRef<Mesh>(null);
   const orthoRef = useRef<OrthographicCamera>(null);
   const snap = useSnapshot(state);

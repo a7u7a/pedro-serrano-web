@@ -4,6 +4,7 @@ import { DoubleSide, Material } from "three";
 import { Mesh } from "three";
 import { useFrame } from "@react-three/fiber";
 import { linearMap } from "../lib/utils";
+import { useControls } from "leva";
 
 interface WithColor extends Material {
   // terrible hack
@@ -15,6 +16,16 @@ interface MyBackgroundProps {
 }
 
 const MyBackground = ({ debug }: MyBackgroundProps) => {
+  const { color } = useControls("Background", {
+    color: {
+      label: "Color",
+      value: 0.03,
+      min: 0,
+      max: 1,
+      step: 0.01,
+    },
+  });
+
   const scroll = useScroll();
   const mesh = useRef<Mesh>(null);
 
@@ -30,14 +41,14 @@ const MyBackground = ({ debug }: MyBackgroundProps) => {
     } else {
       if (!Array.isArray(mesh.current!.material)) {
         const mat = mesh.current!.material as WithColor;
-        mat.color.setHSL(0, 0, 0);
+        mat.color.setHSL(0, 0, color);
       }
     }
   });
   return (
     <mesh ref={mesh}>
-      <meshBasicMaterial opacity={0.5} side={DoubleSide} />
-      <sphereGeometry args={[20]} />
+      <meshBasicMaterial opacity={1} side={DoubleSide} />
+      <sphereGeometry args={[100]} />
     </mesh>
   );
 };
