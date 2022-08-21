@@ -18,7 +18,7 @@ interface MyBackgroundProps {
 const MyBackground = ({ debug }: MyBackgroundProps) => {
   const { color } = useControls("Background", {
     color: {
-      label: "Color",
+      label: "Light",
       value: 0.03,
       min: 0,
       max: 1,

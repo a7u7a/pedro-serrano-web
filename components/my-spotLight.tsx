@@ -7,7 +7,7 @@ import {
   SpotLight as SpotLightImpl,
   Vector2,
   OrthographicCamera,
-  MathUtils
+  MathUtils,
 } from "three";
 
 import { useControls } from "leva";
@@ -31,12 +31,15 @@ const MySpotlight = ({
   const lightRef = useRef<SpotLightImpl>(null);
   const shadowCameraRef = useRef<OrthographicCamera>(null);
   const targetRef = useRef<Object3D>();
-  useHelper(lightRef, SpotLightHelper, "red");
+
   // useHelper(lightRef, DirectionalLightHelper, 1);
   const scroll = useScroll();
-  const { bias, testVar, lightPos, targetPos, lightY, targetY } = useControls(
-    "SpotLight",
-    {
+  const { bias, angle, lightPos, targetPos, lightY, targetY, toggle } =
+    useControls("SpotLight", {
+      toggle: {
+        label: "Helper",
+        value: true,
+      },
       bias: {
         label: "Shadow bias",
         value: -0.00007000000000000029,
@@ -48,7 +51,8 @@ const MySpotlight = ({
         },
         transient: false,
       },
-      testVar: {
+      angle: {
+        label: "Angle",
         value: 11.4,
         min: 0,
         max: 60,
@@ -68,16 +72,14 @@ const MySpotlight = ({
         max: 30,
         step: 0.1,
       },
-    }
-  );
+    });
+
+  useHelper(toggle && debug && lightRef, SpotLightHelper, "red");
 
   useLayoutEffect(() => {
-    console.log("testVar", testVar);
-    // lightRef.current!.penumbra = testVar;
-    lightRef.current!.angle = MathUtils.degToRad(testVar),
-    // lightRef.current!. = MathUtils.degToRad(testVar),
+    lightRef.current!.angle = MathUtils.degToRad(angle);
     lightRef.current!.shadow.camera.updateProjectionMatrix();
-  }, [testVar]);
+  }, [angle]);
 
   useFrame(() => {
     lightRef.current!.shadow.mapSize = new Vector2(1024 * 4, 1024 * 4);
@@ -107,7 +109,7 @@ const MySpotlight = ({
         radiusTop={15}
         radiusBottom={40}
         distance={40}
-        angle={MathUtils.degToRad(testVar)}
+        angle={MathUtils.degToRad(angle)}
         shadow-focus={1.6} // key to solve shadow-clipping bug
         attenuation={20}
         anglePower={3}
