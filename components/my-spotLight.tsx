@@ -106,26 +106,16 @@ const MySpotlight = ({
         {...modelProps}
         target={target}
         penumbra={0.3}
-        radiusTop={15}
-        radiusBottom={40}
-        distance={40}
+        distance={25}
         angle={MathUtils.degToRad(angle)}
         shadow-focus={1.6} // key to solve shadow-clipping bug
-        attenuation={20}
         anglePower={3}
         intensity={5}
-        opacity={1}
-      >
-        {/* <orthographicCamera
-          ref={shadowCameraRef}
-          attach="shadow-camera"
-          left={-30}
-          right={30}
-          top={30}
-          bottom={-30}
-        /> */}
-      </SpotLight>
-
+        attenuation={0}
+        radiusTop={5}
+        radiusBottom={20}
+        opacity={0.5}
+      />
       <primitive ref={targetRef} object={target} position={[0, 0, -5]} />
     </>
   );

@@ -22,7 +22,7 @@ const MyModel = ({ name, fileName, modelProps, spinning }: MyModelProps) => {
   const mesh = useRef<Mesh>(null);
   const snap = useSnapshot(state);
   const { nodes } = useGLTF(fileName!);
-  console.log("nodes", nodes);
+  // console.log("nodes", nodes);
   const [hovered, setHovered] = useState(false);
   useCursor(hovered);
 

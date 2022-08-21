@@ -46,6 +46,7 @@ export default function MainScene({
   experimentsProj,
 }: MainSceneProps) {
   const debug = false;
+  // const debug = true;
 
   /**
    * Refs are forwarded to components so we can measure them and pass
@@ -260,7 +261,7 @@ export default function MainScene({
       <group>
         <MyModel
           name="house"
-          fileName="/geometry/house2.glb"
+          fileName="/geometry/house.glb"
           spinning={false}
           modelProps={{
             position: new Vector3(0, 1.371, 0),
