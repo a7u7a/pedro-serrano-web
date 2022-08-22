@@ -7,7 +7,8 @@ interface MyAmbientLightProps {
 const MyAmbientLight = () => {
   const { intensity } = useControls("Ambient Light",{
     intensity: {
-      value: 0.05,
+      
+      value: 0.14,
       min: 0,
       max: 1,
       step: 0.01,

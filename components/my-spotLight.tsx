@@ -39,7 +39,8 @@ const MySpotlight = ({
       },
       bias: {
         label: "Shadow bias",
-        value: -0.00007000000000000029,
+        
+        value: -0.00009000000000000029,
         min: -0.001,
         max: 0.001,
         step: 0.00001,
@@ -99,7 +100,7 @@ const MySpotlight = ({
     <>
       <SpotLight
         castShadow
-        shadow-mapSize={[3072, 3072]}
+        shadow-mapSize={[512, 512]}
         ref={lightRef}
         {...modelProps}
         target={target}

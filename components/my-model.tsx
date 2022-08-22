@@ -12,6 +12,7 @@ const MyModel = ({
   modelProps,
   spinning,
   animateOpacity,
+  debug,
 }: MyModelProps) => {
   const ref = useRef<Group>(null);
   const mesh = useRef<Mesh>(null);
@@ -26,7 +27,7 @@ const MyModel = ({
     if (spinning) {
       mesh.current!.rotation.y -= 0.005;
     }
-    if (animateOpacity) {
+    if (animateOpacity===true && !debug) {
       const t = scroll.range(4 / 5, 1 / 5);
       const meshRef = mesh.current!.material as Material;
       meshRef.opacity = t;

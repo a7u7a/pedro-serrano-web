@@ -264,8 +264,9 @@ export default function MainScene({
           fileName="/geometry/silvestre.glb"
           spinning={true}
           animateOpacity={true}
+          debug={debug}
           modelProps={{
-            position: new Vector3(.85, 1.15, -0.15),
+            position: new Vector3(0.85, 1.15, -0.15),
             rotation: new Euler(
               MathUtils.degToRad(0),
               MathUtils.degToRad(0),
