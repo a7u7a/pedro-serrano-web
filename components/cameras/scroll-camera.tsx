@@ -6,11 +6,8 @@ import {
 } from "@react-three/drei";
 import { Object3D, MathUtils, Vector3 } from "three";
 import { useFrame } from "@react-three/fiber";
-import { useControls } from "leva";
 import useMediaQuery from "../../lib/media";
 import { linearMap } from "../../lib/utils";
-import { off } from "process";
-import { Swiper } from "swiper/react";
 
 interface ScrollCameraProps {
   introBottom: number;
@@ -21,7 +18,8 @@ interface ScrollCameraProps {
 }
 
 const zoomCurve = (scroll: ScrollControlsState) => {
-  const t = scroll.range(3 / 7, 4 / 7);
+  const t = scroll.range(6 / 8, 2 / 8);
+  // avoids zooming in too quickly
   const easeOut = Math.pow(Math.min(Math.cos((Math.PI * (t - 1)) / 2), 1), 2);
   return easeOut;
 };
@@ -40,17 +38,11 @@ const ScrollCamera = ({
     if (isSm) {
       setZoomLevel([40, 120]);
     } else {
-      setZoomLevel([80, 450]);
+      setZoomLevel([100, 500]);
     }
   }, [isSm]);
 
   const scroll = useScroll();
-  // const [{ scrollCamPos }, set] = useControls("Scroll Camera", () => ({
-  //   scrollCamPos: {
-  //     label: "position",
-  //     value: [0, 1.21, 0],
-  //   },
-  // }));
 
   // move and zoom camera on scroll
   useFrame((state, delta) => {
@@ -62,7 +54,7 @@ const ScrollCamera = ({
     const offset = scroll.offset;
 
     // rotate
-    const d = scroll.curve(0, 1.08);
+    const d = scroll.curve(0, 1.09);
     const deg = offset * 280;
     const theta = MathUtils.degToRad(deg + rotationOffset);
     const x = Math.cos(theta);
@@ -79,8 +71,8 @@ const ScrollCamera = ({
 
     // target
     const targetX = zoomFactor * targetMaxX;
-    const targetY = (zoomFactor * -0.8)+yOff
-    const targetZ = zoomFactor*-0.35
+    const targetY = zoomFactor * -0.9 + yOff;
+    const targetZ = zoomFactor * -0.35;
     state.camera.lookAt(targetX, targetY, targetZ);
     state.camera.updateProjectionMatrix();
   });

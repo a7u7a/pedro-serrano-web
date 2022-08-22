@@ -1,34 +1,41 @@
 import { useState, useRef } from "react";
-import { useGLTF, useCursor } from "@react-three/drei";
+import { useGLTF, useCursor, useScroll } from "@react-three/drei";
 import { useSnapshot } from "valtio";
-import {
-  Material,
-  Vector3,
-  Euler,
-  Mesh,
-  Object3D,
-  Group,
-  MeshBasicMaterial,
-} from "three";
-import { state, modes } from "../store/store";
-import { useControls } from "leva";
+import { Mesh, Group, Scene } from "three";
+import { state } from "../store/store";
 import { useFrame } from "@react-three/fiber";
-
 import { MyModelProps } from "../lib/interfaces";
 
-const MyModel = ({ name, fileName, modelProps, spinning }: MyModelProps) => {
-
+const MyModel = ({
+  name,
+  fileName,
+  modelProps,
+  spinning,
+  animateOpacity,
+}: MyModelProps) => {
   const ref = useRef<Group>(null);
   const mesh = useRef<Mesh>(null);
   const snap = useSnapshot(state);
   const { nodes } = useGLTF(fileName!);
-  // console.log("nodes", nodes);
   const [hovered, setHovered] = useState(false);
+  const scroll = useScroll();
+  const [castShadows, setCastShadows] = useState(false);
   useCursor(hovered);
 
   useFrame((state, delta) => {
     if (spinning) {
       mesh.current!.rotation.y -= 0.005;
+
+      // console.log("mesh.current", mesh.current!);
+    }
+    if (animateOpacity) {
+      const t = scroll.range(4 / 5, 1 / 5);
+      mesh.current!.material.opacity = t;
+      if (t > 0.23) {
+        setCastShadows(true);
+      } else {
+        setCastShadows(false);
+      }
     }
   });
 
@@ -40,11 +47,15 @@ const MyModel = ({ name, fileName, modelProps, spinning }: MyModelProps) => {
             <mesh
               ref={mesh}
               receiveShadow
-              castShadow
+              castShadow={animateOpacity ? castShadows : true}
               key={i}
               geometry={child.geometry}
             >
-              <meshStandardMaterial color={"white"} />
+              <meshStandardMaterial
+                color={"white"}
+                transparent={animateOpacity ? true : false}
+                opacity={animateOpacity ? 0 : 1}
+              />
             </mesh>
           );
         }

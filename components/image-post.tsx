@@ -17,17 +17,14 @@ const ImagePost = ({ post }: ImagePostProps) => {
       onMouseEnter={() => setExpanded(true)}
       onMouseLeave={() => setExpanded(false)}
       className={`relative ${
-        post.imgWidth > post.imgHeight ? "w-[38rem] h-[28rem]"
-        : post.imgWidth === post.imgHeight ? "h-[28rem] w-[28rem]"
-        : "w-[28rem] h-[38rem]"
+        post.imgWidth > post.imgHeight
+          ? "w-[38rem] h-[28rem]"
+          : post.imgWidth === post.imgHeight
+          ? "h-[28rem] w-[28rem]"
+          : "w-[28rem] h-[38rem]"
       } `}
     >
-      <Image
-        src={post.image}
-        alt={post.alt}
-        layout="fill"
-        objectFit="cover"
-      />
+      <Image src={post.image} alt={post.alt} layout="fill" objectFit="cover" />
       <div
         className={`absolute bottom-0 left-0 right-0 text-left font-normal text-black ${
           expanded ? "bg-gradient-to-t	from-neutral-100 via-neutral-100" : ""
@@ -39,18 +36,20 @@ const ImagePost = ({ post }: ImagePostProps) => {
           <></>
         )} */}
 
-{expanded ? (
+        {expanded ? (
           <ReactMarkdown className={"textOnImage"} remarkPlugins={[remarkGfm]}>
-          {post.body}
-        </ReactMarkdown>
+            {post.body}
+          </ReactMarkdown>
         ) : (
           <></>
         )}
 
-        
-
         <button onClick={() => setExpanded(!expanded)} className="">
-          <p className="text-base text-gray-300 underline pt-3 pb-3 pl-3">
+          <p
+            className={`text-base  underline pt-3 pb-3 pl-3 ${
+              expanded ? "text-gray-800" : "text-gray-300"
+            }`}
+          >
             {expanded ? "less" : "more"}
           </p>
         </button>

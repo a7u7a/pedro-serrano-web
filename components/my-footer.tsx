@@ -10,8 +10,8 @@ const MyFooter = forwardRef<HTMLDivElement>((props, ref) => {
     flex flex-col
     space-y-6 md:space-y-12
     w-full md:w-2/3 lg:w-1/2
-    mt-40
-    pb-[70vh]
+    mt-52
+    pb-[50vh]
     pl-4 sm:pl-6
     pr-4 sm:pr-0
     max-w-2xl
@@ -20,14 +20,15 @@ const MyFooter = forwardRef<HTMLDivElement>((props, ref) => {
       <FadeIn threshold={1}>
         <p className="leading-tight">
           {`There's never been a more urgent time to connect and think about
-              new ideas, spaces and realities. If you agree, send me an email ;)`}
+              new ideas, spaces and realities. Get in touch if you agree ;)`}
         </p>
       </FadeIn>
       <FadeIn threshold={1}>
         <div>
-          <p>Get in touch if you agree:</p>
           <ul>
-            <li>→ hi@pese.works</li>
+            <li>
+              <a href="mailto:hi@pese.works">→ hi@pese.works</a>
+            </li>
             <li>
               <a href="https://www.instagram.com/_pese/">→ @pese</a>
             </li>

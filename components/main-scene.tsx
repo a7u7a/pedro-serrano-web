@@ -263,6 +263,7 @@ export default function MainScene({
           name="silvestre"
           fileName="/geometry/silvestre.glb"
           spinning={true}
+          animateOpacity={true}
           modelProps={{
             position: new Vector3(.85, 1.15, -0.15),
             rotation: new Euler(

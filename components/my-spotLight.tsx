@@ -29,10 +29,7 @@ const MySpotlight = ({
 }: MySpotlightProps) => {
   const [target] = useState(() => new Object3D());
   const lightRef = useRef<SpotLightImpl>(null);
-  const shadowCameraRef = useRef<OrthographicCamera>(null);
   const targetRef = useRef<Object3D>();
-
-  // useHelper(lightRef, DirectionalLightHelper, 1);
   const scroll = useScroll();
   const { bias, angle, lightPos, targetPos, lightY, targetY, toggle } =
     useControls("SpotLight", {
@@ -84,12 +81,13 @@ const MySpotlight = ({
   useFrame(() => {
     lightRef.current!.shadow.mapSize = new Vector2(1024 * 4, 1024 * 4);
     if (!debug) {
-      const t = scroll.range(0, 1 / introPages);
+      const t = scroll.range(0, 1);
+      const p = scroll.range(2 / 3,1 / 3);
       // move light source
-      lightRef.current!.position.set(t * -8, 18, t * -10);
+      lightRef.current!.position.set(p*1, p * -9 + 18, t * -8);
       lightRef.current!.updateMatrixWorld();
       // move light target
-      targetRef.current!.position.set(0, 0, t * 10 - 5.6);
+      targetRef.current!.position.set(p * 2, 0, t * 9 - 5.6);
     } else {
       lightRef.current!.position.set(-lightPos.x, lightY, -lightPos.y);
       targetRef.current!.position.set(-targetPos.x, targetY, -targetPos.y);
@@ -101,7 +99,7 @@ const MySpotlight = ({
     <>
       <SpotLight
         castShadow
-        shadow-mapSize={[2072, 2072]}
+        shadow-mapSize={[3072, 3072]}
         ref={lightRef}
         {...modelProps}
         target={target}
@@ -110,7 +108,7 @@ const MySpotlight = ({
         angle={MathUtils.degToRad(angle)}
         shadow-focus={1.6} // key to solve shadow-clipping bug
         anglePower={3}
-        intensity={5}
+        intensity={3}
         attenuation={0}
         radiusTop={5}
         radiusBottom={20}

@@ -8,6 +8,7 @@ export interface MyModelProps {
   height?: number;
   modelProps?: { position?: Vector3; rotation?: Euler; scale?: number };
   spinning: boolean;
+  animateOpacity?: boolean;
 }
 
 export interface PesePost {
