@@ -4,7 +4,7 @@ import { SpotLight, useHelper, useScroll } from "@react-three/drei";
 import {
   SpotLightHelper,
   Object3D,
-  SpotLight as SpotLightImpl,
+  SpotLight as SpotLightImpl, // needed to fix ts warning
   Vector2,
   OrthographicCamera,
   MathUtils,

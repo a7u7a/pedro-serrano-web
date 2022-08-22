@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { useGLTF, useCursor, useScroll } from "@react-three/drei";
 import { useSnapshot } from "valtio";
-import { Mesh, Group, Scene } from "three";
+import { Mesh, Group, Scene, Material } from "three";
 import { state } from "../store/store";
 import { useFrame } from "@react-three/fiber";
 import { MyModelProps } from "../lib/interfaces";
@@ -25,12 +25,11 @@ const MyModel = ({
   useFrame((state, delta) => {
     if (spinning) {
       mesh.current!.rotation.y -= 0.005;
-
-      // console.log("mesh.current", mesh.current!);
     }
     if (animateOpacity) {
       const t = scroll.range(4 / 5, 1 / 5);
-      mesh.current!.material.opacity = t;
+      const meshRef = mesh.current!.material as Material;
+      meshRef.opacity = t;
       if (t > 0.23) {
         setCastShadows(true);
       } else {
