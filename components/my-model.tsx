@@ -28,7 +28,7 @@ const MyModel = ({ name, fileName, modelProps, spinning }: MyModelProps) => {
 
   useFrame((state, delta) => {
     if (spinning) {
-      mesh.current!.rotation.y += 0.005;
+      mesh.current!.rotation.y -= 0.005;
     }
   });
 

@@ -15,6 +15,6 @@
 }
 
 .textOnImage {
-  @apply pl-3 text-right text-2xl pr-3 pt-3
+  @apply pl-3 text-right text-xl pr-3 pt-3
   prose-a:underline;
 }

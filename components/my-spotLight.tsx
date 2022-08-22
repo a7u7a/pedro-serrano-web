@@ -101,7 +101,7 @@ const MySpotlight = ({
     <>
       <SpotLight
         castShadow
-        shadow-mapSize={[2048, 2048]}
+        shadow-mapSize={[2072, 2072]}
         ref={lightRef}
         {...modelProps}
         target={target}

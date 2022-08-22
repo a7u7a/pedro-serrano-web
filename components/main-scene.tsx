@@ -260,6 +260,21 @@ export default function MainScene({
 
       <group>
         <MyModel
+          name="silvestre"
+          fileName="/geometry/silvestre.glb"
+          spinning={true}
+          modelProps={{
+            position: new Vector3(.85, 1.15, -0.15),
+            rotation: new Euler(
+              MathUtils.degToRad(0),
+              MathUtils.degToRad(0),
+              MathUtils.degToRad(0)
+            ),
+            scale: 0.00018,
+          }}
+        />
+
+        <MyModel
           name="house"
           fileName="/geometry/house.glb"
           spinning={false}

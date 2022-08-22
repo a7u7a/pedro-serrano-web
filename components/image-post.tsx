@@ -29,8 +29,8 @@ const ImagePost = ({ post }: ImagePostProps) => {
         objectFit="cover"
       />
       <div
-        className={`absolute bottom-0 left-0 right-0 text-left font-normal ${
-          expanded ? "bg-gradient-to-t	from-neutral-600 via-neutral-600" : ""
+        className={`absolute bottom-0 left-0 right-0 text-left font-normal text-black ${
+          expanded ? "bg-gradient-to-t	from-neutral-100 via-neutral-100" : ""
         }`}
       >
         {/* {expanded ? (

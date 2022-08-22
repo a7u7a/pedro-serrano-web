@@ -1,10 +1,16 @@
 import { useRef, useState, useEffect } from "react";
-import { OrthographicCamera, useScroll } from "@react-three/drei";
+import {
+  OrthographicCamera,
+  useScroll,
+  ScrollControlsState,
+} from "@react-three/drei";
 import { Object3D, MathUtils, Vector3 } from "three";
 import { useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
 import useMediaQuery from "../../lib/media";
 import { linearMap } from "../../lib/utils";
+import { off } from "process";
+import { Swiper } from "swiper/react";
 
 interface ScrollCameraProps {
   introBottom: number;
@@ -13,6 +19,12 @@ interface ScrollCameraProps {
   totalBottom: number;
   footerHeight: number;
 }
+
+const zoomCurve = (scroll: ScrollControlsState) => {
+  const t = scroll.range(3 / 7, 4 / 7);
+  const easeOut = Math.pow(Math.min(Math.cos((Math.PI * (t - 1)) / 2), 1), 2);
+  return easeOut;
+};
 
 const ScrollCamera = ({
   introBottom,
@@ -26,9 +38,9 @@ const ScrollCamera = ({
   const [zoomLevel, setZoomLevel] = useState([90, 120]);
   useEffect(() => {
     if (isSm) {
-      setZoomLevel([40, 70]);
+      setZoomLevel([40, 120]);
     } else {
-      setZoomLevel([90, 120]);
+      setZoomLevel([80, 450]);
     }
   }, [isSm]);
 
@@ -43,45 +55,34 @@ const ScrollCamera = ({
   // move and zoom camera on scroll
   useFrame((state, delta) => {
     // offsets
-    const yOff = 1.5;
-    const xOff = 0;
-
+    const yOff = 2.5;
+    const maxY = 0.5;
+    const targetMaxX = 1.0;
+    const rotationOffset = 90;
     const offset = scroll.offset;
-    // begins increasing at 0 offset and reaches 1 when top of viewport clears intro section
-    // const t = scroll.range(0, introBottom / totalTop);
-    // // begins increasing when bottom of viewport reaches footer section and reaches 1 at end of scroll
-    // const p = scroll.range(
-    //   1 - footerHeight / blogBottom,
-    //   footerHeight / totalBottom
-    // );
-    // console.log("offset", offset, "t", t, "p", p);
 
-    // const theta = MathUtils.degToRad(offset * 130);
-    // const x = Math.cos(theta) * 15;
-    // const y = theta * 4 + yOff;
-    // const z = Math.sin(theta) * -15 + xOff;
-
+    // rotate
+    const d = scroll.curve(0, 1.08);
     const deg = offset * 280;
-    const theta = MathUtils.degToRad(deg+90);
+    const theta = MathUtils.degToRad(deg + rotationOffset);
     const x = Math.cos(theta);
-    const y = 0;
+    const y = d * maxY;
     const z = Math.sin(theta);
-
     const v1 = new Vector3(-x, y, z);
-    const v2 = v1.multiplyScalar(30);
-
-    // console.log("deg", deg);
-    // console.log("theta", theta, x, y, z);
-
-    // const zoom = linearMap(offset, zoomLevel[0], zoomLevel[1]);
-    // state.camera.zoom = zoom;
+    const v2 = v1.multiplyScalar(30).add(new Vector3(0, yOff, 0));
     state.camera.position.set(v2.x, v2.y, v2.z);
-    state.camera.lookAt(0, 0, 0);
 
-    // update leva
-    const pos = state.camera.position;
-    console.log("pos", pos);
-    // set({ scrollCamPos: [pos.x, pos.y, pos.z] });
+    // zoom
+    const zoomFactor = zoomCurve(scroll);
+    const zoom = linearMap(zoomFactor, zoomLevel[0], zoomLevel[1]);
+    state.camera.zoom = zoom;
+
+    // target
+    const targetX = zoomFactor * targetMaxX;
+    const targetY = (zoomFactor * -0.8)+yOff
+    const targetZ = zoomFactor*-0.35
+    state.camera.lookAt(targetX, targetY, targetZ);
+    state.camera.updateProjectionMatrix();
   });
 
   const cameraRef = useRef<Object3D>();

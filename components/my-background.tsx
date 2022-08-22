@@ -16,9 +16,9 @@ interface MyBackgroundProps {
 }
 
 const MyBackground = ({ debug }: MyBackgroundProps) => {
-  const { color } = useControls("Background", {
-    color: {
-      label: "Light",
+  const { targetColor } = useControls("Background", {
+    targetColor: {
+      label: "Lightness",
       value: 0.03,
       min: 0,
       max: 1,
@@ -33,15 +33,16 @@ const MyBackground = ({ debug }: MyBackgroundProps) => {
     if (!debug) {
       const offset = scroll.offset;
       const t = scroll.range(1 / 8, 3 / 6);
-      const lum = linearMap(t, 0, 0.2);
+      const lum = linearMap(t, 0, targetColor);
       if (!Array.isArray(mesh.current!.material)) {
         const mat = mesh.current!.material as WithColor;
-        mat.color.setHSL(0, 0, lum);
+        mat.color.setHSL(0, 0, 0.02);
+        // mat.color.setHSL(0, 0, lum);
       }
     } else {
       if (!Array.isArray(mesh.current!.material)) {
         const mat = mesh.current!.material as WithColor;
-        mat.color.setHSL(0, 0, color);
+        mat.color.setHSL(0, 0, targetColor);
       }
     }
   });

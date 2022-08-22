@@ -22,9 +22,13 @@ const IntroHeader = forwardRef<HTMLDivElement>((props, ref) => {
       </FadeIn>
       <FadeIn threshold={1}>
         <p className="leading-tight">
-          I’m a spatial designer based in Berlin since 2019. <br /> Working across
-          multiple disciplines to plan, communicate and produce contemporary
-          environments.
+          I’m a spatial designer based in Berlin since 2019.
+        </p>
+      </FadeIn>
+      <FadeIn threshold={1}>
+        <p>
+          Working across multiple disciplines to plan, communicate and produce
+          contemporary environments.
         </p>
       </FadeIn>
     </div>
