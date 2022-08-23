@@ -32,7 +32,7 @@ const ScrollCamera = ({
   footerHeight,
 }: ScrollCameraProps) => {
   // set zoom level based on media query so that 3d model is not cropped on mobile
-  const isSm = useMediaQuery("(max-width: 768px)");
+  const isSm = useMediaQuery("(max-width: 640px)");
   const [zoomLevel, setZoomLevel] = useState([90, 120]);
   useEffect(() => {
     if (isSm) {

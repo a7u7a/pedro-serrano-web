@@ -10,13 +10,10 @@ interface BlogProps {
   category: string;
 }
 
-
-
 const Gallery = forwardRef<HTMLDivElement, BlogProps>(
   ({ posts, category }: BlogProps, ref) => {
     Gallery.displayName = "Gallery";
 
-  
     return (
       <div
         ref={ref}
@@ -24,6 +21,7 @@ const Gallery = forwardRef<HTMLDivElement, BlogProps>(
         mt-40
         flex flex-col
         pr-4 sm:pr-6
+        pl-4 sm:pl-6
         font-normal text-right text-white text-3xl md:text-4xl`}
       >
         <div>

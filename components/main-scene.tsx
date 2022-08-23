@@ -297,9 +297,9 @@ export default function MainScene({
           fileName="/geometry/chair.glb"
           modelProps={{
             position: new Vector3(
-              0.2708508373488536,
-              0.9636909542297383,
-              -0.3113245387096917
+              0.2708508,
+              0.97,
+              -0.311324
             ),
             rotation: new Euler(
               MathUtils.degToRad(90),
@@ -315,9 +315,9 @@ export default function MainScene({
           fileName="/geometry/chair.glb"
           modelProps={{
             position: new Vector3(
-              0.7277002141278832,
-              0.9636909542297383,
-              0.6923155809925486
+              0.7277002,
+              0.97,
+              0.6923155
             ),
             rotation: new Euler(
               MathUtils.degToRad(90),
