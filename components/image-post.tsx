@@ -70,12 +70,18 @@ const ImagePost = ({ post }: ImagePostProps) => {
           } opacity-40`}
         />
 
-        <div className="absolute top-0 right-0 text-3xl md:text-4xl text-white pt-2 pr-2">
-          <div className={`transition-transform duration-100 ease-in-out ${expanded?"rotate-0":"rotate-45"}`}>
-
-          <X size={36} color="#ffffff" weight="bold" />
+        {/* X button */}
+        <button onClick={() => setExpanded(!expanded)}>
+          <div className="absolute top-0 right-0 text-3xl md:text-4xl text-white pt-2 pr-2">
+            <div
+              className={`transition-transform duration-100 ease-in-out ${
+                expanded ? "rotate-0" : "rotate-45"
+              }`}
+            >
+              <X size={36} color="#ffffff" weight="bold" />
+            </div>
           </div>
-        </div>
+        </button>
 
         {/* Text overlay */}
         <div className="absolute bottom-0">
