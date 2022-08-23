@@ -1,7 +1,7 @@
 ---
 date: July 25, 2022 6:14 PM
 title: exp7
-image: /uploads/experiments/sel/felt7.jpg
+image: /uploads/felt7.jpg
 category: Experiments
 alt: alt
 ---

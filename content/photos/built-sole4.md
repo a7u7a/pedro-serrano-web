@@ -1,7 +1,7 @@
 ---
 date: July 25, 2022 6:14 PM
 title: built15
-image: /uploads/built/sel/sole4.jpg
+image: /uploads/sole4.jpg
 category: Built work
 alt: alt
 ---

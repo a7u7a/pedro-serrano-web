@@ -1,7 +1,7 @@
 ---
 date: July 25, 2022 6:14 PM
 title: exp3
-image: /uploads/experiments/sel/felt3.jpg
+image: /uploads/felt3.jpg
 category: Experiments
 alt: alt
 ---

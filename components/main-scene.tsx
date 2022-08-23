@@ -1,4 +1,5 @@
 import { Suspense, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { Canvas } from "@react-three/fiber";
 import { ScrollControls, Scroll } from "@react-three/drei";
 import {
@@ -45,9 +46,16 @@ export default function MainScene({
   builtProj,
   experimentsProj,
 }: MainSceneProps) {
-  const debug = false;
-  // const debug = true;
+  const router = useRouter();
 
+  let debug: boolean;
+  if (router.query["debug"] === "true") {
+    debug = true;
+  } else if (router.query["debug"] === "false") {
+    debug = false;
+  } else {
+    debug = false;
+  }
   /**
    * Refs are forwarded to components so we can measure them and pass
    * the height to scrollcamera or other components so it can
@@ -296,11 +304,7 @@ export default function MainScene({
           spinning={false}
           fileName="/geometry/chair.glb"
           modelProps={{
-            position: new Vector3(
-              0.2708508,
-              0.97,
-              -0.311324
-            ),
+            position: new Vector3(0.2708508, 0.97, -0.311324),
             rotation: new Euler(
               MathUtils.degToRad(90),
               MathUtils.degToRad(0),
@@ -314,11 +318,7 @@ export default function MainScene({
           spinning={false}
           fileName="/geometry/chair.glb"
           modelProps={{
-            position: new Vector3(
-              0.7277002,
-              0.97,
-              0.6923155
-            ),
+            position: new Vector3(0.7277002, 0.97, 0.6923155),
             rotation: new Euler(
               MathUtils.degToRad(90),
               MathUtils.degToRad(0),

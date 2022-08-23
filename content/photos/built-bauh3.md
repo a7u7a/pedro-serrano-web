@@ -1,7 +1,7 @@
 ---
 date: July 25, 2022 6:14 PM
 title: built9
-image: /uploads/built/sel/bauh3.jpg
+image: /uploads/bauh3.jpg
 category: Built work
 alt: alt
 ---

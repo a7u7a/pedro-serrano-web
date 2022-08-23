@@ -1,7 +1,7 @@
 ---
 date: July 25, 2022 6:14 PM
 title: built3
-image: /uploads/built/sel/pangi3.jpg
+image: /uploads/pangi3.jpg
 category: Built work
 alt: alt
 ---

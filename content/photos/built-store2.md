@@ -1,7 +1,7 @@
 ---
 date: July 25, 2022 6:14 PM
 title: built11
-image: /uploads/built/sel/store2.jpg
+image: /uploads/store2.jpg
 category: Built work
 alt: alt
 ---

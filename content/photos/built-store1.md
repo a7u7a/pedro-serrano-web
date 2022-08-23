@@ -1,7 +1,7 @@
 ---
 date: July 25, 2022 6:14 PM
 title: built10
-image: /uploads/built/sel/store1.jpg
+image: /uploads/store1.jpg
 category: Built work
 alt: alt
 ---
