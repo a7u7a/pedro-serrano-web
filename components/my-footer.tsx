@@ -11,7 +11,7 @@ const MyFooter = forwardRef<HTMLDivElement>((props, ref) => {
     space-y-6 md:space-y-12
     w-full md:w-2/3 lg:w-1/2
     mt-52
-    pb-[50vh]
+    pb-[55vh]
     pl-4 sm:pl-6
     pr-4 sm:pr-0
     max-w-2xl

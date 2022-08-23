@@ -40,7 +40,7 @@ const MySpotlight = ({
       bias: {
         label: "Shadow bias",
         
-        value: -0.00009000000000000029,
+        value: -0.000010000000000000284,
         min: -0.001,
         max: 0.001,
         step: 0.00001,
@@ -105,7 +105,7 @@ const MySpotlight = ({
         {...modelProps}
         target={target}
         penumbra={0.3}
-        distance={25}
+        distance={23}
         angle={MathUtils.degToRad(angle)}
         shadow-focus={1.6} // key to solve shadow-clipping bug
         anglePower={3}

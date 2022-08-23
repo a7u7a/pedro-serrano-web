@@ -18,7 +18,7 @@ interface ScrollCameraProps {
 }
 
 const zoomCurve = (scroll: ScrollControlsState) => {
-  const t = scroll.range(6 / 8, 2 / 8);
+  const t = scroll.range(8 / 10, 2 / 10);
   // avoids zooming in too quickly
   const easeOut = Math.pow(Math.min(Math.cos((Math.PI * (t - 1)) / 2), 1), 2);
   return easeOut;
@@ -36,7 +36,7 @@ const ScrollCamera = ({
   const [zoomLevel, setZoomLevel] = useState([90, 120]);
   useEffect(() => {
     if (isSm) {
-      setZoomLevel([40, 120]);
+      setZoomLevel([50, 300]);
     } else {
       setZoomLevel([100, 500]);
     }
