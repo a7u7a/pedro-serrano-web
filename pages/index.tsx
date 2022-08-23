@@ -15,15 +15,6 @@ interface HomeProps {
 const builtCat = "Built work";
 const experimentsCat = "Experiments";
 
-function SortArray(x: PesePost, y: PesePost) {
-  if (x.title < y.title) {
-    return -1;
-  }
-  if (x.title > y.title) {
-    return 1;
-  }
-  return 0;
-}
 
 const Home = ({ builtProj, experimentsProj }: HomeProps) => {
   return (
@@ -32,7 +23,7 @@ const Home = ({ builtProj, experimentsProj }: HomeProps) => {
         <title>Pedro Serrano</title>
         <meta
           name="description"
-          content="Pedro Serrano, Spatial designer, Architect."
+          content="Pedro Serrano, Berlin-based spatial designer"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
