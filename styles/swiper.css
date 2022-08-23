@@ -35,6 +35,10 @@ body {
 }
 
 .swiper-slide {
+  -webkit-transform: translateZ(0);
+}
+
+.swiper-slide {
   width: auto;
 }
 
