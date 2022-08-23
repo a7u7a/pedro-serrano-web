@@ -1,32 +1,21 @@
 import { useState, useRef, useLayoutEffect } from "react";
-
 import { SpotLight, useHelper, useScroll } from "@react-three/drei";
 import {
   SpotLightHelper,
   Object3D,
   SpotLight as SpotLightImpl, // needed to fix ts warning
   Vector2,
-  OrthographicCamera,
   MathUtils,
 } from "three";
-
 import { useControls } from "leva";
-
 import { MyModelProps } from "../lib/interfaces";
 import { useFrame } from "@react-three/fiber";
-import { test } from "gray-matter";
-
-interface MySpotlightProps extends MyModelProps {
-  debug: boolean;
-  introPages: number;
-}
 
 const MySpotlight = ({
-  introPages,
   name,
   modelProps,
   debug,
-}: MySpotlightProps) => {
+}: MyModelProps) => {
   const [target] = useState(() => new Object3D());
   const lightRef = useRef<SpotLightImpl>(null);
   const targetRef = useRef<Object3D>();

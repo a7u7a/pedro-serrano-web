@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@juggle/resize-observer": "^3.4.0",
     "@react-three/drei": "^9.13.2",
     "@react-three/fiber": "^8.0.26",
     "@types/probe-image-size": "^7.2.0",

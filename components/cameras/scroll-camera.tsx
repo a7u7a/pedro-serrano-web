@@ -9,14 +9,6 @@ import { useFrame } from "@react-three/fiber";
 import useMediaQuery from "../../lib/media";
 import { linearMap } from "../../lib/utils";
 
-interface ScrollCameraProps {
-  introBottom: number;
-  blogBottom: number;
-  totalTop: number;
-  totalBottom: number;
-  footerHeight: number;
-}
-
 const zoomCurve = (scroll: ScrollControlsState) => {
   const t = scroll.range(8 / 10, 2 / 10);
   // avoids zooming in too quickly
@@ -24,13 +16,7 @@ const zoomCurve = (scroll: ScrollControlsState) => {
   return easeOut;
 };
 
-const ScrollCamera = ({
-  introBottom,
-  blogBottom,
-  totalTop,
-  totalBottom,
-  footerHeight,
-}: ScrollCameraProps) => {
+const ScrollCamera = () => {
   // set zoom level based on media query so that 3d model is not cropped on mobile
   const isSm = useMediaQuery("(max-width: 640px)");
   const [zoomLevel, setZoomLevel] = useState([90, 120]);

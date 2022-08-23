@@ -52,7 +52,7 @@ const ImagePost = ({ post }: ImagePostProps) => {
       }
       `}
     >
-      <Image placeholder="blur" blurDataURL={rgbDataURL(10, 10, 10)} src={post.image} alt={post.alt} layout="fill" objectFit="cover" />
+      <Image placeholder="blur" blurDataURL={rgbDataURL(30, 30, 30)} src={post.image} alt={post.alt} layout="fill" objectFit="cover" />
 
       {/* Text post overlay */}
       <div className="absolute bottom-0">
