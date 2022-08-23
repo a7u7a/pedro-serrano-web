@@ -65,9 +65,9 @@ const ImagePost = ({ post }: ImagePostProps) => {
       <div>
         {/* Background */}
         <div
-          className={`absolute w-full h-full bg-black ${
-            expanded ? "visible" : "invisible"
-          } opacity-40`}
+          className={`transition-opacity duration-100 ease-in-out absolute w-full h-full bg-black ${
+            expanded ? "opacity-40" : "opacity-0"
+          } `}
         />
 
         {/* X button */}
@@ -78,14 +78,14 @@ const ImagePost = ({ post }: ImagePostProps) => {
                 expanded ? "rotate-0" : "rotate-45"
               }`}
             >
-              <X size={36} color="#ffffff" weight="bold" />
+              <X size={32} color="#ffffff" weight="bold" />
             </div>
           </div>
         </button>
 
         {/* Text overlay */}
-        <div className="absolute bottom-0">
-          <div className={`z-50 ${expanded ? "visible" : "invisible"}`}>
+        <div className=" absolute bottom-0">
+          <div className={`transition-opacity duration-100 ease-in-out z-50 ${expanded ? "opacity-100" : "opacity-0"}`}>
             <ReactMarkdown
               className={"textOnImage"}
               remarkPlugins={[remarkGfm]}

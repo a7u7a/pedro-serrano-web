@@ -26,7 +26,7 @@ const Gallery = forwardRef<HTMLDivElement, BlogProps>(
       >
         <div>
           <FadeIn threshold={1}>
-            <div className="mb-6">{category}</div>
+            <div className="mb-2 md:mb-6">{category}</div>
           </FadeIn>
           <FadeIn threshold={0.2}>
             <MySwiper
