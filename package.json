@@ -12,6 +12,7 @@
     "@juggle/resize-observer": "^3.4.0",
     "@react-three/drei": "^9.13.2",
     "@react-three/fiber": "^8.0.26",
+    "@types/node": "^18.7.11",
     "@types/probe-image-size": "^7.2.0",
     "@types/three": "^0.141.0",
     "gray-matter": "^4.0.3",
@@ -29,8 +30,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.4",
-    "@types/node": "18.0.0",
-    "@types/react": "18.0.14",
+    "@types/react": "^18.0.14",
     "@types/react-dom": "18.0.5",
     "autoprefixer": "^10.4.7",
     "eslint": "8.17.0",
