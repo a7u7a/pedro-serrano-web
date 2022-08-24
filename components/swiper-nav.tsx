@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSwiper } from "swiper/react";
 import getTotalSliderWidth from "../lib/swiper-utils";
+import { ArrowLeft, ArrowRight } from "phosphor-react";
 
 // external arrows reference: https://github.com/nolimits4web/swiper/issues/3855#issuecomment-1188290035
 
@@ -64,14 +65,14 @@ const SwiperNavigation = () => {
           onClick={swiperPrev}
           disabled={slideProgress === 0}
         >
-          ←
+          <ArrowLeft size={32} weight="bold" />
         </button>
         <button
           className={`${slideProgress === 1 ? "text-gray-300" : "text-white"}`}
           onClick={swiperNext}
           disabled={slideProgress === 1}
         >
-          →
+          <ArrowRight size={32} weight="bold" />
         </button>
       </div>
     </div>
