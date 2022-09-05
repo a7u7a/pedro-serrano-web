@@ -52,7 +52,8 @@ const ImagePost = ({ post }: ImagePostProps) => {
                 : "w-[28rem] h-[38rem]"
             } `
       }
-      `}
+      transition-all duration-100 ease-in-out
+      ${expanded ? "grayscale" : "grayscale-0"}`}
     >
       <Image
         placeholder="blur"
