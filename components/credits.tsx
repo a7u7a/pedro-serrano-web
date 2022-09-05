@@ -1,6 +1,6 @@
 const Credits = () => {
   return (
-    <div className="absolute inset-x-0 bottom-0">
+    <div className="inset-x-0 bottom-0">
       <div className="text-white text-right pr-4 sm:pr-6 pb-4 font-regular text-xl md:text-2xl">
         <p>
           Created by&nbsp;

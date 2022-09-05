@@ -68,6 +68,7 @@ export default function MainScene({
     setTotalPages(pages);
     console.log("mainBounds", mainBounds);
     console.log("window.innerHeight", window.innerHeight);
+    console.log("pages", pages);
   }, [mainBounds]);
 
   const scene = (
