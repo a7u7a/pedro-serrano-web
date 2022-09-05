@@ -12,6 +12,7 @@ const SwiperNavigation = () => {
   const [firstSlideWidth, setfirstSlideWidth] = useState(1);
   const gap = 30;
 
+  // custom next/prev funcs to keep incoming slides aligned to the right
   const swiperNext = () => {
     const index = swiper.activeIndex;
     const progress = swiper.progress;
@@ -20,8 +21,8 @@ const SwiperNavigation = () => {
       const nextSlideWidth = swiper.slides[index + 1].clientWidth;
       const nextProgress = (nextSlideWidth + gap) / totalEffectiveSlidesWidth;
       const targetProgress = progress + nextProgress;
+      // fixes small rounding error
       if (index === swiper.slides.length - 2) {
-        // fixes small rounding error
         swiper.setProgress(1, 500);
       } else {
         swiper.setProgress(targetProgress, 500);

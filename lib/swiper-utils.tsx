@@ -1,4 +1,4 @@
-import { Swiper, Scrollbar, Navigation, Pagination } from "swiper";
+import { Swiper } from "swiper";
 
 const getTotalSliderWidth = (swiper: Swiper, gap: number) => {
   const widths = swiper.slides.map((slide, i) => {
