@@ -64,8 +64,10 @@ export default function MainScene({
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    const pages = mainBounds.bottom / window.innerHeight;
+    const pages = mainBounds.height / window.innerHeight;
     setTotalPages(pages);
+    console.log("mainBounds", mainBounds);
+    console.log("window.innerHeight", window.innerHeight);
   }, [mainBounds]);
 
   const scene = (
@@ -172,7 +174,7 @@ export default function MainScene({
         style={{ background: "#000000" }}
         shadows
       >
-        {/* <gridHelper args={[30, 30]} /> */}
+        <gridHelper args={[8, 8]} />
         <Suspense fallback={null}>
           {!debug ? (
             <ScrollControls pages={totalPages} damping={100}>

@@ -15,7 +15,7 @@
 }
 
 .textOnImage {
-  @apply text-left text-xl text-white leading-snug
-  pl-3 pr-3 pt-12 pb-3
+  @apply text-left text-base text-white leading-snug
+  pl-4 pr-12 pt-10 pb-4
   prose-a:underline z-50;
 }
