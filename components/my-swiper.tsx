@@ -29,7 +29,9 @@ const MySwiper = ({ posts }: SwiperProps) => {
           nextEl: ".swiper-button-next",
         }}
         spaceBetween={gap}
+        lazy={true}
         modules={[Navigation]}
+        cssMode
         simulateTouch={false}
         className="mySwiper"
         slidesOffsetBefore={swiperWidth - firstSlideWidth}
