@@ -55,7 +55,7 @@ const ImagePost = ({ post }: ImagePostProps) => {
     >
       <Image
         placeholder="blur"
-        blurDataURL={rgbDataURL(30, 30, 30)}
+        blurDataURL={rgbDataURL(167, 167, 167)}
         src={post.image}
         alt={post.alt}
         layout="fill"
