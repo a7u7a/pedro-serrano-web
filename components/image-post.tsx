@@ -52,7 +52,7 @@ const ImagePost = ({ post }: ImagePostProps) => {
                 : "w-[28rem] h-[38rem]"
             } `
       }
-      transition-all duration-100 ease-in-out
+      transition-all duration-150 ease-in-out
       ${expanded ? "grayscale" : "grayscale-0"}`}
     >
       <Image
@@ -67,7 +67,7 @@ const ImagePost = ({ post }: ImagePostProps) => {
       <div>
         {/* Background */}
         <div
-          className={`transition-opacity duration-100 ease-in-out absolute w-full h-full bg-black ${
+          className={`transition-opacity duration-150 ease-in-out absolute w-full h-full bg-black ${
             expanded ? "opacity-40" : "opacity-0"
           } `}
         />
@@ -80,7 +80,7 @@ const ImagePost = ({ post }: ImagePostProps) => {
             }
           >
             <div
-              className={`transition-transform duration-100 ease-in-out ${
+              className={`transition-transform duration-150 ease-in-out ${
                 expanded ? "rotate-0" : "rotate-45"
               }`}
             >
@@ -105,7 +105,7 @@ const ImagePost = ({ post }: ImagePostProps) => {
         {/* Text overlay */}
         <div className=" absolute bottom-0">
           <div
-            className={`transition-opacity duration-100 ease-in-out z-50 ${
+            className={`transition-opacity duration-150 ease-in-out z-50 ${
               expanded ? "opacity-100" : "opacity-0"
             } `}
           >

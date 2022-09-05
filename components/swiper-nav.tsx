@@ -59,7 +59,7 @@ const SwiperNavigation = () => {
   });
 
   return (
-    <div className="flex flex-row justify-end mb-2 mt-2">
+    <div className="flex flex-row justify-end mb-2 mt-0">
       <div className="flex flex-row space-x-3">
         <button
           className={`${slideProgress === 0 ? "text-gray-300" : "text-white"}`}

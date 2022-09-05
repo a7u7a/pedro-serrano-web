@@ -49,7 +49,7 @@ const MySwiper = ({ posts }: SwiperProps) => {
             <ImagePost post={post} key={post.id} />
           </SwiperSlide>
         ))}
-        <span slot={"container-end"}>
+        <span slot={"container-start"}>
           <SwiperNavigation />
         </span>
       </Swiper>
