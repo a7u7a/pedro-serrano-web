@@ -64,7 +64,11 @@ export default function MainScene({
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    const pages = mainBounds.height / window.innerHeight;
+    const vh = Math.max(
+      document.documentElement.clientHeight || 0,
+      window.innerHeight || 0
+    );
+    const pages = mainBounds.height / vh;
     setTotalPages(pages);
     console.log("mainBounds", mainBounds);
     console.log("window.innerHeight", window.innerHeight);
@@ -170,11 +174,7 @@ export default function MainScene({
   );
   return (
     <>
-      <Canvas
-        gl={{ antialias: true }}
-        style={{ background: "#000000" }}
-        shadows
-      >
+      <Canvas style={{ background: "#000000" }} shadows>
         <gridHelper args={[8, 8]} />
         <Suspense fallback={null}>
           {!debug ? (
