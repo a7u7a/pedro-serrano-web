@@ -4,13 +4,14 @@ import { Navigation } from "swiper";
 import { PesePost } from "../lib/interfaces";
 import ImagePost from "./image-post";
 import useMeasure from "react-use-measure";
-import SwiperNavigation from "./swiper-nav"
-
+import SwiperNavigation from "./swiper-nav";
+import useMediaQuery from "./../lib/media";
 interface SwiperProps {
   posts: PesePost[];
 }
 
 const MySwiper = ({ posts }: SwiperProps) => {
+  const isSm = useMediaQuery("(max-width: 640px)");
   const [swiperContainer, swiperBounds] = useMeasure();
   const [swiperWidth, setSwiperWidth] = useState(1);
   const [firstSlideWidth, setfirstSlideWidth] = useState(1);
@@ -31,7 +32,7 @@ const MySwiper = ({ posts }: SwiperProps) => {
         spaceBetween={gap}
         lazy={true}
         modules={[Navigation]}
-        cssMode
+        cssMode={isSm ? true : false}
         simulateTouch={false}
         className="mySwiper"
         slidesOffsetBefore={swiperWidth - firstSlideWidth}
