@@ -189,7 +189,7 @@ export default function MainScene({
                   <MainText />
                   <Gallery posts={experimentsProj} category={"Experiments"} />
                   <MyFooter />
-                  <Credits />
+                  {/* <Credits /> */}
                 </div>
               </Scroll>
             </ScrollControls>
