@@ -28,6 +28,7 @@ import Gallery from "./my-gallery";
 import MainText from "./my-main-text";
 import MyFooter from "./my-footer";
 import Credits from "./credits";
+import { isMobile } from "react-device-detect";
 
 DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 
@@ -67,7 +68,7 @@ export default function MainScene({
       document.documentElement.clientHeight || 0,
       window.innerHeight || 0
     );
-    const pages = mainBounds.height / vh - 0.8;
+    const pages = mainBounds.height / vh - (isMobile ? 0.8 : 0);
     setTotalPages(pages);
     console.log("mainBounds", mainBounds);
     console.log("window.innerHeight", window.innerHeight);
