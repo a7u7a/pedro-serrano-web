@@ -68,11 +68,12 @@ export default function MainScene({
       document.documentElement.clientHeight || 0,
       window.innerHeight || 0
     );
-    const pages = mainBounds.height / vh - (isMobile ? 0.8 : 0);
+    const pages = (mainBounds.height / vh) - (isMobile ? 0.8 : 0);
     setTotalPages(pages);
-    console.log("mainBounds", mainBounds);
-    console.log("window.innerHeight", window.innerHeight);
-    console.log("pages", pages);
+    console.log("vh", vh);
+    // console.log("mainBounds", mainBounds);
+    // console.log("window.innerHeight", window.innerHeight);
+    // console.log("pages", pages);
   }, [mainBounds]);
 
   const scene = (
