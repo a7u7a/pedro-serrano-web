@@ -68,7 +68,7 @@ export default function MainScene({
       document.documentElement.clientHeight || 0,
       window.innerHeight || 0
     );
-    const pages = mainBounds.height / vh - (isMobile ? 0.8 : 0);
+    const pages = (mainBounds.height / vh) - (isMobile ? 0.8 : 0);
     // const pages = mainBounds.height / vh;
     setTotalPages(pages);
   }, [mainBounds]);
@@ -175,23 +175,27 @@ export default function MainScene({
       <Canvas style={{ background: "#000000" }} shadows>
         <gridHelper args={[8, 8]} />
         <Suspense fallback={null}>
-          <ScrollControls pages={totalPages} damping={15}>
-            {scene}
-            <Scroll html>
-              <div className="absolute w-screen" ref={mainContainer}>
-                <IntroHeader />
-                <Gallery posts={builtProj} category={"Built work"} />
-                <MainText />
-                <Gallery posts={experimentsProj} category={"Experiments"} />
-                <MyFooter />
-                <Credits />
-              </div>
-            </Scroll>
-          </ScrollControls>
+          {!debug ? (
+            <ScrollControls pages={totalPages} damping={15}>
+              {scene}
+              <Scroll html>
+                <div className="absolute w-screen" ref={mainContainer}>
+                  <IntroHeader />
+                  <Gallery posts={builtProj} category={"Built work"} />
+                  <MainText />
+                  <Gallery posts={experimentsProj} category={"Experiments"} />
+                  <MyFooter />
+                  <Credits />
+                </div>
+              </Scroll>
+            </ScrollControls>
+          ) : (
+            scene
+          )}
         </Suspense>
-        {/* {debug && <Controls />} */}
+        {debug && <Controls />}
       </Canvas>
-      {/* <Leva hidden={debug ? false : true} /> */}
+      <Leva hidden={debug ? false : true} />
     </>
   );
 }
