@@ -70,7 +70,7 @@ export default function MainScene({
     );
     const pages = (mainBounds.height / vh) - (isMobile ? 0.8 : 0);
     setTotalPages(pages);
-    console.log("vh", vh);
+    // console.log("vh", vh);
     // console.log("mainBounds", mainBounds);
     // console.log("window.innerHeight", window.innerHeight);
     // console.log("pages", pages);
@@ -179,7 +179,7 @@ export default function MainScene({
         <gridHelper args={[8, 8]} />
         <Suspense fallback={null}>
           {!debug ? (
-            <ScrollControls pages={totalPages} damping={100}>
+            <ScrollControls pages={totalPages} damping={15}>
               {scene}
               <Scroll html>
                 <div className="absolute w-screen" ref={mainContainer}>
@@ -188,7 +188,7 @@ export default function MainScene({
                   <MainText />
                   <Gallery posts={experimentsProj} category={"Experiments"} />
                   <MyFooter />
-                  <Credits />
+                  {/* <Credits /> */}
                 </div>
               </Scroll>
             </ScrollControls>
