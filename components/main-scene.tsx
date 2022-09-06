@@ -28,8 +28,6 @@ import Gallery from "./my-gallery";
 import MainText from "./my-main-text";
 import MyFooter from "./my-footer";
 import Credits from "./credits";
-import { ResizeObserver } from "@juggle/resize-observer";
-import { isMobile } from "react-device-detect";
 
 DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 
@@ -61,7 +59,7 @@ export default function MainScene({
   }
 
   // Get bounds for each container
-  const [mainContainer, mainBounds] = useMeasure({ polyfill: ResizeObserver });
+  const [mainContainer, mainBounds] = useMeasure();
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
@@ -69,9 +67,7 @@ export default function MainScene({
       document.documentElement.clientHeight || 0,
       window.innerHeight || 0
     );
-    // test device detector
-    const pages = mainBounds.height / vh - (isMobile ? 1 : 0);
-
+    const pages = mainBounds.height / vh;
     setTotalPages(pages);
     console.log("mainBounds", mainBounds);
     console.log("window.innerHeight", window.innerHeight);
