@@ -68,7 +68,8 @@ export default function MainScene({
       document.documentElement.clientHeight || 0,
       window.innerHeight || 0
     );
-    const pages = (mainBounds.height / vh) - (isMobile ? 0.8 : 0);
+    // const pages = (mainBounds.height / vh) - (isMobile ? 0.8 : 0);
+    const pages = mainBounds.height / vh;
     setTotalPages(pages);
     // console.log("vh", vh);
     // console.log("mainBounds", mainBounds);
@@ -188,7 +189,7 @@ export default function MainScene({
                   <MainText />
                   <Gallery posts={experimentsProj} category={"Experiments"} />
                   <MyFooter />
-                  {/* <Credits /> */}
+                  <Credits />
                 </div>
               </Scroll>
             </ScrollControls>
