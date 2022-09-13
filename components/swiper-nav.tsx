@@ -2,10 +2,12 @@ import { useState } from "react";
 import { useSwiper } from "swiper/react";
 import getTotalSliderWidth from "../lib/swiper-utils";
 import { ArrowLeft, ArrowRight } from "phosphor-react";
+import useMediaQuery from "./../lib/media";
 
 // external arrows reference: https://github.com/nolimits4web/swiper/issues/3855#issuecomment-1188290035
 
 const SwiperNavigation = () => {
+  const isSm = useMediaQuery("(max-width: 640px)");
   const swiper = useSwiper();
   const [slideProgress, setSlideProgress] = useState<number>(0);
   const [totalSlidesWidth, setTotalSlidesWidth] = useState(0);
@@ -59,7 +61,11 @@ const SwiperNavigation = () => {
   });
 
   return (
-    <div className="flex flex-row justify-end mb-2 mt-0">
+    <div
+      className={`flex flex-row justify-end ${
+        isSm ? "mt-3 mb-0" : "mt-0 mb-2"
+      }`}
+    >
       <div className="flex flex-row space-x-3">
         <button
           className={`${slideProgress === 0 ? "text-gray-300" : "text-white"}`}

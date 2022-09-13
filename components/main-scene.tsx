@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useState, useLayoutEffect } from "react";
 import { useRouter } from "next/router";
 import { Canvas } from "@react-three/fiber";
 import { ScrollControls, Scroll } from "@react-three/drei";
@@ -63,13 +63,14 @@ export default function MainScene({
   const [mainContainer, mainBounds] = useMeasure();
   const [totalPages, setTotalPages] = useState(1);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const vh = Math.max(
       document.documentElement.clientHeight || 0,
       window.innerHeight || 0
     );
     // const pages = (mainBounds.height / vh) - (isMobile ? 0.8 : 0);
     const pages = mainBounds.height / vh;
+    // console.log("pages", pages, "vh", vh);
     setTotalPages(pages);
   }, [mainBounds]);
 

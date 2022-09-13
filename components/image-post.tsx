@@ -29,6 +29,7 @@ const rgbDataURL = (r: number, g: number, b: number) =>
 const ImagePost = ({ post }: ImagePostProps) => {
   const isSm = useMediaQuery("(max-width: 640px)");
   const [expanded, setExpanded] = useState(false);
+  const gray = 0;
 
   return (
     <div
@@ -42,7 +43,7 @@ const ImagePost = ({ post }: ImagePostProps) => {
                 ? "w-[100%] h-[18rem]"
                 : post.imgWidth === post.imgHeight
                 ? "w-[100%] h-[22rem]"
-                : "w-[100%] h-[32rem]"
+                : "w-[100%] h-[28rem]"
             } `
           : `${
               post.imgWidth > post.imgHeight
@@ -57,7 +58,7 @@ const ImagePost = ({ post }: ImagePostProps) => {
     >
       <Image
         placeholder="blur"
-        blurDataURL={rgbDataURL(120, 120, 120)}
+        blurDataURL={rgbDataURL(gray, gray, gray)}
         src={post.image}
         alt={post.alt}
         layout="fill"

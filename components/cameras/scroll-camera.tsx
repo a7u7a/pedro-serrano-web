@@ -49,12 +49,13 @@ const ScrollCamera = () => {
     const v1 = new Vector3(-x, y, z);
     const v2 = v1.multiplyScalar(30).add(new Vector3(0, yOff, 0));
     state.camera.position.set(v2.x, v2.y, v2.z);
-
+    
     // zoom
     const zoomFactor = zoomCurve(scroll);
     const zoom = linearMap(zoomFactor, zoomLevel[0], zoomLevel[1]);
     state.camera.zoom = zoom;
-
+    
+    
     // target
     const targetX = zoomFactor * targetMaxX;
     const targetY = zoomFactor * -0.9 + yOff;
@@ -64,6 +65,13 @@ const ScrollCamera = () => {
   });
 
   const cameraRef = useRef<Object3D>();
-  return <OrthographicCamera ref={cameraRef} makeDefault zoom={100} />;
+  return (
+    <OrthographicCamera
+      ref={cameraRef}
+      makeDefault
+      position={[-1.83697, 2.5, 30]}
+      zoom={zoomLevel[0]}
+    />
+  );
 };
 export default ScrollCamera;
