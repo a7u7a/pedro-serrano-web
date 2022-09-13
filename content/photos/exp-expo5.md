@@ -1,8 +1,11 @@
 ---
 date: July 25, 2022 6:14 PM
 title: exp13
-image: /uploads/expo5.jpg
+image: /uploads/exp13.jpg
 category: Experiments
 alt: alt
 ---
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel magna at magna dictum tincidunt. Vestibulum rhoncus, libero a tempus dignissim, velit nulla aliquam metus, id volutpat nibh velit dapibus elit.
+**Surface Reading**\
+Y﻿ear: 2017, Location: Santiago de Chile\
+S﻿olo exhibition at Casa Gris exploring different ways of representing height maps of the earth's surface. \
+L﻿aser-cut black cardboard, 1x1m. Thermal paper prints, width: 40mm, variable length.

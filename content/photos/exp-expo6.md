@@ -1,8 +1,9 @@
 ---
 date: July 25, 2022 6:14 PM
 title: exp14
-image: /uploads/expo6.jpg
+image: /uploads/exp14.jpg
 category: Experiments
 alt: alt
 ---
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel magna at magna dictum tincidunt. Vestibulum rhoncus, libero a tempus dignissim, velit nulla aliquam metus, id volutpat nibh velit dapibus elit.
+**Surface Reading**\
+The images were taken by NASA's Landsat mission. They represent the earth's topography by correlating altitude values to grayscale tones. For the exhibition I instead used circles to represent height. The highest point in an image was assigned the biggest diameter, and the lowest point got the smallest diameter.

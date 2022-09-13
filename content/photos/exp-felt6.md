@@ -1,8 +1,10 @@
 ---
 date: July 25, 2022 6:14 PM
 title: exp6
-image: /uploads/felt6.jpg
+image: /uploads/exp6.jpg
 category: Experiments
 alt: alt
 ---
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel magna at magna dictum tincidunt. Vestibulum rhoncus, libero a tempus dignissim, velit nulla aliquam metus, id volutpat nibh velit dapibus elit.
+M﻿inimals\
+Y﻿ear: 2022, Location: Berlin, Germany\
+V﻿isualizations for an unbuilt interior project
