@@ -5,4 +5,5 @@ image: /uploads/exp18.jpg
 category: Experiments
 alt: alt
 ---
-**VAKUUM**
+**VAKUUM**\
+T﻿he first chair I built by myself.
