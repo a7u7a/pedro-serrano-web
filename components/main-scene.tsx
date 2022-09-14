@@ -63,7 +63,7 @@ export default function MainScene({
   const [mainContainer, mainBounds] = useMeasure();
   const [totalPages, setTotalPages] = useState(1);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const vh = Math.max(
       document.documentElement.clientHeight || 0,
       window.innerHeight || 0
