@@ -5,4 +5,4 @@ image: /uploads/exp9.jpeg
 category: Experiments
 alt: alt
 ---
-100 Stools
+100 Stools.
