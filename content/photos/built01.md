@@ -5,4 +5,7 @@ image: /uploads/_dsc1368.jpeg
 category: built
 alt: alt
 ---
-I﻿nterior design and planning for a commercial space in Berlin - Prenzlauerberg.
+K﻿KD\
+Y﻿ear: 2022\
+L﻿ocation: Berlin, Germany\
+T﻿ype: interior design
