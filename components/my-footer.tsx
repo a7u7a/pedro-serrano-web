@@ -37,7 +37,7 @@ const MyFooter = forwardRef<HTMLDivElement>((props, ref) => {
         </div>
       </FadeIn>
       <FadeIn threshold={1}>
-        <a href="/portfolio/10_05_22_PTF.pdf" className="underline">
+        <a href="/portfolio/09_07_21_PTF_FULL.pdf" className="underline">
           Full PDF portfolio here{" "}
         </a>
       </FadeIn>
