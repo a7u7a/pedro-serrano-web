@@ -2,7 +2,7 @@
 date: October 27, 2022 3:07 PM
 title: built01
 image: /uploads/_dsc1368.jpeg
-category: built
+category: Built work
 alt: alt
 ---
 K﻿KD\
