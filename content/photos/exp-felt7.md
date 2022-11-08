@@ -5,4 +5,4 @@ image: /uploads/shelf-detail-2.jpeg
 category: Experiments
 alt: alt
 ---
-Minimals
+**Minimals**
