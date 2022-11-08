@@ -5,5 +5,5 @@ image: /uploads/exp11.jpeg
 category: Experiments
 alt: alt
 ---
-100 Stools\
+**100 Stools**\
 I﻿mage by [Ferréol Babin](https://www.instagram.com/ferreol_babin/?hl=en)
