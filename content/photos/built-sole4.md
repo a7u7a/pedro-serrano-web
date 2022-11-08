@@ -5,4 +5,4 @@ image: /uploads/built17.png
 category: Built work
 alt: alt
 ---
-Assembly Strategies
+**Assembly Strategies**
