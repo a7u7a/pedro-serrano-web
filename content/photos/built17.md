@@ -5,4 +5,5 @@ image: /uploads/built19.jpg
 category: Built work
 alt: alt
 ---
-B﻿F Store
+B﻿F Store\
+I﻿sometric drawing showing the proposed intervention.
