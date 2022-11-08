@@ -5,4 +5,4 @@ image: /uploads/built24.jpeg
 category: Built work
 alt: alt
 ---
-C﻿asa 10"
+**C﻿asa 10"**
