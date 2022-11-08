@@ -6,4 +6,6 @@ category: Built work
 alt: alt
 ---
 B﻿F Store\
-Y﻿ear: 2021 Location: Kreuzberg, Berlin
+Y﻿ear: 2021 \
+Location: Kreuzberg, Berlin\
+T﻿ype: interior renovation
