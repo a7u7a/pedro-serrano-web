@@ -8,4 +8,4 @@ alt: alt
 **K﻿KD**\
 Y﻿ear: 2022\
 L﻿ocation: Berlin, Germany\
-T﻿ype: interior design
+T﻿ype: interior design, retail
