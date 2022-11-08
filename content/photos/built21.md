@@ -5,5 +5,7 @@ image: /uploads/built23.jpg
 category: Built work
 alt: alt
 ---
-C﻿asa 10"\
-Y﻿ear: 2021, Location: Araucanía, Chile
+**C﻿asa 10"**\
+Y﻿ear: 2021\
+Location: Araucanía, Chile\
+T﻿ype: residential
