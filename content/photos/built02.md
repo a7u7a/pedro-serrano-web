@@ -5,4 +5,5 @@ image: /uploads/_dsc1254.jpeg
 category: Built work
 alt: alt
 ---
-K﻿KD
+**K﻿KD**\
+F﻿urniture production by Fabian Leukert of [Woodwork Berlin](https://www.instagram.com/woodwork_berlin/).
