@@ -5,5 +5,5 @@ image: /uploads/plata-kkd-inverted-copy.jpg
 category: Built work
 alt: alt
 ---
-K﻿KD\
+**K﻿KD**\
 Floor plan showing furniture, products, electrical layout and people flow.
