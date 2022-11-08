@@ -5,6 +5,7 @@ image: /uploads/exp1.jpg
 category: Experiments
 alt: alt
 ---
-AC Chairs\
-Y﻿ear: 2020, Location: Berlin, Germany\
-I﻿terations for a chair model made using the Joynmachine by [Studio Milz](https://milz.studio/).
+**AC Chairs**\
+Y﻿ear: 2020\
+Location: Berlin, Germany\
+I﻿terations of a chair model made using the Joynmachine by [Studio Milz](https://milz.studio/).
