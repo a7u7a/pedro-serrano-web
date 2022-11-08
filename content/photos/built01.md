@@ -5,7 +5,7 @@ image: /uploads/_dsc1368.jpeg
 category: Built work
 alt: alt
 ---
-K﻿KD\
+**K﻿KD**\
 Y﻿ear: 2022\
 L﻿ocation: Berlin, Germany\
 T﻿ype: interior design
