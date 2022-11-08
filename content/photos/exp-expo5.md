@@ -6,6 +6,6 @@ category: Experiments
 alt: alt
 ---
 **Surface Readings**\
-Y﻿ear: 2017, Location: Santiago de Chile\
-S﻿olo exhibition at Casa Gris exploring different ways of representing height maps of the earth's surface. \
-L﻿aser-cut black cardboard, 1x1m. Thermal paper prints, width: 40mm, variable length.
+Y﻿ear: 2017\
+Location: Santiago de Chile\
+S﻿olo exhibition at Casa Gris gallery exploring different ways of representing height maps of the earth's surface. L﻿aser-cut black cardboard, 1x1m. Thermal paper prints, width: 40mm, variable length.
