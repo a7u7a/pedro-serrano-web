@@ -6,4 +6,6 @@ category: Built work
 alt: alt
 ---
 Casa Monje\
-Y﻿ear 2018
+Y﻿ear: 2018\
+L﻿ocation: Panguipulli, Chile\
+T﻿ype: residential
