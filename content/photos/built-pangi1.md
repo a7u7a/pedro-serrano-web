@@ -5,7 +5,7 @@ image: /uploads/built1.jpg
 category: Built work
 alt: alt
 ---
-Casa Monje\
+**Casa Monje**\
 Y﻿ear: 2018\
 L﻿ocation: Panguipulli, Chile\
 T﻿ype: residential
