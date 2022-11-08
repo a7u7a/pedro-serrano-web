@@ -6,5 +6,6 @@ category: Experiments
 alt: alt
 ---
 **Moon Phase Tripods**\
-Y﻿ear: 2018, Location: Santiago de Chile\
+Y﻿ear: 2018\
+Location: Santiago de Chile\
 L﻿ighting tripods for [Javier Toro](https://www.toroblum.com/)'s art installation at the 2018 ChaCO art fair.
