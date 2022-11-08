@@ -6,5 +6,6 @@ category: Built work
 alt: alt
 ---
 Assembly Strategies\
-Y﻿ear: 2022, Location: CLB Gallery Berlin\
+Y﻿ear: 2022\
+Location: CLB Gallery, Berlin, Germany\
 Architecture exhibition designed and produced in collaboration with [Studio Milz](https://milz.studio/). This project was funded by a grant from the Ministry of Art and Culture of the Government of Chile.
