@@ -5,5 +5,5 @@ image: /uploads/exp16.jpg
 category: Experiments
 alt: alt
 ---
-**Surface Reading**\
+**Surface Readings**\
 T﻿hermal prints depicting planet Earth's topography.
