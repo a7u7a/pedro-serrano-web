@@ -6,4 +6,4 @@ category: Experiments
 alt: alt
 ---
 **Surface Readings**\
-C﻿ustom thermal printed developed by [Esteban Serrano](https://www.esrs.co/) for the exhibition.
+C﻿ustom thermal printer developed by [Esteban Serrano](https://www.esrs.co/) for the exhibition.
