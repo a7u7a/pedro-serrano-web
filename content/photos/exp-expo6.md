@@ -6,4 +6,4 @@ category: Experiments
 alt: alt
 ---
 **Surface Readings**\
-The images were taken by NASA's Landsat mission. They represent the earth's topography by correlating altitude values to grayscale tones. For the exhibition I instead used circles to represent height. The highest point in an image was assigned the biggest diameter, and the lowest point got the smallest diameter.
+The images were taken by NASA's Landsat mission. They represent the earth's topography by correlating altitude values with grayscale tones. For this piece I used circles to represent height. The highest point in an image was assigned the biggest diameter, and the lowest point got the smallest diameter.
