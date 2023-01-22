@@ -20,8 +20,7 @@ const MyFooter = forwardRef<HTMLDivElement>((props, ref) => {
     >
       <FadeIn threshold={1}>
         <p className="leading-tight">
-          {`There's never been a more urgent time to connect and think about
-              new ideas, spaces and realities. Get in touch if you agree ;)`}
+          {`Today it's urgent to connect with others and consider new ideas, spaces, and realities. Get in touch if you agree.`}
         </p>
       </FadeIn>
       <FadeIn threshold={1}>

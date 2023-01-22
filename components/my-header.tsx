@@ -25,8 +25,7 @@ const IntroHeader = forwardRef<HTMLDivElement>((props, ref) => {
 
       <FadeIn threshold={1}>
         <p>
-          Working across multiple disciplines to plan, communicate and produce
-          contemporary environments.
+        I work across multiple disciplines to plan, communicate and produce contemporary environments.
         </p>
       </FadeIn>
     </div>

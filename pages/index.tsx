@@ -15,7 +15,6 @@ interface HomeProps {
 const builtCat = "Built work";
 const experimentsCat = "Experiments";
 
-
 const Home = ({ builtProj, experimentsProj }: HomeProps) => {
   return (
     <>
@@ -44,19 +43,20 @@ const sortAlphaNum = (posts: PesePost[]) => {
   });
 };
 
-const filterByCategory = (posts: PesePost[], category:string)=>{
-return posts.filter((post) => {
-  return post.category === category;
-});
-}
+const filterByCategory = (posts: PesePost[], category: string) => {
+  return posts.filter((post) => {
+    return post.category === category;
+  });
+};
 
 export const getStaticProps: GetStaticProps = async () => {
   const allPosts = await getPosts();
 
-  const builtFiltered = filterByCategory(allPosts, builtCat )
+  const builtFiltered = filterByCategory(allPosts, builtCat);
   const builtProj = sortAlphaNum(builtFiltered);
+  // console.log("builtProj", builtProj);
 
-  const expFiltered = filterByCategory(allPosts, experimentsCat)
+  const expFiltered = filterByCategory(allPosts, experimentsCat);
   const experimentsProj = sortAlphaNum(expFiltered);
 
   return {

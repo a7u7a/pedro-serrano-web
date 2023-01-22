@@ -19,15 +19,12 @@ const MainText = forwardRef<HTMLDivElement>((props, ref) => {
     >
       <FadeIn threshold={1}>
         <p className="leading-tight">
-          From houses to bespoke furniture pieces, interior architecture and
-          exhibition design.
+        From houses to bespoke furniture pieces, interior architecture and exhibition design.
         </p>
       </FadeIn>
       <FadeIn threshold={1}>
         <p className="leading-tight">
-          I co-operate with clients and an ever expanding network of
-          professionals to create work that fosters sensory engagement while
-          remaining critical of its context.
+        I co-operate with clients and an ever expanding network of professionals to create work that fosters sensory engagement while remaining critical of its context.
         </p>
       </FadeIn>
     </div>
