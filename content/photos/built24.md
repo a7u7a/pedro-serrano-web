@@ -1,7 +1,7 @@
 ---
-date: September 13, 2022 10:55 PM
-title: built24
-image: /uploads/built25.jpg
+date: November 21, 2022 10:55 PM
+title: sole4
+image: /uploads/img_7241.jpeg
 category: Built work
 alt: alt
 ---
