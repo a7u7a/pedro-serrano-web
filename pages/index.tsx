@@ -36,7 +36,7 @@ const Home = ({ builtProj, experimentsProj }: HomeProps) => {
 
 const sortAlphaNum = (posts: PesePost[]) => {
   return posts.sort((a, b) => {
-    return a.title.localeCompare(b.title, undefined, {
+    return b.title.localeCompare(a.title, undefined, {
       numeric: true,
       sensitivity: "base",
     });
