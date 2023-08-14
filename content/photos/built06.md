@@ -1,5 +1,5 @@
 ---
-date: September 24, 2022 3:17 PM
+date: September 23, 2022 3:17 PM
 title: KKD6
 image: /uploads/plata-kkd-inverted-copy.jpg
 category: Built work
