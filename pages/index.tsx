@@ -36,6 +36,15 @@ const Home = ({ builtProj, experimentsProj }: HomeProps) => {
 
 const sortAlphaNum = (posts: PesePost[]) => {
   return posts.sort((a, b) => {
+    return b.title.localeCompare(a.title, undefined, {
+      numeric: true,
+      sensitivity: "base",
+    });
+  });
+};
+
+const sortAlphaNumInverse = (posts: PesePost[]) => {
+  return posts.sort((a, b) => {
     return a.title.localeCompare(b.title, undefined, {
       numeric: true,
       sensitivity: "base",
@@ -57,7 +66,7 @@ export const getStaticProps: GetStaticProps = async () => {
   // console.log("builtProj", builtProj);
 
   const expFiltered = filterByCategory(allPosts, experimentsCat);
-  const experimentsProj = sortAlphaNum(expFiltered);
+  const experimentsProj = sortAlphaNumInverse(expFiltered);
 
   return {
     props: {
